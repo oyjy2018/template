@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.loan.LendingCustomerDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.LendingCustomer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="loan_id" property="loanId" jdbcType="INTEGER" />
+    <result column="bidding_money" property="biddingMoney" jdbcType="DECIMAL" />
+    <result column="full_scale_time" property="fullScaleTime" jdbcType="TIMESTAMP" />
+    <result column="roll_number" property="rollNumber" jdbcType="INTEGER" />
+    <result column="whether_issue" property="whetherIssue" jdbcType="INTEGER" />
+    <result column="first_send_roll_time" jdbcType="TIMESTAMP" property="firstSendRollTime" />
+    <result column="recently_send_roll_time" jdbcType="TIMESTAMP" property="recentlySendRollTime" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customer_id, customer_name, id_card, mobile_phone, gender, age, email, loan_id,
+    bidding_money, full_scale_time, roll_number, whether_issue, first_send_roll_time,
+    recently_send_roll_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_lending_customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_lending_customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.LendingCustomer" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_lending_customer (customer_id, customer_name, id_card,
+    mobile_phone, gender, age,
+    email, loan_id, bidding_money,
+    full_scale_time, roll_number, whether_issue,
+    first_send_roll_time, recently_send_roll_time,
+    create_time)
+    values (#{customerId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR},
+    #{mobilePhone,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR},
+    #{email,jdbcType=VARCHAR}, #{loanId,jdbcType=INTEGER}, #{biddingMoney,jdbcType=DECIMAL},
+    #{fullScaleTime,jdbcType=TIMESTAMP}, #{rollNumber,jdbcType=INTEGER}, #{whetherIssue,jdbcType=INTEGER},
+    #{firstSendRollTime,jdbcType=TIMESTAMP}, #{recentlySendRollTime,jdbcType=TIMESTAMP},
+    #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.LendingCustomer" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_lending_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      customer_id,
+      customer_name,
+      id_card,
+      mobile_phone,
+      gender,
+      age,
+      email,
+      loan_id,
+      bidding_money,
+      full_scale_time,
+      roll_number,
+      whether_issue,
+      first_send_roll_time,
+      recently_send_roll_time,
+      create_time,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{customerId,jdbcType=INTEGER},
+      #{customerName,jdbcType=VARCHAR},
+      #{idCard,jdbcType=VARCHAR},
+      #{mobilePhone,jdbcType=VARCHAR},
+      #{gender,jdbcType=VARCHAR},
+      #{age,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR},
+      #{loanId,jdbcType=INTEGER},
+      #{biddingMoney,jdbcType=DECIMAL},
+      #{fullScaleTime,jdbcType=TIMESTAMP},
+      #{rollNumber,jdbcType=INTEGER},
+      #{whetherIssue,jdbcType=INTEGER},
+      #{firstSendRollTime,jdbcType=TIMESTAMP},
+      #{recentlySendRollTime,jdbcType=TIMESTAMP},
+      #{createTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.LendingCustomer" >
+    update t_lending_customer
+    <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        loan_id = #{loanId,jdbcType=INTEGER},
+      </if>
+      <if test="biddingMoney != null">
+        bidding_money = #{biddingMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="fullScaleTime != null">
+        full_scale_time = #{fullScaleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rollNumber != null">
+        roll_number = #{rollNumber,jdbcType=INTEGER},
+      </if>
+      <if test="whetherIssue != null">
+        whether_issue = #{whetherIssue,jdbcType=INTEGER},
+      </if>
+      <if test="firstSendRollTime != null">
+        first_send_roll_time = #{firstSendRollTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recentlySendRollTime != null">
+        recently_send_roll_time = #{recentlySendRollTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.LendingCustomer" >
+    update t_lending_customer
+    set customer_id = #{customerId,jdbcType=INTEGER},
+    customer_name = #{customerName,jdbcType=VARCHAR},
+    id_card = #{idCard,jdbcType=VARCHAR},
+    mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+    gender = #{gender,jdbcType=VARCHAR},
+    age = #{age,jdbcType=VARCHAR},
+    email = #{email,jdbcType=VARCHAR},
+    loan_id = #{loanId,jdbcType=INTEGER},
+    bidding_money = #{biddingMoney,jdbcType=DECIMAL},
+    full_scale_time = #{fullScaleTime,jdbcType=TIMESTAMP},
+    roll_number = #{rollNumber,jdbcType=INTEGER},
+    whether_issue = #{whetherIssue,jdbcType=INTEGER},
+    first_send_roll_time = #{firstSendRollTime,jdbcType=TIMESTAMP},
+    recently_send_roll_time = #{recentlySendRollTime,jdbcType=TIMESTAMP},
+    create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--批量新增放款客户数据-->
+  <insert id="insertLendingCustomerBatch" parameterType="java.util.List" >
+    insert into t_lending_customer (customer_id, customer_name, id_card,
+    mobile_phone, gender, age,
+    email, loan_id, bidding_money,
+    full_scale_time,whether_issue, create_time,roll_number)
+    values
+    <foreach collection="list" item="item" separator=",">
+    (#{item.customerId,jdbcType=INTEGER}, #{item.customerName,jdbcType=VARCHAR}, #{item.idCard,jdbcType=VARCHAR},
+    #{item.mobilePhone,jdbcType=VARCHAR}, #{item.gender,jdbcType=VARCHAR}, #{item.age,jdbcType=VARCHAR},
+    #{item.email,jdbcType=VARCHAR}, #{item.loanId,jdbcType=INTEGER}, #{item.biddingMoney,jdbcType=DECIMAL},
+    #{item.fullScaleTime,jdbcType=TIMESTAMP},#{item.whetherIssue,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP},#{item.rollNumber,jdbcType=INTEGER})
+    </foreach>
+    ON DUPLICATE KEY UPDATE
+    customer_name = VALUES(customer_name)
+  </insert>
+
+
+  <select id="getLendingCustomerList" resultType="java.util.Map">
+    SELECT
+    tlc.id lendingCustomerId,
+    tlc.customer_id customerId,
+    (SELECT tm.id FROM t_member tm WHERE tm.customer_id = tlc.customer_id AND tm.`status` = 1 LIMIT 1) memberId,
+    tlc.mobile_phone mobilePhone,
+    tlc.id_card idCard,
+    tlc.customer_name customerName,
+    IFNULL(IF((SELECT COUNT(1) FROM t_member tm WHERE tm.customer_id = tlc.customer_id) > 0,'是','否'),'否') whetherRegister,
+    IFNULL((SELECT IFNULL(DATE_FORMAT(tm.create_time,'%Y-%m-%d %H:%i:%s'),'') FROM t_member tm WHERE tm.customer_id = tlc.customer_id LIMIT 1),'') createTime,
+    tlc.loan_id loanId,
+    tlc.bidding_money biddingMoney,
+    DATE_FORMAT(tlc.full_scale_time,'%Y-%m-%d %H:%i:%s') fullScaleTime,
+    tlc.roll_number rollNumber,
+    IFNULL(DATE_FORMAT(tlc.first_send_roll_time,'%Y-%m-%d %H:%i:%s'),'') firstSendRollTime,
+    IFNULL(DATE_FORMAT(tlc.recently_send_roll_time,'%Y-%m-%d %H:%i:%s'),'') recentlySendRollTime
+    <include refid="getLendingCustomerListCommon"/>
+    ORDER BY tlc.create_time DESC
+  </select>
+
+  <sql id="getLendingCustomerListCommon">
+    FROM t_lending_customer tlc
+    WHERE tlc.whether_issue = 0
+      <if test="lendingCustomerDTO.mobilePhone != null and lendingCustomerDTO.mobilePhone != ''">
+        AND tlc.mobile_phone LIKE '%${lendingCustomerDTO.mobilePhone}%'
+      </if>
+      <if test="lendingCustomerDTO.lendingCustomerId != null and lendingCustomerDTO.lendingCustomerId != ''">
+        AND tlc.id = #{lendingCustomerDTO.lendingCustomerId,jdbcType=INTEGER}
+      </if>
+      <if test="lendingCustomerDTO.fullScaleStartTime != null and lendingCustomerDTO.fullScaleStartTime != ''">
+        AND tlc.full_scale_time <![CDATA[>=]]> #{lendingCustomerDTO.fullScaleStartTime,jdbcType=VARCHAR}
+      </if>
+      <if test="lendingCustomerDTO.fullScaleEndTime != null and lendingCustomerDTO.fullScaleEndTime != ''">
+        AND tlc.full_scale_time <![CDATA[<=]]> #{lendingCustomerDTO.fullScaleEndTime,jdbcType=VARCHAR}
+      </if>
+  </sql>
+
+  <update id="updateCustomerRollOver">
+    <foreach collection="loanIds" item="item">
+      UPDATE
+        t_lending_customer
+      SET
+        whether_issue = 1
+      WHERE
+        loan_id = #{item};
+    </foreach>
+  </update>
+
+  <select id="getLendingCustomerByLoanId" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List"/>
+    FROM
+      t_lending_customer
+    WHERE
+      loan_id = #{loanId}
+      LIMIT 1
+  </select>
+</mapper>

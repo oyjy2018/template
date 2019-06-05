@@ -1,0 +1,22 @@
+server:
+  port: 20000
+spring:
+  application:
+    name: ydc-eureka
+  profiles:
+      active: uat
+  security:
+    user:
+      name: ydc100101
+      password: ydc100101
+eureka:
+  instance:
+    prefer-ip-address: true
+  server:
+        enable-self-preservation: false      # 关闭自我保护模式（默认为打开） 内网通信可以关闭自我保护模式
+#        eviction-interval-timer-in-ms: 5000  # 续期时间，即扫描失效服务的间隔时间（缺省为60*1000ms）
+  client:
+      register-with-eureka: false
+      fetch-registry: false
+      service-url:
+        defaultZone: http://ydc100101:ydc100101@127.0.0.1:20000/eureka/

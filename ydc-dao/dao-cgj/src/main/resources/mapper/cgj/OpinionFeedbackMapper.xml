@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.order.OpinionFeedbackDao">
+    <resultMap id="BaseResultMap" type="com.ydc.model.cgj.OpinionFeedback">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="opinion_type" property="opinionType" jdbcType="CHAR"/>
+        <result column="opinion_content" property="opinionContent" jdbcType="VARCHAR"/>
+        <result column="contact_way" property="contactWay" jdbcType="VARCHAR"/>
+        <result column="source" property="source" jdbcType="CHAR"/>
+        <result column="process_status" property="processStatus" jdbcType="CHAR"/>
+        <result column="process_username" property="processUsername" jdbcType="VARCHAR"/>
+        <result column="process_time" property="processTime" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, user_name, opinion_type, opinion_content, contact_way, `source`, process_status,
+        process_username, process_time, `status`, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_opinion_feedback
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_opinion_feedback
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ydc.model.cgj.OpinionFeedback" useGeneratedKeys="true" keyProperty="id">
+        insert into t_opinion_feedback (user_id, user_name, opinion_type,
+        opinion_content, contact_way, `source`,
+        process_status, process_username, process_time,
+        `status`, create_time, update_time
+        )
+        values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{opinionType,jdbcType=CHAR},
+        #{opinionContent,jdbcType=VARCHAR}, #{contactWay,jdbcType=VARCHAR}, #{source,jdbcType=CHAR},
+        #{processStatus,jdbcType=CHAR}, #{processUsername,jdbcType=VARCHAR}, #{processTime,jdbcType=TIMESTAMP},
+        #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.ydc.model.cgj.OpinionFeedback" useGeneratedKeys="true" keyProperty="id">
+        insert into t_opinion_feedback
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            user_id,
+            user_name,
+            opinion_type,
+            opinion_content,
+            contact_way,
+            `source`,
+            process_status,
+            process_username,
+            process_time,
+            `status`,
+            create_time,
+            update_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{userId,jdbcType=INTEGER},
+            #{userName,jdbcType=VARCHAR},
+            #{opinionType,jdbcType=CHAR},
+            #{opinionContent,jdbcType=VARCHAR},
+            #{contactWay,jdbcType=VARCHAR},
+            #{source,jdbcType=CHAR},
+            #{processStatus,jdbcType=CHAR},
+            #{processUsername,jdbcType=VARCHAR},
+            #{processTime,jdbcType=TIMESTAMP},
+            #{status,jdbcType=TINYINT},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateTime,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.OpinionFeedback">
+        update t_opinion_feedback
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="opinionType != null">
+                opinion_type = #{opinionType,jdbcType=CHAR},
+            </if>
+            <if test="opinionContent != null">
+                opinion_content = #{opinionContent,jdbcType=VARCHAR},
+            </if>
+            <if test="contactWay != null">
+                contact_way = #{contactWay,jdbcType=VARCHAR},
+            </if>
+            <if test="source != null">
+                `source` = #{source,jdbcType=CHAR},
+            </if>
+            <if test="processStatus != null">
+                process_status = #{processStatus,jdbcType=CHAR},
+            </if>
+            <if test="processUsername != null">
+                process_username = #{processUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="processTime != null">
+                process_time = #{processTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.OpinionFeedback">
+        update t_opinion_feedback
+        set user_id = #{userId,jdbcType=INTEGER},
+        user_name = #{userName,jdbcType=VARCHAR},
+        opinion_type = #{opinionType,jdbcType=CHAR},
+        opinion_content = #{opinionContent,jdbcType=VARCHAR},
+        contact_way = #{contactWay,jdbcType=VARCHAR},
+        `source` = #{source,jdbcType=CHAR},
+        process_status = #{processStatus,jdbcType=CHAR},
+        process_username = #{processUsername,jdbcType=VARCHAR},
+        process_time = #{processTime,jdbcType=TIMESTAMP},
+        `status` = #{status,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,1258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.rental.RentalOrderDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.rental.RentalOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="car_id" property="carId" jdbcType="INTEGER" />
+    <result column="car_number" property="carNumber" jdbcType="VARCHAR" />
+    <result column="car_level" property="carLevel" jdbcType="VARCHAR" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="series" property="series" jdbcType="VARCHAR" />
+    <result column="model" property="model" jdbcType="VARCHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="fetch_car_mode" property="fetchCarMode" jdbcType="TINYINT" />
+    <result column="repay_car_mode" property="repayCarMode" jdbcType="TINYINT" />
+    <result column="appointment_fetch_car_time" property="appointmentFetchCarTime" jdbcType="TIMESTAMP" />
+    <result column="appointment_repay_car_time" property="appointmentRepayCarTime" jdbcType="TIMESTAMP" />
+    <result column="appointment_store_id" property="appointmentStoreId" jdbcType="INTEGER" />
+    <result column="appointment_store_name" property="appointmentStoreName" jdbcType="VARCHAR" />
+    <result column="appointment_repay_store_id" property="appointmentRepayStoreId" jdbcType="INTEGER" />
+    <result column="appointment_repay_store_name" property="appointmentRepayStoreName" jdbcType="VARCHAR" />
+    <result column="appointment_fetch_car_province_code" property="appointmentFetchCarProvinceCode" jdbcType="INTEGER" />
+    <result column="appointment_fetch_car_province" property="appointmentFetchCarProvince" jdbcType="VARCHAR" />
+    <result column="appointment_fetch_car_city_code" property="appointmentFetchCarCityCode" jdbcType="INTEGER" />
+    <result column="appointment_fetch_car_city" property="appointmentFetchCarCity" jdbcType="VARCHAR" />
+    <result column="appointment_fetch_car_region_code" property="appointmentFetchCarRegionCode" jdbcType="INTEGER" />
+    <result column="appointment_fetch_car_region" property="appointmentFetchCarRegion" jdbcType="VARCHAR" />
+    <result column="appointment_fetch_car_details_address" property="appointmentFetchCarDetailsAddress" jdbcType="VARCHAR" />
+    <result column="appointment_repay_car_province_code" property="appointmentRepayCarProvinceCode" jdbcType="INTEGER" />
+    <result column="appointment_repay_car_province" property="appointmentRepayCarProvince" jdbcType="VARCHAR" />
+    <result column="appointment_repay_car_city_code" property="appointmentRepayCarCityCode" jdbcType="INTEGER" />
+    <result column="appointment_repay_car_city" property="appointmentRepayCarCity" jdbcType="VARCHAR" />
+    <result column="appointment_repay_car_region_code" property="appointmentRepayCarRegionCode" jdbcType="INTEGER" />
+    <result column="appointment_repay_car_region" property="appointmentRepayCarRegion" jdbcType="VARCHAR" />
+    <result column="appointment_repay_car_details_address" property="appointmentRepayCarDetailsAddress" jdbcType="VARCHAR" />
+    <result column="come_car_time" property="comeCarTime" jdbcType="TIMESTAMP" />
+    <result column="come_warehouse_mileage" property="comeWarehouseMileage" jdbcType="VARCHAR" />
+    <result column="come_warehouse_oil_amount" property="comeWarehouseOilAmount" jdbcType="INTEGER" />
+    <result column="come_warehouse_store_id" property="comeWarehouseStoreId" jdbcType="INTEGER" />
+    <result column="come_warehouse_store_name" property="comeWarehouseStoreName" jdbcType="VARCHAR" />
+    <result column="coachman_id" property="coachmanId" jdbcType="INTEGER" />
+    <result column="coachman_name" property="coachmanName" jdbcType="VARCHAR" />
+    <result column="come_car_remark" property="comeCarRemark" jdbcType="VARCHAR" />
+    <result column="order_receivable_money" property="orderReceivableMoney" jdbcType="DECIMAL" />
+    <result column="order_practical_money" property="orderPracticalMoney" jdbcType="DECIMAL" />
+    <result column="repay_car_time" property="repayCarTime" jdbcType="TIMESTAMP" />
+    <result column="repay_car_mileage" property="repayCarMileage" jdbcType="VARCHAR" />
+    <result column="repay_car_oil_amount" property="repayCarOilAmount" jdbcType="INTEGER" />
+    <result column="repay_car_warehouse_store_id" property="repayCarWarehouseStoreId" jdbcType="INTEGER" />
+    <result column="repay_car_warehouse_store_name" property="repayCarWarehouseStoreName" jdbcType="VARCHAR" />
+    <result column="repay_car_coachman_id" property="repayCarCoachmanId" jdbcType="INTEGER" />
+    <result column="repay_car_coachman_name" property="repayCarCoachmanName" jdbcType="VARCHAR" />
+    <result column="repay_car_remark" property="repayCarRemark" jdbcType="VARCHAR" />
+    <result column="violation_number" property="violationNumber" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="flow_one_status" property="flowOneStatus" jdbcType="TINYINT" />
+    <result column="flow_two_status" property="flowTwoStatus" jdbcType="TINYINT" />
+    <result column="flow_three_status" property="flowThreeStatus" jdbcType="TINYINT" />
+    <result column="close_before_status" property="closeBeforeStatus" jdbcType="TINYINT" />
+    <result column="close_cause" property="closeCause" jdbcType="VARCHAR" />
+    <result column="close_time" property="closeTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, member_id, car_id, car_number, car_level, brand, series, model, mobile_phone,
+    `name`, id_card, fetch_car_mode, repay_car_mode, appointment_fetch_car_time, appointment_repay_car_time,
+    appointment_store_id, appointment_store_name, appointment_repay_store_id, appointment_repay_store_name,
+    appointment_fetch_car_province_code, appointment_fetch_car_province, appointment_fetch_car_city_code,
+    appointment_fetch_car_city, appointment_fetch_car_region_code, appointment_fetch_car_region,
+    appointment_fetch_car_details_address, appointment_repay_car_province_code, appointment_repay_car_province,
+    appointment_repay_car_city_code, appointment_repay_car_city, appointment_repay_car_region_code,
+    appointment_repay_car_region, appointment_repay_car_details_address, come_car_time,
+    come_warehouse_mileage, come_warehouse_oil_amount, come_warehouse_store_id, come_warehouse_store_name,
+    coachman_id, coachman_name, come_car_remark, order_receivable_money, order_practical_money,
+    repay_car_time, repay_car_mileage, repay_car_oil_amount, repay_car_warehouse_store_id,
+    repay_car_warehouse_store_name, repay_car_coachman_id, repay_car_coachman_name, repay_car_remark,
+    violation_number, `status`, flow_one_status, flow_two_status, flow_three_status,
+    close_before_status, close_cause, close_time, create_time, create_by, update_time,
+    update_by
+  </sql>
+  <select id="getRentalOrderByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_rental_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_rental_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertOrder" parameterType="com.ydc.commom.view.dto.cgj.rental.AddRentalOrderPCDTO" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_rental_order (
+      order_no,member_id,
+      car_level, brand,
+      series, model,
+      mobile_phone, `name`,
+      id_card, fetch_car_mode,
+      repay_car_mode, appointment_fetch_car_time,
+      appointment_repay_car_time, appointment_store_id,
+      appointment_store_name,appointment_fetch_car_province_code,
+      appointment_fetch_car_province, appointment_fetch_car_city_code,
+      appointment_fetch_car_city,appointment_fetch_car_region_code,
+      appointment_fetch_car_region, appointment_fetch_car_details_address,
+      appointment_repay_car_province_code,appointment_repay_car_province,
+      appointment_repay_car_city_code, appointment_repay_car_city,
+      appointment_repay_car_region_code, appointment_repay_car_region,
+      appointment_repay_car_details_address,
+      `status`, close_cause,
+      close_time, create_time,
+      create_by,flow_one_status,appointment_repay_store_id,
+      appointment_repay_store_name)
+    values (
+      #{orderNo,jdbcType=VARCHAR},#{memberId,jdbcType=INTEGER},
+      #{carLevel,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR},
+      #{series,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR},
+      #{mobilePhone,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{idCard,jdbcType=VARCHAR}, #{fetchCarMode,jdbcType=TINYINT},
+      #{repayCarMode,jdbcType=TINYINT}, #{appointmentFetchCarTime,jdbcType=TIMESTAMP},
+      #{appointmentRepayCarTime,jdbcType=TIMESTAMP},#{appointmentStoreId,jdbcType=INTEGER},
+      #{appointmentStoreName,jdbcType=VARCHAR},#{appointmentFetchCarProvinceCode,jdbcType=INTEGER},
+      #{appointmentFetchCarProvince,jdbcType=VARCHAR}, #{appointmentFetchCarCityCode,jdbcType=INTEGER},
+      #{appointmentFetchCarCity,jdbcType=VARCHAR}, #{appointmentFetchCarRegionCode,jdbcType=INTEGER},
+      #{appointmentFetchCarRegion,jdbcType=VARCHAR}, #{appointmentFetchCarDetailsAddress,jdbcType=VARCHAR},
+      #{appointmentRepayCarProvinceCode,jdbcType=INTEGER},#{appointmentRepayCarProvince,jdbcType=VARCHAR},
+      #{appointmentRepayCarCityCode,jdbcType=INTEGER},  #{appointmentRepayCarCity,jdbcType=VARCHAR},
+      #{appointmentRepayCarRegionCode,jdbcType=INTEGER}, #{appointmentRepayCarRegion,jdbcType=VARCHAR},
+      #{appointmentRepayCarDetailsAddress,jdbcType=VARCHAR},
+      #{status,jdbcType=TINYINT},#{closeCause,jdbcType=VARCHAR},
+      #{closeTime,jdbcType=TIMESTAMP},#{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER},#{flowOneStatus,jdbcType=TINYINT},#{appointmentRepayStoreId,jdbcType=INTEGER},
+      #{appointmentRepayStoreName,jdbcType=VARCHAR})
+  </insert>
+
+
+
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.rental.RentalOrder" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_rental_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      order_no,
+      member_id,
+      car_id,
+      car_number,
+      car_level,
+      brand,
+      series,
+      model,
+      mobile_phone,
+      `name`,
+      id_card,
+      fetch_car_mode,
+      repay_car_mode,
+      appointment_fetch_car_time,
+      appointment_repay_car_time,
+      appointment_store_id,
+      appointment_store_name,
+      appointment_repay_store_id,
+      appointment_repay_store_name,
+      appointment_fetch_car_province_code,
+      appointment_fetch_car_province,
+      appointment_fetch_car_city_code,
+      appointment_fetch_car_city,
+      appointment_fetch_car_region_code,
+      appointment_fetch_car_region,
+      appointment_fetch_car_details_address,
+      appointment_repay_car_province_code,
+      appointment_repay_car_province,
+      appointment_repay_car_city_code,
+      appointment_repay_car_city,
+      appointment_repay_car_region_code,
+      appointment_repay_car_region,
+      appointment_repay_car_details_address,
+      come_car_time,
+      come_warehouse_mileage,
+      come_warehouse_oil_amount,
+      come_warehouse_store_id,
+      come_warehouse_store_name,
+      coachman_id,
+      coachman_name,
+      come_car_remark,
+      order_receivable_money,
+      order_practical_money,
+      repay_car_time,
+      repay_car_mileage,
+      repay_car_oil_amount,
+      repay_car_warehouse_store_id,
+      repay_car_warehouse_store_name,
+      repay_car_coachman_id,
+      repay_car_coachman_name,
+      repay_car_remark,
+      violation_number,
+      `status`,
+      flow_one_status,
+      flow_two_status,
+      flow_three_status,
+      close_before_status,
+      close_cause,
+      close_time,
+      create_time,
+      create_by,
+      update_time,
+      update_by,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{orderNo,jdbcType=VARCHAR},
+      #{memberId,jdbcType=INTEGER},
+      #{carId,jdbcType=INTEGER},
+      #{carNumber,jdbcType=VARCHAR},
+      #{carLevel,jdbcType=VARCHAR},
+      #{brand,jdbcType=VARCHAR},
+      #{series,jdbcType=VARCHAR},
+      #{model,jdbcType=VARCHAR},
+      #{mobilePhone,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{idCard,jdbcType=VARCHAR},
+      #{fetchCarMode,jdbcType=TINYINT},
+      #{repayCarMode,jdbcType=TINYINT},
+      #{appointmentFetchCarTime,jdbcType=TIMESTAMP},
+      #{appointmentRepayCarTime,jdbcType=TIMESTAMP},
+      #{appointmentStoreId,jdbcType=INTEGER},
+      #{appointmentStoreName,jdbcType=VARCHAR},
+      #{appointmentRepayStoreId,jdbcType=INTEGER},
+      #{appointmentRepayStoreName,jdbcType=VARCHAR},
+      #{appointmentFetchCarProvinceCode,jdbcType=INTEGER},
+      #{appointmentFetchCarProvince,jdbcType=VARCHAR},
+      #{appointmentFetchCarCityCode,jdbcType=INTEGER},
+      #{appointmentFetchCarCity,jdbcType=VARCHAR},
+      #{appointmentFetchCarRegionCode,jdbcType=INTEGER},
+      #{appointmentFetchCarRegion,jdbcType=VARCHAR},
+      #{appointmentFetchCarDetailsAddress,jdbcType=VARCHAR},
+      #{appointmentRepayCarProvinceCode,jdbcType=INTEGER},
+      #{appointmentRepayCarProvince,jdbcType=VARCHAR},
+      #{appointmentRepayCarCityCode,jdbcType=INTEGER},
+      #{appointmentRepayCarCity,jdbcType=VARCHAR},
+      #{appointmentRepayCarRegionCode,jdbcType=INTEGER},
+      #{appointmentRepayCarRegion,jdbcType=VARCHAR},
+      #{appointmentRepayCarDetailsAddress,jdbcType=VARCHAR},
+      #{comeCarTime,jdbcType=TIMESTAMP},
+      #{comeWarehouseMileage,jdbcType=VARCHAR},
+      #{comeWarehouseOilAmount,jdbcType=INTEGER},
+      #{comeWarehouseStoreId,jdbcType=INTEGER},
+      #{comeWarehouseStoreName,jdbcType=VARCHAR},
+      #{coachmanId,jdbcType=INTEGER},
+      #{coachmanName,jdbcType=VARCHAR},
+      #{comeCarRemark,jdbcType=VARCHAR},
+      #{orderReceivableMoney,jdbcType=DECIMAL},
+      #{orderPracticalMoney,jdbcType=DECIMAL},
+      #{repayCarTime,jdbcType=TIMESTAMP},
+      #{repayCarMileage,jdbcType=VARCHAR},
+      #{repayCarOilAmount,jdbcType=INTEGER},
+      #{repayCarWarehouseStoreId,jdbcType=INTEGER},
+      #{repayCarWarehouseStoreName,jdbcType=VARCHAR},
+      #{repayCarCoachmanId,jdbcType=INTEGER},
+      #{repayCarCoachmanName,jdbcType=VARCHAR},
+      #{repayCarRemark,jdbcType=VARCHAR},
+      #{violationNumber,jdbcType=INTEGER},
+      #{status,jdbcType=TINYINT},
+      #{flowOneStatus,jdbcType=TINYINT},
+      #{flowTwoStatus,jdbcType=TINYINT},
+      #{flowThreeStatus,jdbcType=TINYINT},
+      #{closeBeforeStatus,jdbcType=TINYINT},
+      #{closeCause,jdbcType=VARCHAR},
+      #{closeTime,jdbcType=TIMESTAMP},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=INTEGER},
+    </trim>
+  </insert>
+
+  <update id="updateByOrderId" parameterType="com.ydc.model.cgj.rental.RentalOrder" >
+    update t_rental_order
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="carId != null" >
+        car_id = #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="carNumber != null" >
+        car_number = #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carLevel != null" >
+        car_level = #{carLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="series != null" >
+        series = #{series,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="fetchCarMode != null" >
+        fetch_car_mode = #{fetchCarMode,jdbcType=TINYINT},
+      </if>
+      <if test="repayCarMode != null" >
+        repay_car_mode = #{repayCarMode,jdbcType=TINYINT},
+      </if>
+      <if test="appointmentFetchCarTime != null" >
+        appointment_fetch_car_time = #{appointmentFetchCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appointmentRepayCarTime != null" >
+        appointment_repay_car_time = #{appointmentRepayCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appointmentStoreId != null" >
+        appointment_store_id = #{appointmentStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentStoreName != null" >
+        appointment_store_name = #{appointmentStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayStoreId != null" >
+        appointment_repay_store_id = #{appointmentRepayStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentRepayStoreName != null" >
+        appointment_repay_store_name = #{appointmentRepayStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentFetchCarProvinceCode != null" >
+        appointment_fetch_car_province_code = #{appointmentFetchCarProvinceCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarProvince != null" >
+        appointment_fetch_car_province = #{appointmentFetchCarProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentFetchCarCityCode != null" >
+        appointment_fetch_car_city_code = #{appointmentFetchCarCityCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarCity != null" >
+        appointment_fetch_car_city = #{appointmentFetchCarCity,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentFetchCarRegionCode != null" >
+        appointment_fetch_car_region_code = #{appointmentFetchCarRegionCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarRegion != null" >
+        appointment_fetch_car_region = #{appointmentFetchCarRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentFetchCarDetailsAddress != null" >
+        appointment_fetch_car_details_address = #{appointmentFetchCarDetailsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarProvinceCode != null" >
+        appointment_repay_car_province_code = #{appointmentRepayCarProvinceCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentRepayCarProvince != null" >
+        appointment_repay_car_province = #{appointmentRepayCarProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarCityCode != null" >
+        appointment_repay_car_city_code = #{appointmentRepayCarCityCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentRepayCarCity != null" >
+        appointment_repay_car_city = #{appointmentRepayCarCity,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarRegionCode != null" >
+        appointment_repay_car_region_code = #{appointmentRepayCarRegionCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentRepayCarRegion != null" >
+        appointment_repay_car_region = #{appointmentRepayCarRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarDetailsAddress != null" >
+        appointment_repay_car_details_address = #{appointmentRepayCarDetailsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="comeCarTime != null" >
+        come_car_time = #{comeCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comeWarehouseMileage != null" >
+        come_warehouse_mileage = #{comeWarehouseMileage,jdbcType=VARCHAR},
+      </if>
+      <if test="comeWarehouseOilAmount != null" >
+        come_warehouse_oil_amount = #{comeWarehouseOilAmount,jdbcType=INTEGER},
+      </if>
+      <if test="comeWarehouseStoreId != null" >
+        come_warehouse_store_id = #{comeWarehouseStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="comeWarehouseStoreName != null" >
+        come_warehouse_store_name = #{comeWarehouseStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="coachmanId != null" >
+        coachman_id = #{coachmanId,jdbcType=INTEGER},
+      </if>
+      <if test="coachmanName != null" >
+        coachman_name = #{coachmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="comeCarRemark != null" >
+        come_car_remark = #{comeCarRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReceivableMoney != null" >
+        order_receivable_money = #{orderReceivableMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPracticalMoney != null" >
+        order_practical_money = #{orderPracticalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="repayCarTime != null" >
+        repay_car_time = #{repayCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayCarMileage != null" >
+        repay_car_mileage = #{repayCarMileage,jdbcType=VARCHAR},
+      </if>
+      <if test="repayCarOilAmount != null" >
+        repay_car_oil_amount = #{repayCarOilAmount,jdbcType=INTEGER},
+      </if>
+      <if test="repayCarWarehouseStoreId != null" >
+        repay_car_warehouse_store_id = #{repayCarWarehouseStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="repayCarWarehouseStoreName != null" >
+        repay_car_warehouse_store_name = #{repayCarWarehouseStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="repayCarCoachmanId != null" >
+        repay_car_coachman_id = #{repayCarCoachmanId,jdbcType=INTEGER},
+      </if>
+      <if test="repayCarCoachmanName != null" >
+        repay_car_coachman_name = #{repayCarCoachmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="repayCarRemark != null" >
+        repay_car_remark = #{repayCarRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="violationNumber != null" >
+        violation_number = #{violationNumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="flowOneStatus != null" >
+        flow_one_status = #{flowOneStatus,jdbcType=TINYINT},
+      </if>
+      <if test="flowTwoStatus != null" >
+        flow_two_status = #{flowTwoStatus,jdbcType=TINYINT},
+      </if>
+      <if test="flowThreeStatus != null" >
+        flow_three_status = #{flowThreeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="closeBeforeStatus != null" >
+        close_before_status = #{closeBeforeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="closeCause != null" >
+        close_cause = #{closeCause,jdbcType=VARCHAR},
+      </if>
+      <if test="closeTime != null" >
+        close_time = #{closeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.rental.RentalOrder" >
+    update t_rental_order
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+    member_id = #{memberId,jdbcType=INTEGER},
+    car_id = #{carId,jdbcType=INTEGER},
+    car_number = #{carNumber,jdbcType=VARCHAR},
+    car_level = #{carLevel,jdbcType=VARCHAR},
+    brand = #{brand,jdbcType=VARCHAR},
+    series = #{series,jdbcType=VARCHAR},
+    model = #{model,jdbcType=VARCHAR},
+    mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+    `name` = #{name,jdbcType=VARCHAR},
+    id_card = #{idCard,jdbcType=VARCHAR},
+    fetch_car_mode = #{fetchCarMode,jdbcType=TINYINT},
+    repay_car_mode = #{repayCarMode,jdbcType=TINYINT},
+    appointment_fetch_car_time = #{appointmentFetchCarTime,jdbcType=TIMESTAMP},
+    appointment_repay_car_time = #{appointmentRepayCarTime,jdbcType=TIMESTAMP},
+    appointment_store_id = #{appointmentStoreId,jdbcType=INTEGER},
+    appointment_store_name = #{appointmentStoreName,jdbcType=VARCHAR},
+    appointment_repay_store_id = #{appointmentRepayStoreId,jdbcType=INTEGER},
+    appointment_repay_store_name = #{appointmentRepayStoreName,jdbcType=VARCHAR},
+    appointment_fetch_car_province_code = #{appointmentFetchCarProvinceCode,jdbcType=INTEGER},
+    appointment_fetch_car_province = #{appointmentFetchCarProvince,jdbcType=VARCHAR},
+    appointment_fetch_car_city_code = #{appointmentFetchCarCityCode,jdbcType=INTEGER},
+    appointment_fetch_car_city = #{appointmentFetchCarCity,jdbcType=VARCHAR},
+    appointment_fetch_car_region_code = #{appointmentFetchCarRegionCode,jdbcType=INTEGER},
+    appointment_fetch_car_region = #{appointmentFetchCarRegion,jdbcType=VARCHAR},
+    appointment_fetch_car_details_address = #{appointmentFetchCarDetailsAddress,jdbcType=VARCHAR},
+    appointment_repay_car_province_code = #{appointmentRepayCarProvinceCode,jdbcType=INTEGER},
+    appointment_repay_car_province = #{appointmentRepayCarProvince,jdbcType=VARCHAR},
+    appointment_repay_car_city_code = #{appointmentRepayCarCityCode,jdbcType=INTEGER},
+    appointment_repay_car_city = #{appointmentRepayCarCity,jdbcType=VARCHAR},
+    appointment_repay_car_region_code = #{appointmentRepayCarRegionCode,jdbcType=INTEGER},
+    appointment_repay_car_region = #{appointmentRepayCarRegion,jdbcType=VARCHAR},
+    appointment_repay_car_details_address = #{appointmentRepayCarDetailsAddress,jdbcType=VARCHAR},
+    come_car_time = #{comeCarTime,jdbcType=TIMESTAMP},
+    come_warehouse_mileage = #{comeWarehouseMileage,jdbcType=VARCHAR},
+    come_warehouse_oil_amount = #{comeWarehouseOilAmount,jdbcType=INTEGER},
+    come_warehouse_store_id = #{comeWarehouseStoreId,jdbcType=INTEGER},
+    come_warehouse_store_name = #{comeWarehouseStoreName,jdbcType=VARCHAR},
+    coachman_id = #{coachmanId,jdbcType=INTEGER},
+    coachman_name = #{coachmanName,jdbcType=VARCHAR},
+    come_car_remark = #{comeCarRemark,jdbcType=VARCHAR},
+    order_receivable_money = #{orderReceivableMoney,jdbcType=DECIMAL},
+    order_practical_money = #{orderPracticalMoney,jdbcType=DECIMAL},
+    repay_car_time = #{repayCarTime,jdbcType=TIMESTAMP},
+    repay_car_mileage = #{repayCarMileage,jdbcType=VARCHAR},
+    repay_car_oil_amount = #{repayCarOilAmount,jdbcType=INTEGER},
+    repay_car_warehouse_store_id = #{repayCarWarehouseStoreId,jdbcType=INTEGER},
+    repay_car_warehouse_store_name = #{repayCarWarehouseStoreName,jdbcType=VARCHAR},
+    repay_car_coachman_id = #{repayCarCoachmanId,jdbcType=INTEGER},
+    repay_car_coachman_name = #{repayCarCoachmanName,jdbcType=VARCHAR},
+    repay_car_remark = #{repayCarRemark,jdbcType=VARCHAR},
+    violation_number = #{violationNumber,jdbcType=INTEGER},
+    `status` = #{status,jdbcType=TINYINT},
+    flow_one_status = #{flowOneStatus,jdbcType=TINYINT},
+    flow_two_status = #{flowTwoStatus,jdbcType=TINYINT},
+    flow_three_status = #{flowThreeStatus,jdbcType=TINYINT},
+    close_before_status = #{closeBeforeStatus,jdbcType=TINYINT},
+    close_cause = #{closeCause,jdbcType=VARCHAR},
+    close_time = #{closeTime,jdbcType=TIMESTAMP},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    create_by = #{createBy,jdbcType=INTEGER},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+ <!--出车更新信息-->
+  <update id="updateComeCarOrder" parameterType="com.ydc.commom.view.dto.cgj.rental.ComeCarOrderDTO" >
+    update t_rental_order
+    set
+    car_id = #{carId,jdbcType=INTEGER},
+    car_number = #{carNumber,jdbcType=VARCHAR},
+    car_level = #{carLevel,jdbcType=VARCHAR},
+    brand = #{brand,jdbcType=VARCHAR},
+    series = #{series,jdbcType=VARCHAR},
+    model = #{model,jdbcType=VARCHAR},
+    come_car_time = #{comeCarTime,jdbcType=TIMESTAMP},
+    come_warehouse_mileage = #{comeWarehouseMileage,jdbcType=VARCHAR},
+    come_warehouse_oil_amount = #{comeWarehouseOilAmount,jdbcType=VARCHAR},
+    come_warehouse_store_id = #{comeWarehouseStoreId,jdbcType=INTEGER},
+    come_warehouse_store_name = #{comeWarehouseStoreName,jdbcType=VARCHAR},
+    coachman_id = #{coachmanId,jdbcType=INTEGER},
+    coachman_name = #{coachmanName,jdbcType=VARCHAR},
+    come_car_remark = #{comeCarRemark,jdbcType=VARCHAR},
+    `status` = #{status,jdbcType=TINYINT},
+    update_by = #{updateBy,jdbcType=INTEGER},
+    flow_one_status = #{flowOneStatus,jdbcType=TINYINT},
+    flow_two_status = #{flowTwoStatus,jdbcType=TINYINT},
+    flow_three_status = #{flowThreeStatus,jdbcType=TINYINT}
+    where id = #{orderId,jdbcType=INTEGER};
+
+    update t_comm_car
+    SET
+      operation_status = '2',
+      turn_out_type = '8' ,
+      mileage = #{comeWarehouseMileage,jdbcType=VARCHAR},
+      oil_mass = #{comeWarehouseOilAmount,jdbcType=VARCHAR}
+    where id = #{carId,jdbcType=INTEGER};
+  </update>
+
+  <!-- 获取出车信息 -->
+  <select id="getComeCarOrderData" resultType="com.ydc.commom.view.vo.cgj.rental.ComeCarOrderVO">
+    SELECT
+    id orderId,
+    car_id  carId,
+    car_number carNumber,
+    DATE_FORMAT(come_car_time,'%Y-%m-%d %H:%i:%s') comeCarTime,
+    come_warehouse_mileage comeWarehouseMileage,
+    come_warehouse_oil_amount comeWarehouseOilAmount,
+    come_warehouse_store_id comeWarehouseStoreId,
+    come_warehouse_store_name comeWarehouseStoreName,
+    coachman_id coachmanId,
+    coachman_name coachmanName,
+    IFNULL(come_car_remark,'') comeCarRemark
+    FROM t_rental_order WHERE id = #{orderId,jdbcType=INTEGER}
+  </select>
+
+  <!--还车更新信息-->
+  <update id="updateRepayCarOrder" parameterType="com.ydc.commom.view.dto.cgj.rental.RepayCarOrderDTO" >
+    update t_rental_order
+    set
+    repay_car_time = #{repayCarTime,jdbcType=TIMESTAMP},
+    repay_car_mileage = #{repayCarMileage,jdbcType=VARCHAR},
+    repay_car_oil_amount = #{repayCarOilAmount,jdbcType=VARCHAR},
+    repay_car_warehouse_store_id = #{repayCarWarehouseStoreId,jdbcType=INTEGER},
+    repay_car_warehouse_store_name = #{repayCarWarehouseStoreName,jdbcType=VARCHAR},
+    repay_car_coachman_id = #{repayCarCoachmanId,jdbcType=INTEGER},
+    repay_car_coachman_name = #{repayCarCoachmanName,jdbcType=VARCHAR},
+    `status` = #{status,jdbcType=TINYINT},
+    repay_car_remark = #{repayCarRemark,jdbcType=VARCHAR},
+    update_by = #{updateBy,jdbcType=INTEGER},
+    flow_one_status = #{flowOneStatus,jdbcType=TINYINT},
+    flow_two_status = #{flowTwoStatus,jdbcType=TINYINT},
+    flow_three_status = #{flowThreeStatus,jdbcType=TINYINT}
+    where id = #{orderId,jdbcType=INTEGER};
+
+    update t_comm_car
+    SET operation_status = '0',
+        turn_out_type = '0' ,
+        mileage = #{repayCarMileage,jdbcType=VARCHAR},
+        oil_mass = #{repayCarOilAmount,jdbcType=VARCHAR}
+    where id = #{carId,jdbcType=INTEGER};
+  </update>
+
+
+  <select id="getRentalOrderList" parameterType="java.util.Map" resultType="com.ydc.commom.view.vo.cgj.rental.RentalOrderListVO">
+    SELECT
+    tro.id rentalOrderId,
+    tcc.id carId,
+    tro.status,
+    tro.flow_one_status flowOneStatus,
+    tro.flow_two_status flowTwoStatus,
+    tro.flow_three_status flowThreeStatus,
+    tro.appointment_store_id appointmentStoreId,
+    tro.appointment_store_name appointmentStoreName,
+    tro.car_number carNumber,
+    tro.name,
+    tro.mobile_phone mobilePhone,
+    rentcar.payment_status rentalAccreditStatus,
+    rentcar.payment_status rentalAccreditStatusCode,
+    rentcar.plan_refund_time rentalAccreditEndTime,
+    violation.payment_status violationAccreditStatus,
+    violation.payment_status violationAccreditStatusCode,
+    violation.plan_refund_time violationAccreditEndTime,
+    tro.violation_number violationNumber,
+    tro.fetch_car_mode fetchCarMode,
+    tro.appointment_fetch_car_time appointmentFetchCarTime,
+    tro.appointment_repay_car_time appointmentRepayCarTime,
+    tro.appointment_fetch_car_province appointmentFetchCarProvince,
+    tro.appointment_fetch_car_city appointmentFetchCarCity,
+    tro.appointment_fetch_car_region appointmentFetchCarRegion,
+    tro.appointment_fetch_car_details_address appointmentFetchCarDetailsAddress,
+    tro.appointment_repay_car_province appointmentRepayCarProvince,
+    tro.appointment_repay_car_city appointmentRepayCarCity,
+    tro.appointment_repay_car_region appointmentRepayCarRegion,
+    tro.appointment_repay_car_details_address appointmentRepayCarDetailsAddress,
+    tro.come_car_time comeCarTime,
+    tro.repay_car_time repayCarTime,
+    tro.brand,
+    tro.series,
+    tro.model,
+    tro.car_level carLevel
+    <include refid="getRentalOrderCommon"></include>
+    ORDER BY tro.id DESC
+    LIMIT ${page},${rows}
+  </select>
+
+  <select id="getRentalOrderListCount" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT COUNT(1) cnt
+    <include refid="getRentalOrderCommon"></include>
+  </select>
+
+  <sql id="getRentalOrderCommon">
+    FROM t_rental_order tro
+    LEFT JOIN t_rental_deposit rentcar ON rentcar.order_id = tro.id AND rentcar.deposit_type = 1
+    LEFT JOIN t_rental_deposit violation ON violation.order_id = tro.id AND violation.deposit_type = 2
+    LEFT JOIN t_comm_car tcc ON tcc.id = tro.car_id
+    WHERE 1 = 1
+    <if test="rentalOrderId != null and rentalOrderId != ''">
+      AND tro.id = #{rentalOrderId,jdbcType=INTEGER}
+    </if>
+    <if test="carNumber != null and carNumber != ''">
+      AND tro.car_number = #{carNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="appointmentStoreId != null and appointmentStoreId != ''">
+      AND tro.appointment_store_id = #{appointmentStoreId,jdbcType=INTEGER}
+    </if>
+    <if test="status != null and status != ''">
+      AND tro.status = ${status}
+    </if>
+    <if test="flowOneStatus != null and flowOneStatus != ''">
+      AND tro.flow_one_status IN( ${flowOneStatus})
+    </if>
+    <if test="flowTwoStatus != null and flowTwoStatus != ''">
+      AND tro.flow_two_status IN( ${flowTwoStatus})
+    </if>
+    <if test="flowThreeStatus != null and flowThreeStatus != ''">
+      AND tro.flow_three_status IN( ${flowThreeStatus})
+    </if>
+    <if test="carLevel != null and carLevel != ''">
+      AND tro.car_level = #{carLevel,jdbcType=VARCHAR}
+    </if>
+    <if test="brand != null and brand != ''">
+      AND tro.brand = #{brand,jdbcType=VARCHAR}
+    </if>
+    <if test="series != null and series != ''">
+      AND tro.series = #{series,jdbcType=VARCHAR}
+    </if>
+    <if test="model != null and model != ''">
+      AND tro.model = #{model,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null and name != ''">
+      AND tro.name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="mobilePhone != null and mobilePhone != ''">
+      AND tro.mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+    </if>
+    <if test="startAppointmentFetchCarTime != null and startAppointmentFetchCarTime != ''">
+      AND tro.appointment_fetch_car_time <![CDATA[ >= ]]> #{startAppointmentFetchCarTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endAppointmentFetchCarTime != null and endAppointmentFetchCarTime != ''">
+      AND tro.appointment_fetch_car_time <![CDATA[ <= ]]> #{endAppointmentFetchCarTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="startAppointmentRepayCarTime != null and startAppointmentRepayCarTime != ''">
+      AND tro.appointment_repay_car_time <![CDATA[ >= ]]> #{startAppointmentRepayCarTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endAppointmentRepayCarTime != null and endAppointmentRepayCarTime != ''">
+      AND tro.appointment_repay_car_time <![CDATA[ <= ]]> #{endAppointmentRepayCarTime,jdbcType=TIMESTAMP}
+    </if>
+  </sql>
+
+  <select id="getRentalOrderListCByMemberId" parameterType="java.util.Map" resultType="com.ydc.commom.view.vo.cgj.rental.RentalOrderListCVO">
+    SELECT
+    tro.id rentalOrderId,
+    tro.status,
+    tro.flow_one_status flowOneStatus,
+    tro.flow_two_status flowTwoStatus,
+    tro.flow_three_status flowThreeStatus,
+    tro.appointment_fetch_car_time appointmentFetchCarTime,
+    tro.appointment_repay_car_time appointmentRepayCarTime,
+    tro.brand,
+    tcc.car_structure carStructure,
+    tcc.gear_box gearBox,
+    tcc.car_seat carSeat,
+    tro.appointment_store_name appointmentStoreName,
+    rentcar.payment_status rentalAccreditStatus,
+    violation.payment_status violationAccreditStatus
+    FROM t_rental_order tro
+    LEFT JOIN t_comm_car tcc ON tro.car_id = tcc.id
+    LEFT JOIN t_rental_deposit rentcar ON rentcar.order_id = tro.id AND rentcar.deposit_type = 1
+    LEFT JOIN t_rental_deposit violation ON violation.order_id = tro.id AND violation.deposit_type = 2
+    WHERE tro.member_id = #{memberId,jdbcType=INTEGER}
+    ORDER BY tro.id DESC
+    LIMIT #{page}, #{rows}
+  </select>
+
+  <select id="getRentalOrderListBByStoreId" parameterType="java.util.Map" resultType="com.ydc.commom.view.vo.cgj.rental.RentalOrderListBVO">
+    SELECT
+    tro.id rentalOrderId,
+    tro.name,
+    tro.status,
+    tro.flow_one_status flowOneStatus,
+    tro.flow_two_status flowTwoStatus,
+    tro.flow_three_status flowThreeStatus,
+    tro.appointment_fetch_car_time appointmentFetchCarTime,
+    tro.appointment_repay_car_time appointmentRepayCarTime,
+    tro.brand,
+    tcc.car_structure carStructure,
+    tcc.gear_box gearBox,
+    tcc.car_seat carSeat
+    FROM t_rental_order tro
+    LEFT JOIN t_comm_car tcc ON tro.car_id = tcc.id
+    WHERE 1 = 1
+    <if test="appointmentStoreId != null and appointmentStoreId != ''">
+      AND tro.appointment_store_id = #{appointmentStoreId,jdbcType=INTEGER}
+    </if>
+    <if test="name != null and name != ''">
+      AND tro.name LIKE '%${name}%'
+    </if>
+    <if test="status != null and status != ''">
+      AND tro.status = ${status}
+    </if>
+    <if test="flowOneStatus != null and flowOneStatus != ''">
+      AND tro.flow_one_status IN( ${flowOneStatus})
+    </if>
+    <if test="flowTwoStatus != null and flowTwoStatus != ''">
+      AND tro.flow_two_status IN( ${flowTwoStatus})
+    </if>
+    <if test="flowThreeStatus != null and flowThreeStatus != ''">
+      AND tro.flow_three_status IN( ${flowThreeStatus})
+    </if>
+    ORDER BY tro.update_time DESC
+    LIMIT #{page}, #{rows}
+  </select>
+
+  <select id="getRentalOrderByMemberId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM t_rental_order
+    WHERE member_id = #{memberId,jdbcType=INTEGER}
+    GROUP BY id DESC
+    LIMIT 1;
+  </select>
+
+  <select id="getRentalOrderDetailsPC" parameterType="java.lang.Integer" resultType="com.ydc.commom.view.vo.cgj.rental.RentalOrderDetailsVO">
+    SELECT
+    tro.id rentalOrderId,
+    tro.status,
+    tro.flow_one_status flowOneStatus,
+    tro.flow_two_status flowTwoStatus,
+    tro.flow_three_status flowThreeStatus,
+    tro.close_cause closeCause,
+    tro.name,
+    tro.id_card idCard,
+    tro.mobile_phone mobilePhone,
+    tro.brand,
+    tro.series,
+    tro.model,
+    tro.fetch_car_mode fetchCarMode,
+    tro.appointment_fetch_car_time appointmentFetchCarTime,
+    tro.appointment_repay_car_time appointmentRepayCarTime,
+    tro.appointment_fetch_car_province appointmentFetchCarProvince,
+    tro.appointment_fetch_car_city appointmentFetchCarCity,
+    tro.appointment_fetch_car_region appointmentFetchCarRegion,
+    tro.appointment_fetch_car_details_address appointmentFetchCarDetailsAddress,
+    tro.appointment_repay_car_province appointmentRepayCarProvince,
+    tro.appointment_repay_car_city appointmentRepayCarCity,
+    tro.appointment_repay_car_region appointmentRepayCarRegion,
+    tro.appointment_repay_car_details_address appointmentRepayCarDetailsAddress,
+    tro.car_number carNumber,
+    tro.come_car_time comeCarTime,
+    tro.come_warehouse_mileage comeWarehouseMileage,
+    tro.come_warehouse_oil_amount comeWarehouseOilAmount,
+    tro.come_warehouse_store_id comeWarehouseStoreId,
+    tro.come_warehouse_store_name comeWarehouseStoreName,
+    tro.coachman_name coachmanName,
+    tro.come_car_remark comeCarRemark,
+    tro.repay_car_time repayCarTime,
+    tro.repay_car_mileage repayCarMileage,
+    tro.repay_car_oil_amount repayCarOilAmount,
+    tro.repay_car_warehouse_store_id repayCarWarehouseStoreId,
+    tro.repay_car_warehouse_store_name repayCarWarehouseStoreName,
+    tro.repay_car_coachman_name repayCarCoachmanName,
+    tro.repay_car_remark repayCarRemark,
+    trs.real_rent_days realRentDays,
+    trs.rent_total rentTotal,
+    trs.integrated_service_fee integratedServiceFee,
+    trs.overdue_days overdueDays,
+    trs.overdue_fee overdueFee,
+    trs.exceed_mileage_fee exceedMileageFee,
+    trs.fuel_fee fuelFee,
+    trs.other_fee otherFee,
+    trs.should_charge_total shouldChargeTotal,
+    trs.rent_car_pre_authorization_amount rentCarPreAuthorizationAmount,
+    trs.return_rent_car_pre_authorization_amount returnRentCarPreAuthorizationAmount,
+    trs.settle_time settleTime,
+    trs.violation_pre_authorization_amount violationPreAuthorizationAmount,
+    trs.violation_auth_refund_amount violationAuthRefundAmount,
+    trs.violation_payroll violationPayroll
+    FROM t_rental_order tro
+    LEFT JOIN t_rental_settlement trs ON tro.id = trs.order_id
+    where tro.id = #{rentalOrderId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getRentalOrderDetailsAPPC" parameterType="java.lang.Integer" resultType="com.ydc.commom.view.vo.cgj.rental.RentalOrderDetailsAPPCVO">
+    SELECT
+    tro.id rentalOrderId,
+    tro.name,
+    tro.id_card idCard,
+    tro.mobile_phone mobilePhone,
+    tm.whether_real_name whetherRealName,
+    tro.car_id carId,
+    tcc.main_img_url carMainImgUrl,
+    tccs.main_img_url carSeriesMainImgUrl,
+    tcc.main_img_name carMainImgName,
+    tccs.main_img_name carSeriesMainImgName,
+    tro.status,
+    tro.flow_one_status flowOneStatus,
+    tro.flow_two_status flowTwoStatus,
+    tro.flow_three_status flowThreeStatus,
+    tro.brand,
+    tcc.car_structure carCarStructure,
+    tcc.gear_box carGearBox,
+    tcc.car_seat carCarSeat,
+    tccs.car_structure carSeriesCarStructure,
+    tccs.gear_box carSeriesGearBox,
+    tccs.car_seat carSeriesCarSeat,
+    tro.create_time createTime,
+    tro.appointment_fetch_car_time appointmentFetchCarTime,
+    tro.appointment_repay_car_time appointmentRepayCarTime,
+    tro.appointment_store_name appointmentStoreName,
+    trs.store_register_province storeRegisterProvince,
+    trs.store_register_city storeRegisterCity,
+    trs.store_register_region storeRegisterRegion,
+    trs.details_address storeRegisterAddress,
+    trs.traffic_pattern trafficPattern,
+    rentcar.payment_status rentalAccreditStatus,
+    violation.payment_status violationAccreditStatus,
+    rentcar.payable_amount rentalAccreditMoney,
+    violation.payable_amount violationAccreditMoney,
+    rentcar.payment_time rentalAccreditStartTime,
+    rentcar.actual_refund_time rentalAccreditEndTime,
+    tro.come_car_time comeCarTime,
+    tro.repay_car_time repayCarTime,
+    violation.payment_time violationAccreditStartTime,
+    violation.actual_refund_time violationAccreditEndTime,
+    tro.close_time closeTime,
+    trset.should_charge_total shouldChargeTotal,
+    trset.actual_amount actualAmount
+    FROM t_rental_order tro
+    LEFT JOIN t_member tm ON tro.member_id = tm.id
+    LEFT JOIN t_rental_store trs ON trs.id = tro.appointment_store_id
+    LEFT JOIN t_comm_car tcc ON tro.car_id = tcc.id
+    LEFT JOIN t_comm_car_series tccs ON tccs.brand = tro.brand AND tccs.series = tro.series AND tccs.model = tro.model AND tccs.car_level = tro.car_level
+    LEFT JOIN t_rental_deposit rentcar ON rentcar.order_id = tro.id AND rentcar.deposit_type = 1
+    LEFT JOIN t_rental_deposit violation ON violation.order_id = tro.id AND violation.deposit_type = 2
+    LEFT JOIN t_rental_settlement trset ON tro.id = trset.order_id
+    WHERE tro.id = #{rentalOrderId,jdbcType=INTEGER}
+    LIMIT 1
+  </select>
+
+  <select id="getRentalOrderDetailsAPPB" parameterType="java.lang.Integer" resultType="com.ydc.commom.view.vo.cgj.rental.RentalOrderDetailsAPPBVO">
+    SELECT
+    tro.id rentalOrderId,
+    tro.name,
+    tro.id_card idCard,
+    tro.mobile_phone mobilePhone,
+    tm.whether_real_name whetherRealName,
+    tro.car_id carId,
+    tcc.main_img_url carMainImgUrl,
+    tccs.main_img_url carSeriesMainImgUrl,
+    tcc.main_img_name carMainImgName,
+    tccs.main_img_name carSeriesMainImgName,
+    tro.status,
+    tro.flow_one_status flowOneStatus,
+    tro.flow_two_status flowTwoStatus,
+    tro.flow_three_status flowThreeStatus,
+    tro.brand,
+    tcc.car_structure carCarStructure,
+    tcc.gear_box carGearBox,
+    tcc.car_seat carCarSeat,
+    tccs.car_structure carSeriesCarStructure,
+    tccs.gear_box carSeriesGearBox,
+    tccs.car_seat carSeriesCarSeat,
+    tro.create_time createTime,
+    tro.appointment_fetch_car_time appointmentFetchCarTime,
+    tro.appointment_repay_car_time appointmentRepayCarTime,
+    tro.appointment_store_name appointmentStoreName,
+    trs.store_register_province storeRegisterProvince,
+    trs.store_register_city storeRegisterCity,
+    trs.store_register_region storeRegisterRegion,
+    trs.details_address storeRegisterAddress,
+    trs.traffic_pattern trafficPattern,
+    rentcar.payment_status rentalAccreditStatus,
+    violation.payment_status violationAccreditStatus,
+    rentcar.payable_amount rentalAccreditMoney,
+    violation.payable_amount violationAccreditMoney,
+    rentcar.payment_time rentalAccreditStartTime,
+    rentcar.actual_refund_time rentalAccreditEndTime,
+    tro.come_car_time comeCarTime,
+    tro.repay_car_time repayCarTime,
+    violation.payment_time violationAccreditStartTime,
+    violation.actual_refund_time violationAccreditEndTime,
+    tro.close_time closeTime,
+    trset.should_charge_total shouldChargeTotal,
+    trset.actual_amount actualAmount
+    FROM t_rental_order tro
+    LEFT JOIN t_member tm ON tro.member_id = tm.id
+    LEFT JOIN t_rental_store trs ON trs.id = tro.appointment_store_id
+    LEFT JOIN t_comm_car tcc ON tro.car_id = tcc.id
+    LEFT JOIN t_comm_car_series tccs ON tccs.brand = tro.brand AND tccs.series = tro.series AND tccs.model = tro.model AND tccs.car_level = tro.car_level
+    LEFT JOIN t_rental_deposit rentcar ON rentcar.order_id = tro.id AND rentcar.deposit_type = 1
+    LEFT JOIN t_rental_deposit violation ON violation.order_id = tro.id AND violation.deposit_type = 2
+    LEFT JOIN t_rental_settlement trset ON tro.id = trset.order_id
+    WHERE tro.id = #{rentalOrderId,jdbcType=INTEGER}
+    LIMIT 1
+  </select>
+
+  <update id="updateRentalOrderStatus">
+    UPDATE t_rental_order
+    SET
+        <if test="updateRentalOrderDTO.status != null and updateRentalOrderDTO.status != ''">
+          `status` = #{updateRentalOrderDTO.status,jdbcType=TINYINT},
+        </if>
+        <if test="updateRentalOrderDTO.closeBeforeStatus != null and updateRentalOrderDTO.closeBeforeStatus != ''">
+          close_before_status = #{updateRentalOrderDTO.closeBeforeStatus,jdbcType=TINYINT},
+        </if>
+        <if test="updateRentalOrderDTO.closeCause != null and updateRentalOrderDTO.closeCause != ''">
+           close_cause = #{updateRentalOrderDTO.closeCause,jdbcType=VARCHAR},
+        </if>
+        <if test="updateRentalOrderDTO.closeTime != null and updateRentalOrderDTO.closeTime != ''">
+          close_time = #{updateRentalOrderDTO.closeTime,jdbcType=VARCHAR},
+        </if>
+        <if test="updateRentalOrderDTO.flowOneStatus != null and updateRentalOrderDTO.flowOneStatus != '' or updateRentalOrderDTO.flowOneStatus == 0">
+          flow_one_status = #{updateRentalOrderDTO.flowOneStatus,jdbcType=TINYINT},
+        </if>
+          update_by = #{updateRentalOrderDTO.userId,jdbcType=INTEGER}
+    WHERE id = #{updateRentalOrderDTO.orderId,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="selectRentalOrder" resultMap="BaseResultMap" parameterType="com.ydc.model.cgj.rental.RentalOrder">
+    select
+    <include refid="Base_Column_List" />
+    from t_rental_order
+    <where>
+      <if test="orderNo != null" >
+      and  order_no = #{orderNo,jdbcType=VARCHAR}
+    </if>
+    <if test="memberId != null" >
+      and  member_id = #{memberId,jdbcType=INTEGER}
+    </if>
+    <if test="carId != null" >
+      and car_id = #{carId,jdbcType=INTEGER}
+    </if>
+    <if test="carNumber != null" >
+      and  car_number = #{carNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="carLevel != null" >
+      and car_level = #{carLevel,jdbcType=VARCHAR}
+    </if>
+    <if test="brand != null" >
+      and  brand = #{brand,jdbcType=VARCHAR}
+    </if>
+    <if test="series != null" >
+      and series = #{series,jdbcType=VARCHAR}
+    </if>
+    <if test="model != null" >
+      and model = #{model,jdbcType=VARCHAR}
+    </if>
+    <if test="mobilePhone != null" >
+      and  mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null" >
+      and `name` = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="idCard != null" >
+      and  id_card = #{idCard,jdbcType=VARCHAR}
+    </if>
+    <if test="fetchCarMode != null" >
+      and fetch_car_mode = #{fetchCarMode,jdbcType=TINYINT}
+    </if>
+    <if test="repayCarMode != null" >
+      and repay_car_mode = #{repayCarMode,jdbcType=TINYINT}
+    </if>
+    <if test="appointmentFetchCarTime != null" >
+      and appointment_fetch_car_time = #{appointmentFetchCarTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="appointmentRepayCarTime != null" >
+      and  appointment_repay_car_time = #{appointmentRepayCarTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="appointmentStoreId != null" >
+      and appointment_store_id = #{appointmentStoreId,jdbcType=INTEGER}
+    </if>
+    <if test="appointmentStoreName != null" >
+      and appointment_store_name = #{appointmentStoreName,jdbcType=VARCHAR}
+    </if>
+    <if test="appointmentFetchCarProvinceCode != null" >
+      and appointment_fetch_car_province_code = #{appointmentFetchCarProvinceCode,jdbcType=INTEGER}
+    </if>
+    <if test="appointmentFetchCarProvince != null" >
+      and  appointment_fetch_car_province = #{appointmentFetchCarProvince,jdbcType=VARCHAR}
+    </if>
+    <if test="appointmentFetchCarCityCode != null" >
+      and  appointment_fetch_car_city_code = #{appointmentFetchCarCityCode,jdbcType=INTEGER}
+    </if>
+    <if test="appointmentFetchCarCity != null" >
+      and appointment_fetch_car_city = #{appointmentFetchCarCity,jdbcType=VARCHAR}
+    </if>
+    <if test="appointmentFetchCarRegionCode != null" >
+      and  appointment_fetch_car_region_code = #{appointmentFetchCarRegionCode,jdbcType=INTEGER}
+    </if>
+    <if test="appointmentFetchCarRegion != null" >
+      and  appointment_fetch_car_region = #{appointmentFetchCarRegion,jdbcType=VARCHAR}
+    </if>
+    <if test="appointmentFetchCarDetailsAddress != null" >
+      and appointment_fetch_car_details_address = #{appointmentFetchCarDetailsAddress,jdbcType=VARCHAR}
+    </if>
+    <if test="appointmentRepayCarProvinceCode != null" >
+      and appointment_repay_car_province_code = #{appointmentRepayCarProvinceCode,jdbcType=INTEGER}
+    </if>
+    <if test="appointmentRepayCarProvince != null" >
+      and appointment_repay_car_province = #{appointmentRepayCarProvince,jdbcType=VARCHAR}
+    </if>
+    <if test="appointmentRepayCarCityCode != null" >
+      and appointment_repay_car_city_code = #{appointmentRepayCarCityCode,jdbcType=INTEGER}
+    </if>
+    <if test="appointmentRepayCarCity != null" >
+      and appointment_repay_car_city = #{appointmentRepayCarCity,jdbcType=VARCHAR}
+    </if>
+    <if test="appointmentRepayCarRegionCode != null" >
+      and appointment_repay_car_region_code = #{appointmentRepayCarRegionCode,jdbcType=INTEGER}
+    </if>
+    <if test="appointmentRepayCarRegion != null" >
+      and appointment_repay_car_region = #{appointmentRepayCarRegion,jdbcType=VARCHAR}
+    </if>
+    <if test="appointmentRepayCarDetailsAddress != null" >
+      and  appointment_repay_car_details_address = #{appointmentRepayCarDetailsAddress,jdbcType=VARCHAR}
+    </if>
+    <if test="comeCarTime != null" >
+      and come_car_time = #{comeCarTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="comeWarehouseMileage != null" >
+      and come_warehouse_mileage = #{comeWarehouseMileage,jdbcType=VARCHAR}
+    </if>
+    <if test="comeWarehouseOilAmount != null" >
+      and come_warehouse_oil_amount = #{comeWarehouseOilAmount,jdbcType=INTEGER}
+    </if>
+    <if test="comeWarehouseStoreId != null" >
+      and come_warehouse_store_id = #{comeWarehouseStoreId,jdbcType=INTEGER}
+    </if>
+    <if test="comeWarehouseStoreName != null" >
+      and come_warehouse_store_name = #{comeWarehouseStoreName,jdbcType=VARCHAR}
+    </if>
+    <if test="coachmanId != null" >
+      and coachman_id = #{coachmanId,jdbcType=INTEGER}
+    </if>
+    <if test="coachmanName != null" >
+      and coachman_name = #{coachmanName,jdbcType=VARCHAR}
+    </if>
+    <if test="comeCarRemark != null" >
+      and  come_car_remark = #{comeCarRemark,jdbcType=VARCHAR}
+    </if>
+    <if test="orderReceivableMoney != null" >
+      and order_receivable_money = #{orderReceivableMoney,jdbcType=DECIMAL}
+    </if>
+    <if test="orderPracticalMoney != null" >
+      and order_practical_money = #{orderPracticalMoney,jdbcType=DECIMAL}
+    </if>
+    <if test="repayCarTime != null" >
+      and  repay_car_time = #{repayCarTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="repayCarMileage != null" >
+      and repay_car_mileage = #{repayCarMileage,jdbcType=VARCHAR}
+    </if>
+    <if test="repayCarOilAmount != null" >
+      and repay_car_oil_amount = #{repayCarOilAmount,jdbcType=INTEGER}
+    </if>
+    <if test="repayCarWarehouseStoreId != null" >
+      and repay_car_warehouse_store_id = #{repayCarWarehouseStoreId,jdbcType=INTEGER}
+    </if>
+    <if test="repayCarWarehouseStoreName != null" >
+      and repay_car_warehouse_store_name = #{repayCarWarehouseStoreName,jdbcType=VARCHAR}
+    </if>
+    <if test="repayCarCoachmanId != null" >
+      and repay_car_coachman_id = #{repayCarCoachmanId,jdbcType=INTEGER}
+    </if>
+    <if test="repayCarCoachmanName != null" >
+      and repay_car_coachman_name = #{repayCarCoachmanName,jdbcType=VARCHAR}
+    </if>
+    <if test="repayCarRemark != null" >
+      and repay_car_remark = #{repayCarRemark,jdbcType=VARCHAR}
+    </if>
+    <if test="violationNumber != null" >
+      and violation_number = #{violationNumber,jdbcType=INTEGER}
+    </if>
+    <if test="status != null" >
+      and `status` = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="flowOneStatus != null" >
+      and  flow_one_status = #{flowOneStatus,jdbcType=TINYINT}
+    </if>
+    <if test="flowTwoStatus != null" >
+      and flow_two_status = #{flowTwoStatus,jdbcType=TINYINT}
+    </if>
+    <if test="flowThreeStatus != null" >
+      and  flow_three_status = #{flowThreeStatus,jdbcType=TINYINT}
+    </if>
+    <if test="closeBeforeStatus != null" >
+      and close_before_status = #{closeBeforeStatus,jdbcType=TINYINT}
+    </if>
+    <if test="closeCause != null" >
+      and  close_cause = #{closeCause,jdbcType=VARCHAR}
+    </if>
+    <if test="closeTime != null" >
+      and close_time = #{closeTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createTime != null" >
+      and  create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createBy != null" >
+      and  create_by = #{createBy,jdbcType=INTEGER}
+    </if>
+    <if test="updateTime != null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateBy != null" >
+      and update_by = #{updateBy,jdbcType=INTEGER}
+    </if>
+    </where>
+  </select>
+
+   <select id="getCarInfo" parameterType="java.lang.Integer" resultType="java.util.Map">
+      SELECT
+      tro.come_warehouse_store_name comeWarehouseStoreName,
+      tro.coachman_name coachmanName,
+      IFNULL(DATE_FORMAT(tro.come_car_time,'%Y-%m-%d %H:%i:%s'),'') comeCarTime,
+      tro.repay_car_warehouse_store_name repayCarWarehouseStoreName,
+      tro.repay_car_coachman_name repayCarCoachmanName,
+      IFNULL(DATE_FORMAT(tro.repay_car_time,'%Y-%m-%d %H:%i:%s'),'') repayCarTime
+      FROM t_rental_order tro
+      WHERE tro.id = #{orderId,jdbcType=INTEGER}
+   </select>
+
+  <update id="updateMemberOrderOneStatus">
+    UPDATE
+      t_rental_order
+    SET
+      `name` = #{rentalOrder.name},
+      id_card = #{rentalOrder.idCard},
+      flow_one_status = #{rentalOrder.flowOneStatus}
+    WHERE
+      member_id = #{rentalOrder.memberId} AND
+      flow_one_status IN (${oldStatus})
+  </update>
+
+  <update id="updateRentalOrderFlowStatusById">
+    UPDATE t_rental_order tro
+    SET tro.status = ${status}
+        <if test="flowOneStatus != null and flowOneStatus != ''">
+          ,tro.flow_one_status = ${flowOneStatus}
+        </if>
+        <if test="flowTwoStatus != null and flowTwoStatus != ''">
+          ,tro.flow_two_status = ${flowTwoStatus}
+        </if>
+        <if test="flowThreeStatus != null and flowThreeStatus != ''">
+          ,tro.flow_three_status = ${flowThreeStatus}
+        </if>
+    WHERE tro.id = #{rentalOrderId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getCarOilDesc" resultType="com.ydc.commom.view.vo.cgj.rental.RentalCarDataVO">
+    SELECT
+    IFNULL(repay_car_mileage,'') repayCarMileage,
+    IFNULL(repay_car_oil_amount,'') repayCarOilAmount
+    FROM t_rental_order
+    WHERE car_id = #{carId,jdbcType=INTEGER} AND status = 100
+    ORDER BY id DESC
+    LIMIT 1;
+  </select>
+
+  <update id="updateViolationNumber">
+    UPDATE
+      t_rental_order
+    SET
+      violation_number = violation_number + 1
+    WHERE
+      id = #{orderId}
+  </update>
+  <select id="getExistEffectiveOrderList" resultType="java.util.Map">
+    SELECT
+      id
+    FROM
+    t_rental_order o
+    WHERE
+    o.STATUS != 98
+    AND o.STATUS != 99
+    AND o.STATUS != 100
+    AND o.member_id = #{memberId}
+    AND (o.appointment_fetch_car_time BETWEEN #{appointmentFetchCarTime}  AND #{appointmentRepayCarTime}
+    OR o.appointment_repay_car_time BETWEEN #{appointmentFetchCarTime}  AND  #{appointmentRepayCarTime})
+  </select>
+</mapper>

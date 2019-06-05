@@ -1,0 +1,1251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.ydc.dao.cgj.rental.RentalEnterpriseOrderDao">
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.rental.RentalEnterpriseOrder">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="resource_info_id" property="resourceInfoId" jdbcType="INTEGER" />
+    <result column="demand_side_id" property="demandSideId" jdbcType="INTEGER" />
+    <result column="demand_side" property="demandSide" jdbcType="VARCHAR" />
+    <result column="resource_side_id" property="resourceSideId" jdbcType="INTEGER" />
+    <result column="resource_side" property="resourceSide" jdbcType="VARCHAR" />
+    <result column="car_level" property="carLevel" jdbcType="VARCHAR" />
+    <result column="car_brand" property="carBrand" jdbcType="VARCHAR" />
+    <result column="car_series" property="carSeries" jdbcType="VARCHAR" />
+    <result column="car_model" property="carModel" jdbcType="VARCHAR" />
+    <result column="car_structure" property="carStructure" jdbcType="VARCHAR" />
+    <result column="car_seat" property="carSeat" jdbcType="VARCHAR" />
+    <result column="car_model_img_name" property="carModelImgName" jdbcType="VARCHAR" />
+    <result column="car_model_img_url" property="carModelImgUrl" jdbcType="VARCHAR" />
+    <result column="margin_limit" property="marginLimit" jdbcType="DECIMAL" />
+    <result column="appointment_fetch_car_time" property="appointmentFetchCarTime" jdbcType="TIMESTAMP" />
+    <result column="appointment_repay_car_time" property="appointmentRepayCarTime" jdbcType="TIMESTAMP" />
+    <result column="fetch_car_mode" property="fetchCarMode" jdbcType="INTEGER" />
+    <result column="repay_car_mode" property="repayCarMode" jdbcType="INTEGER" />
+    <result column="car_store_id" property="carStoreId" jdbcType="INTEGER" />
+    <result column="car_store_name" property="carStoreName" jdbcType="VARCHAR" />
+    <result column="reserve_count" property="reserveCount" jdbcType="INTEGER" />
+    <result column="appointment_fetch_car_province_code" property="appointmentFetchCarProvinceCode" jdbcType="INTEGER" />
+    <result column="appointment_fetch_car_province" property="appointmentFetchCarProvince" jdbcType="VARCHAR" />
+    <result column="appointment_fetch_car_city_code" property="appointmentFetchCarCityCode" jdbcType="INTEGER" />
+    <result column="appointment_fetch_car_city" property="appointmentFetchCarCity" jdbcType="VARCHAR" />
+    <result column="appointment_fetch_car_region_code" property="appointmentFetchCarRegionCode" jdbcType="INTEGER" />
+    <result column="appointment_fetch_car_region" property="appointmentFetchCarRegion" jdbcType="VARCHAR" />
+    <result column="appointment_fetch_car_details_address" property="appointmentFetchCarDetailsAddress" jdbcType="VARCHAR" />
+    <result column="appointment_repay_car_province_code" property="appointmentRepayCarProvinceCode" jdbcType="INTEGER" />
+    <result column="appointment_repay_car_province" property="appointmentRepayCarProvince" jdbcType="VARCHAR" />
+    <result column="appointment_repay_car_city_code" property="appointmentRepayCarCityCode" jdbcType="INTEGER" />
+    <result column="appointment_repay_car_city" property="appointmentRepayCarCity" jdbcType="VARCHAR" />
+    <result column="appointment_repay_car_region_code" property="appointmentRepayCarRegionCode" jdbcType="INTEGER" />
+    <result column="appointment_repay_car_region" property="appointmentRepayCarRegion" jdbcType="VARCHAR" />
+    <result column="appointment_repay_car_details_address" property="appointmentRepayCarDetailsAddress" jdbcType="VARCHAR" />
+    <result column="come_car_time" property="comeCarTime" jdbcType="TIMESTAMP" />
+    <result column="come_car_person_id" property="comeCarPersonId" jdbcType="INTEGER" />
+    <result column="come_car_person_name" property="comeCarPersonName" jdbcType="VARCHAR" />
+    <result column="repay_car_time" property="repayCarTime" jdbcType="TIMESTAMP" />
+    <result column="repay_car_person_id" property="repayCarPersonId" jdbcType="INTEGER" />
+    <result column="repay_car_person_name" property="repayCarPersonName" jdbcType="VARCHAR" />
+    <result column="car_rental_fee" property="carRentalFee" jdbcType="DECIMAL" />
+    <result column="base_service_fee" property="baseServiceFee" jdbcType="DECIMAL" />
+    <result column="cash_pledge" property="cashPledge" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="flow_one_status" property="flowOneStatus" jdbcType="INTEGER" />
+    <result column="flow_two_status" property="flowTwoStatus" jdbcType="INTEGER" />
+    <result column="flow_three_status" property="flowThreeStatus" jdbcType="INTEGER" />
+    <result column="close_before_status" property="closeBeforeStatus" jdbcType="INTEGER" />
+    <result column="close_date" property="closeDate" jdbcType="TIMESTAMP" />
+    <result column="cancel_side" property="cancelSide" jdbcType="INTEGER" />
+    <result column="cancel_person_id" property="cancelPersonId" jdbcType="INTEGER" />
+    <result column="cancel_person" property="cancelPerson" jdbcType="VARCHAR" />
+    <result column="refuse_person_id" property="refusePersonId" jdbcType="INTEGER" />
+    <result column="refuse_person" property="refusePerson" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_no, resource_info_id, demand_side_id, demand_side, resource_side_id, resource_side, car_level,
+    car_brand, car_series, car_model, car_structure, car_seat, car_model_img_name, car_model_img_url, margin_limit,
+    appointment_fetch_car_time, appointment_repay_car_time, fetch_car_mode, repay_car_mode,
+    car_store_id, car_store_name, reserve_count, appointment_fetch_car_province_code,
+    appointment_fetch_car_province, appointment_fetch_car_city_code, appointment_fetch_car_city,
+    appointment_fetch_car_region_code, appointment_fetch_car_region, appointment_fetch_car_details_address,
+    appointment_repay_car_province_code, appointment_repay_car_province, appointment_repay_car_city_code,
+    appointment_repay_car_city, appointment_repay_car_region_code, appointment_repay_car_region,
+    appointment_repay_car_details_address, come_car_time, come_car_person_id, come_car_person_name,
+    repay_car_time, repay_car_person_id, repay_car_person_name, car_rental_fee, base_service_fee,
+    cash_pledge, `status`, flow_one_status, flow_two_status, flow_three_status, close_before_status, close_date,
+    cancel_side, cancel_person_id, cancel_person, refuse_person_id, refuse_person, create_time,
+    create_by, update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_rental_enterprise_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_rental_enterprise_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.rental.RentalEnterpriseOrder" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_rental_enterprise_order (id, order_no, resource_info_id, demand_side_id,
+    demand_side, resource_side_id, resource_side,
+    car_level, car_brand, car_series,
+    car_model, car_structure, car_seat,
+    car_model_img_name, car_model_img_url,
+    margin_limit, appointment_fetch_car_time,
+    appointment_repay_car_time, fetch_car_mode,
+    repay_car_mode, car_store_id, car_store_name,
+    reserve_count, appointment_fetch_car_province_code,
+    appointment_fetch_car_province, appointment_fetch_car_city_code,
+    appointment_fetch_car_city, appointment_fetch_car_region_code,
+    appointment_fetch_car_region, appointment_fetch_car_details_address,
+    appointment_repay_car_province_code, appointment_repay_car_province,
+    appointment_repay_car_city_code, appointment_repay_car_city,
+    appointment_repay_car_region_code, appointment_repay_car_region,
+    appointment_repay_car_details_address, come_car_time,
+    come_car_person_id, come_car_person_name, repay_car_time,
+    repay_car_person_id, repay_car_person_name, car_rental_fee,
+    base_service_fee, cash_pledge, `status`,
+    flow_one_status, flow_two_status, flow_three_status,
+    close_before_status, close_date, cancel_side, cancel_person_id,
+    cancel_person, refuse_person_id, refuse_person,
+    create_time, create_by, update_time, update_by
+    )
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{resourceInfoId,jdbcType=INTEGER}, #{demandSideId,jdbcType=INTEGER},
+    #{demandSide,jdbcType=VARCHAR}, #{resourceSideId,jdbcType=INTEGER}, #{resourceSide,jdbcType=VARCHAR},
+    #{carLevel,jdbcType=VARCHAR}, #{carBrand,jdbcType=VARCHAR}, #{carSeries,jdbcType=VARCHAR},
+    #{carModel,jdbcType=VARCHAR}, #{carStructure,jdbcType=VARCHAR}, #{carSeat,jdbcType=VARCHAR},
+    #{carModelImgName,jdbcType=VARCHAR}, #{carModelImgUrl,jdbcType=VARCHAR},
+    #{marginLimit,jdbcType=DECIMAL}, #{appointmentFetchCarTime,jdbcType=TIMESTAMP},
+    #{appointmentRepayCarTime,jdbcType=TIMESTAMP}, #{fetchCarMode,jdbcType=INTEGER},
+    #{repayCarMode,jdbcType=INTEGER}, #{carStoreId,jdbcType=INTEGER}, #{carStoreName,jdbcType=VARCHAR},
+    #{reserveCount,jdbcType=INTEGER}, #{appointmentFetchCarProvinceCode,jdbcType=INTEGER},
+    #{appointmentFetchCarProvince,jdbcType=VARCHAR}, #{appointmentFetchCarCityCode,jdbcType=INTEGER},
+    #{appointmentFetchCarCity,jdbcType=VARCHAR}, #{appointmentFetchCarRegionCode,jdbcType=INTEGER},
+    #{appointmentFetchCarRegion,jdbcType=VARCHAR}, #{appointmentFetchCarDetailsAddress,jdbcType=VARCHAR},
+    #{appointmentRepayCarProvinceCode,jdbcType=INTEGER}, #{appointmentRepayCarProvince,jdbcType=VARCHAR},
+    #{appointmentRepayCarCityCode,jdbcType=INTEGER}, #{appointmentRepayCarCity,jdbcType=VARCHAR},
+    #{appointmentRepayCarRegionCode,jdbcType=INTEGER}, #{appointmentRepayCarRegion,jdbcType=VARCHAR},
+    #{appointmentRepayCarDetailsAddress,jdbcType=VARCHAR}, #{comeCarTime,jdbcType=TIMESTAMP},
+    #{comeCarPersonId,jdbcType=INTEGER}, #{comeCarPersonName,jdbcType=VARCHAR}, #{repayCarTime,jdbcType=TIMESTAMP},
+    #{repayCarPersonId,jdbcType=INTEGER}, #{repayCarPersonName,jdbcType=VARCHAR}, #{carRentalFee,jdbcType=DECIMAL},
+    #{baseServiceFee,jdbcType=DECIMAL}, #{cashPledge,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER},
+    #{flowOneStatus,jdbcType=INTEGER}, #{flowTwoStatus,jdbcType=INTEGER}, #{flowThreeStatus,jdbcType=INTEGER},
+    #{closeBeforeStatus,jdbcType=INTEGER}, #{closeDate,jdbcType=TIMESTAMP}, #{cancelSide,jdbcType=INTEGER}, #{cancelPersonId,jdbcType=INTEGER},
+    #{cancelPerson,jdbcType=VARCHAR}, #{refusePersonId,jdbcType=INTEGER}, #{refusePerson,jdbcType=VARCHAR},
+    #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.rental.RentalEnterpriseOrder" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_rental_enterprise_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="resourceInfoId != null">
+        resource_info_id,
+      </if>
+      <if test="demandSideId != null">
+        demand_side_id,
+      </if>
+      <if test="demandSide != null">
+        demand_side,
+      </if>
+      <if test="resourceSideId != null">
+        resource_side_id,
+      </if>
+      <if test="resourceSide != null">
+        resource_side,
+      </if>
+      <if test="carLevel != null">
+        car_level,
+      </if>
+      <if test="carBrand != null">
+        car_brand,
+      </if>
+      <if test="carSeries != null">
+        car_series,
+      </if>
+      <if test="carModel != null">
+        car_model,
+      </if>
+      <if test="carStructure != null">
+        car_structure,
+      </if>
+      <if test="carSeat != null">
+        car_seat,
+      </if>
+      <if test="carModelImgName != null">
+        car_model_img_name,
+      </if>
+      <if test="carModelImgUrl != null">
+        car_model_img_url,
+      </if>
+      <if test="marginLimit != null">
+        margin_limit,
+      </if>
+      <if test="appointmentFetchCarTime != null">
+        appointment_fetch_car_time,
+      </if>
+      <if test="appointmentRepayCarTime != null">
+        appointment_repay_car_time,
+      </if>
+      <if test="fetchCarMode != null">
+        fetch_car_mode,
+      </if>
+      <if test="repayCarMode != null">
+        repay_car_mode,
+      </if>
+      <if test="carStoreId != null">
+        car_store_id,
+      </if>
+      <if test="carStoreName != null">
+        car_store_name,
+      </if>
+      <if test="reserveCount != null">
+        reserve_count,
+      </if>
+      <if test="appointmentFetchCarProvinceCode != null">
+        appointment_fetch_car_province_code,
+      </if>
+      <if test="appointmentFetchCarProvince != null">
+        appointment_fetch_car_province,
+      </if>
+      <if test="appointmentFetchCarCityCode != null">
+        appointment_fetch_car_city_code,
+      </if>
+      <if test="appointmentFetchCarCity != null">
+        appointment_fetch_car_city,
+      </if>
+      <if test="appointmentFetchCarRegionCode != null">
+        appointment_fetch_car_region_code,
+      </if>
+      <if test="appointmentFetchCarRegion != null">
+        appointment_fetch_car_region,
+      </if>
+      <if test="appointmentFetchCarDetailsAddress != null">
+        appointment_fetch_car_details_address,
+      </if>
+      <if test="appointmentRepayCarProvinceCode != null">
+        appointment_repay_car_province_code,
+      </if>
+      <if test="appointmentRepayCarProvince != null">
+        appointment_repay_car_province,
+      </if>
+      <if test="appointmentRepayCarCityCode != null">
+        appointment_repay_car_city_code,
+      </if>
+      <if test="appointmentRepayCarCity != null">
+        appointment_repay_car_city,
+      </if>
+      <if test="appointmentRepayCarRegionCode != null">
+        appointment_repay_car_region_code,
+      </if>
+      <if test="appointmentRepayCarRegion != null">
+        appointment_repay_car_region,
+      </if>
+      <if test="appointmentRepayCarDetailsAddress != null">
+        appointment_repay_car_details_address,
+      </if>
+      <if test="comeCarTime != null">
+        come_car_time,
+      </if>
+      <if test="comeCarPersonId != null">
+        come_car_person_id,
+      </if>
+      <if test="comeCarPersonName != null">
+        come_car_person_name,
+      </if>
+      <if test="repayCarTime != null">
+        repay_car_time,
+      </if>
+      <if test="repayCarPersonId != null">
+        repay_car_person_id,
+      </if>
+      <if test="repayCarPersonName != null">
+        repay_car_person_name,
+      </if>
+      <if test="carRentalFee != null">
+        car_rental_fee,
+      </if>
+      <if test="baseServiceFee != null">
+        base_service_fee,
+      </if>
+      <if test="cashPledge != null">
+        cash_pledge,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="flowOneStatus != null">
+        flow_one_status,
+      </if>
+      <if test="flowTwoStatus != null">
+        flow_two_status,
+      </if>
+      <if test="flowThreeStatus != null">
+        flow_three_status,
+      </if>
+      <if test="closeBeforeStatus != null">
+        close_before_status,
+      </if>
+      <if test="closeDate != null">
+        close_date,
+      </if>
+      <if test="cancelSide != null">
+        cancel_side,
+      </if>
+      <if test="cancelPersonId != null">
+        cancel_person_id,
+      </if>
+      <if test="cancelPerson != null">
+        cancel_person,
+      </if>
+      <if test="refusePersonId != null">
+        refuse_person_id,
+      </if>
+      <if test="refusePerson != null">
+        refuse_person,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateTime != null">
+        update_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceInfoId != null">
+        #{resourceInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="demandSideId != null">
+        #{demandSideId,jdbcType=INTEGER},
+      </if>
+      <if test="demandSide != null">
+        #{demandSide,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceSideId != null">
+        #{resourceSideId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceSide != null">
+        #{resourceSide,jdbcType=VARCHAR},
+      </if>
+      <if test="carLevel != null">
+        #{carLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="carBrand != null">
+        #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeries != null">
+        #{carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="carModel != null">
+        #{carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="carStructure != null">
+        #{carStructure,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeat != null">
+        #{carSeat,jdbcType=VARCHAR},
+      </if>
+      <if test="carModelImgName != null">
+        #{carModelImgName,jdbcType=VARCHAR},
+      </if>
+      <if test="carModelImgUrl != null">
+        #{carModelImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="marginLimit != null">
+        #{marginLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="appointmentFetchCarTime != null">
+        #{appointmentFetchCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appointmentRepayCarTime != null">
+        #{appointmentRepayCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fetchCarMode != null">
+        #{fetchCarMode,jdbcType=INTEGER},
+      </if>
+      <if test="repayCarMode != null">
+        #{repayCarMode,jdbcType=INTEGER},
+      </if>
+      <if test="carStoreId != null">
+        #{carStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="carStoreName != null">
+        #{carStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveCount != null">
+        #{reserveCount,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarProvinceCode != null">
+        #{appointmentFetchCarProvinceCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarProvince != null">
+        #{appointmentFetchCarProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentFetchCarCityCode != null">
+        #{appointmentFetchCarCityCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarCity != null">
+        #{appointmentFetchCarCity,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentFetchCarRegionCode != null">
+        #{appointmentFetchCarRegionCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarRegion != null">
+        #{appointmentFetchCarRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentFetchCarDetailsAddress != null">
+        #{appointmentFetchCarDetailsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarProvinceCode != null">
+        #{appointmentRepayCarProvinceCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentRepayCarProvince != null">
+        #{appointmentRepayCarProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarCityCode != null">
+        #{appointmentRepayCarCityCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentRepayCarCity != null">
+        #{appointmentRepayCarCity,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarRegionCode != null">
+        #{appointmentRepayCarRegionCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentRepayCarRegion != null">
+        #{appointmentRepayCarRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarDetailsAddress != null">
+        #{appointmentRepayCarDetailsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="comeCarTime != null">
+        #{comeCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comeCarPersonId != null">
+        #{comeCarPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="comeCarPersonName != null">
+        #{comeCarPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="repayCarTime != null">
+        #{repayCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayCarPersonId != null">
+        #{repayCarPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="repayCarPersonName != null">
+        #{repayCarPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="carRentalFee != null">
+        #{carRentalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="baseServiceFee != null">
+        #{baseServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="cashPledge != null">
+        #{cashPledge,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="flowOneStatus != null">
+        #{flowOneStatus,jdbcType=INTEGER},
+      </if>
+      <if test="flowTwoStatus != null">
+        #{flowTwoStatus,jdbcType=INTEGER},
+      </if>
+      <if test="flowThreeStatus != null">
+        #{flowThreeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="closeBeforeStatus != null">
+        #{closeBeforeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="closeDate != null">
+        #{closeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelSide != null">
+        #{cancelSide,jdbcType=INTEGER},
+      </if>
+      <if test="cancelPersonId != null">
+        #{cancelPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelPerson != null">
+        #{cancelPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="refusePersonId != null">
+        #{refusePersonId,jdbcType=INTEGER},
+      </if>
+      <if test="refusePerson != null">
+        #{refusePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.rental.RentalEnterpriseOrder">
+    update t_rental_enterprise_order
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceInfoId != null">
+        resource_info_id = #{resourceInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="demandSideId != null">
+        demand_side_id = #{demandSideId,jdbcType=INTEGER},
+      </if>
+      <if test="demandSide != null">
+        demand_side = #{demandSide,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceSideId != null">
+        resource_side_id = #{resourceSideId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceSide != null">
+        resource_side = #{resourceSide,jdbcType=VARCHAR},
+      </if>
+      <if test="carLevel != null">
+        car_level = #{carLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="carBrand != null">
+        car_brand = #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeries != null">
+        car_series = #{carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="carModel != null">
+        car_model = #{carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="carStructure != null">
+        car_structure = #{carStructure,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeat != null">
+        car_seat = #{carSeat,jdbcType=VARCHAR},
+      </if>
+      <if test="carModelImgName != null">
+        car_model_img_name = #{carModelImgName,jdbcType=VARCHAR},
+      </if>
+      <if test="carModelImgUrl != null">
+        car_model_img_url = #{carModelImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="marginLimit != null">
+        margin_limit = #{marginLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="appointmentFetchCarTime != null">
+        appointment_fetch_car_time = #{appointmentFetchCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appointmentRepayCarTime != null">
+        appointment_repay_car_time = #{appointmentRepayCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fetchCarMode != null">
+        fetch_car_mode = #{fetchCarMode,jdbcType=INTEGER},
+      </if>
+      <if test="repayCarMode != null">
+        repay_car_mode = #{repayCarMode,jdbcType=INTEGER},
+      </if>
+      <if test="carStoreId != null">
+        car_store_id = #{carStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="carStoreName != null">
+        car_store_name = #{carStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveCount != null">
+        reserve_count = #{reserveCount,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarProvinceCode != null">
+        appointment_fetch_car_province_code = #{appointmentFetchCarProvinceCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarProvince != null">
+        appointment_fetch_car_province = #{appointmentFetchCarProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentFetchCarCityCode != null">
+        appointment_fetch_car_city_code = #{appointmentFetchCarCityCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarCity != null">
+        appointment_fetch_car_city = #{appointmentFetchCarCity,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentFetchCarRegionCode != null">
+        appointment_fetch_car_region_code = #{appointmentFetchCarRegionCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentFetchCarRegion != null">
+        appointment_fetch_car_region = #{appointmentFetchCarRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentFetchCarDetailsAddress != null">
+        appointment_fetch_car_details_address = #{appointmentFetchCarDetailsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarProvinceCode != null">
+        appointment_repay_car_province_code = #{appointmentRepayCarProvinceCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentRepayCarProvince != null">
+        appointment_repay_car_province = #{appointmentRepayCarProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarCityCode != null">
+        appointment_repay_car_city_code = #{appointmentRepayCarCityCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentRepayCarCity != null">
+        appointment_repay_car_city = #{appointmentRepayCarCity,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarRegionCode != null">
+        appointment_repay_car_region_code = #{appointmentRepayCarRegionCode,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentRepayCarRegion != null">
+        appointment_repay_car_region = #{appointmentRepayCarRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentRepayCarDetailsAddress != null">
+        appointment_repay_car_details_address = #{appointmentRepayCarDetailsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="comeCarTime != null">
+        come_car_time = #{comeCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comeCarPersonId != null">
+        come_car_person_id = #{comeCarPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="comeCarPersonName != null">
+        come_car_person_name = #{comeCarPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="repayCarTime != null">
+        repay_car_time = #{repayCarTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayCarPersonId != null">
+        repay_car_person_id = #{repayCarPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="repayCarPersonName != null">
+        repay_car_person_name = #{repayCarPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="carRentalFee != null">
+        car_rental_fee = #{carRentalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="baseServiceFee != null">
+        base_service_fee = #{baseServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="cashPledge != null">
+        cash_pledge = #{cashPledge,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="flowOneStatus != null">
+        flow_one_status = #{flowOneStatus,jdbcType=INTEGER},
+      </if>
+      <if test="flowTwoStatus != null">
+        flow_two_status = #{flowTwoStatus,jdbcType=INTEGER},
+      </if>
+      <if test="flowThreeStatus != null">
+        flow_three_status = #{flowThreeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="closeBeforeStatus != null">
+        close_before_status = #{closeBeforeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="closeDate != null">
+        close_date = #{closeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelSide != null">
+        cancel_side = #{cancelSide,jdbcType=INTEGER},
+      </if>
+      <if test="cancelPersonId != null">
+        cancel_person_id = #{cancelPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelPerson != null">
+        cancel_person = #{cancelPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="refusePersonId != null">
+        refuse_person_id = #{refusePersonId,jdbcType=INTEGER},
+      </if>
+      <if test="refusePerson != null">
+        refuse_person = #{refusePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.rental.RentalEnterpriseOrder">
+    update t_rental_enterprise_order
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+    resource_info_id = #{resourceInfoId,jdbcType=INTEGER},
+    demand_side_id = #{demandSideId,jdbcType=INTEGER},
+    demand_side = #{demandSide,jdbcType=VARCHAR},
+    resource_side_id = #{resourceSideId,jdbcType=INTEGER},
+    resource_side = #{resourceSide,jdbcType=VARCHAR},
+    car_level = #{carLevel,jdbcType=VARCHAR},
+    car_brand = #{carBrand,jdbcType=VARCHAR},
+    car_series = #{carSeries,jdbcType=VARCHAR},
+    car_model = #{carModel,jdbcType=VARCHAR},
+    car_structure = #{carStructure,jdbcType=VARCHAR},
+    car_seat = #{carSeat,jdbcType=VARCHAR},
+    car_model_img_name = #{carModelImgName,jdbcType=VARCHAR},
+    car_model_img_url = #{carModelImgUrl,jdbcType=VARCHAR},
+    margin_limit = #{marginLimit,jdbcType=DECIMAL},
+    appointment_fetch_car_time = #{appointmentFetchCarTime,jdbcType=TIMESTAMP},
+    appointment_repay_car_time = #{appointmentRepayCarTime,jdbcType=TIMESTAMP},
+    fetch_car_mode = #{fetchCarMode,jdbcType=INTEGER},
+    repay_car_mode = #{repayCarMode,jdbcType=INTEGER},
+    car_store_id = #{carStoreId,jdbcType=INTEGER},
+    car_store_name = #{carStoreName,jdbcType=VARCHAR},
+    reserve_count = #{reserveCount,jdbcType=INTEGER},
+    appointment_fetch_car_province_code = #{appointmentFetchCarProvinceCode,jdbcType=INTEGER},
+    appointment_fetch_car_province = #{appointmentFetchCarProvince,jdbcType=VARCHAR},
+    appointment_fetch_car_city_code = #{appointmentFetchCarCityCode,jdbcType=INTEGER},
+    appointment_fetch_car_city = #{appointmentFetchCarCity,jdbcType=VARCHAR},
+    appointment_fetch_car_region_code = #{appointmentFetchCarRegionCode,jdbcType=INTEGER},
+    appointment_fetch_car_region = #{appointmentFetchCarRegion,jdbcType=VARCHAR},
+    appointment_fetch_car_details_address = #{appointmentFetchCarDetailsAddress,jdbcType=VARCHAR},
+    appointment_repay_car_province_code = #{appointmentRepayCarProvinceCode,jdbcType=INTEGER},
+    appointment_repay_car_province = #{appointmentRepayCarProvince,jdbcType=VARCHAR},
+    appointment_repay_car_city_code = #{appointmentRepayCarCityCode,jdbcType=INTEGER},
+    appointment_repay_car_city = #{appointmentRepayCarCity,jdbcType=VARCHAR},
+    appointment_repay_car_region_code = #{appointmentRepayCarRegionCode,jdbcType=INTEGER},
+    appointment_repay_car_region = #{appointmentRepayCarRegion,jdbcType=VARCHAR},
+    appointment_repay_car_details_address = #{appointmentRepayCarDetailsAddress,jdbcType=VARCHAR},
+    come_car_time = #{comeCarTime,jdbcType=TIMESTAMP},
+    come_car_person_id = #{comeCarPersonId,jdbcType=INTEGER},
+    come_car_person_name = #{comeCarPersonName,jdbcType=VARCHAR},
+    repay_car_time = #{repayCarTime,jdbcType=TIMESTAMP},
+    repay_car_person_id = #{repayCarPersonId,jdbcType=INTEGER},
+    repay_car_person_name = #{repayCarPersonName,jdbcType=VARCHAR},
+    car_rental_fee = #{carRentalFee,jdbcType=DECIMAL},
+    base_service_fee = #{baseServiceFee,jdbcType=DECIMAL},
+    cash_pledge = #{cashPledge,jdbcType=DECIMAL},
+    `status` = #{status,jdbcType=INTEGER},
+    flow_one_status = #{flowOneStatus,jdbcType=INTEGER},
+    flow_two_status = #{flowTwoStatus,jdbcType=INTEGER},
+    flow_three_status = #{flowThreeStatus,jdbcType=INTEGER},
+    close_before_status = #{closeBeforeStatus,jdbcType=INTEGER},
+    close_date = #{closeDate,jdbcType=TIMESTAMP},
+    cancel_side = #{cancelSide,jdbcType=INTEGER},
+    cancel_person_id = #{cancelPersonId,jdbcType=INTEGER},
+    cancel_person = #{cancelPerson,jdbcType=VARCHAR},
+    refuse_person_id = #{refusePersonId,jdbcType=INTEGER},
+    refuse_person = #{refusePerson,jdbcType=VARCHAR},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    create_by = #{createBy,jdbcType=INTEGER},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getEnterpriseOrderListB2BD" parameterType="com.ydc.commom.view.dto.cgj.rental.RentalEnterpriseOrderDTO" resultType="com.ydc.commom.view.vo.cgj.rental.RentalEnterpriseOrderListB2BDVO">
+    SELECT
+    treo.id orderId,
+    treo.order_no orderNo,
+    treo.status,
+    treo.flow_one_status flowOneStatus,
+    treo.flow_two_status flowTwoStatus,
+    treo.flow_three_status flowThreeStatus,
+    treo.appointment_fetch_car_time appointmentFetchCarTime,
+    treo.appointment_repay_car_time appointmentRepayCarTime,
+    treo.car_brand carBrand,
+    treo.car_series carSeries,
+    treo.car_structure carStructure,
+    treo.car_seat carSeat,
+    treo.car_model_img_name carModelImgName,
+    treo.car_model_img_url carModelImgUrl,
+    treo.car_store_id carStoreId,
+    treo.car_store_name carStoreName,
+    trs.store_register_province storeRegisterProvince,
+    trs.store_register_city storeRegisterCity,
+    trs.store_register_region storeRegisterRegion,
+    trs.details_address storeDetailsAddress,
+    treo.fetch_car_mode fetchCarMode,
+    treo.appointment_fetch_car_province appointmentFetchCarProvince,
+    treo.appointment_fetch_car_city appointmentFetchCarCity,
+    treo.appointment_fetch_car_region appointmentFetchCarRegion,
+    treo.appointment_fetch_car_details_address appointmentFetchCarDetailsAddress,
+    treo.repay_car_mode repayCarMode,
+    treo.appointment_repay_car_province appointmentRepayCarProvince,
+    treo.appointment_repay_car_city appointmentRepayCarCity,
+    treo.appointment_repay_car_region appointmentRepayCarRegion,
+    treo.appointment_repay_car_details_address appointmentRepayCarDetailsAddress
+    FROM t_rental_enterprise_order treo
+    LEFT JOIN t_rental_store trs ON trs.id = treo.car_store_id
+    WHERE treo.demand_side_id = #{demandSideId,jdbcType=INTEGER}
+    ORDER BY treo.create_time DESC
+    LIMIT #{page}, #{rows}
+  </select>
+
+  <select id="getEnterpriseOrderListB2BR" parameterType="com.ydc.commom.view.dto.cgj.rental.RentalEnterpriseOrderDTO" resultType="com.ydc.commom.view.vo.cgj.rental.RentalEnterpriseOrderListB2BRVO">
+    SELECT
+    treo.id orderId,
+    treo.order_no orderNo,
+    treo.status,
+    treo.flow_one_status flowOneStatus,
+    treo.flow_two_status flowTwoStatus,
+    treo.flow_three_status flowThreeStatus,
+    treo.appointment_fetch_car_time appointmentFetchCarTime,
+    treo.appointment_repay_car_time appointmentRepayCarTime,
+    treo.car_brand carBrand,
+    treo.car_series carSeries,
+    treo.car_structure carStructure,
+    treo.car_seat carSeat,
+    treo.car_model_img_name carModelImgName,
+    treo.car_model_img_url carModelImgUrl,
+    treo.car_store_id carStoreId,
+    treo.car_store_name carStoreName,
+    trs.store_register_province storeRegisterProvince,
+    trs.store_register_city storeRegisterCity,
+    trs.store_register_region storeRegisterRegion,
+    trs.details_address storeDetailsAddress,
+    treo.fetch_car_mode fetchCarMode,
+    treo.appointment_fetch_car_province appointmentFetchCarProvince,
+    treo.appointment_fetch_car_city appointmentFetchCarCity,
+    treo.appointment_fetch_car_region appointmentFetchCarRegion,
+    treo.appointment_fetch_car_details_address appointmentFetchCarDetailsAddress,
+    treo.repay_car_mode repayCarMode,
+    treo.appointment_repay_car_province appointmentRepayCarProvince,
+    treo.appointment_repay_car_city appointmentRepayCarCity,
+    treo.appointment_repay_car_region appointmentRepayCarRegion,
+    treo.appointment_repay_car_details_address appointmentRepayCarDetailsAddress
+    FROM t_rental_enterprise_order treo
+    LEFT JOIN t_rental_store trs ON trs.id = treo.car_store_id
+    WHERE treo.resource_side_id = #{resourceSideId,jdbcType=INTEGER}
+    ORDER BY treo.create_time DESC
+    LIMIT #{page}, #{rows}
+  </select>
+
+  <select id="getStoreRentalEnterpriseOrderList" resultType="com.ydc.commom.view.vo.cgj.rentalEnterprise.StoreRentalEnterpriseOrderVO"
+          parameterType="com.ydc.commom.view.dto.cgj.rental.RentalEnterpriseOrderDTO">
+    SELECT
+    treo.id orderId,
+    treo.order_no orderNo,
+    trc.registered_phone demandSidePhone,
+    treo.demand_side_id demandSideId,
+    treo.demand_side demandSide,
+    treo.car_level carLevel,
+    treo.car_brand carBrand,
+    treo.car_series carSeries,
+    treo.car_model carModel,
+    treo.reserve_count reserveCount,
+    treo.car_structure carStructure,
+    treo.car_seat carSeat,
+    treo.appointment_fetch_car_time appointmentFetchCarTime,
+    treo.appointment_repay_car_time appointmentRepayCarTime,
+    treo.fetch_car_mode fetchCarMode,
+    treo.repay_car_mode repayCarMode,
+
+    treo.appointment_fetch_car_province appointmentFetchCarProvince,
+    treo.appointment_fetch_car_city appointmentFetchCarCity,
+    IFNULL(treo.appointment_fetch_car_region,'') appointmentFetchCarRegion,
+    treo.appointment_fetch_car_details_address appointmentFetchCarDetailsAddress,
+
+    treo.appointment_repay_car_province appointmentRepayCarProvince,
+    treo.appointment_repay_car_city appointmentRepayCarCity,
+    IFNULL(treo.appointment_repay_car_region,'') appointmentRepayCarRegion,
+    treo.appointment_repay_car_details_address appointmentRepayCarDetailsAddress,
+
+    IFNULL(treo.car_store_id,'') carStoreId,
+    IFNULL(treo.car_store_name,'') carStoreName,
+    CONCAT(trs.store_register_province,trs.store_register_city,IFNULL(trs.store_register_region,''),trs.details_address) carStoreAddress,
+    treo.status,
+    IFNULL(treo.flow_one_status,'') flowOneStatus,
+    IFNULL(treo.flow_two_status,'') flowTwoStatus,
+    IFNULL(treo.flow_three_status,'') flowThreeStatus,
+    treo.close_date closeDate
+    FROM t_rental_enterprise_order treo
+    LEFT JOIN t_rental_store trs ON treo.car_store_id = trs.id
+    LEFT JOIN t_rental_company_customer trc ON trc.id = treo.demand_side_id
+    where
+    find_in_set(treo.car_store_id,#{viewOrgId})
+    <if test="queryContent != null and queryContent != ''">
+        AND (treo.demand_side LIKE '%${queryContent}%' OR treo.resource_side LIKE '%${queryContent}%')
+    </if>
+    ORDER BY treo.id DESC
+  </select>
+
+  <select id="getStoreRentalEnterpriseOrderByOrderId" parameterType="com.ydc.commom.view.dto.cgj.rental.RentalEnterpriseOrderDTO"
+          resultType="com.ydc.commom.view.vo.cgj.rentalEnterprise.StoreRentalEnterpriseOrderVO">
+    SELECT
+      treo.id orderId,
+      treo.resource_info_id resourceInfoId,
+      trc.registered_phone demandSidePhone,
+      treo.demand_side demandSide,
+      treo.car_level carLevel,
+      treo.car_brand carBrand,
+      treo.car_series carSeries,
+      treo.car_model carModel,
+      treo.car_structure carStructure,
+      treo.car_seat carSeat,
+      treo.margin_limit marginLimit,
+      treo.reserve_count reserveCount,
+      treo.car_model_img_name carModelImgName,
+      treo.car_model_img_url carModelImgUrl,
+      treo.order_no orderNo,
+      treo.resource_side resourceSide,
+      trcr.registered_phone resourceSidePhone,
+      treo.create_time createTime,
+      treo.appointment_fetch_car_time appointmentFetchCarTime,
+      treo.appointment_repay_car_time appointmentRepayCarTime,
+      treo.fetch_car_mode fetchCarMode,
+      treo.repay_car_mode repayCarMode,
+      treo.appointment_fetch_car_province appointmentFetchCarProvince,
+      treo.appointment_fetch_car_city appointmentFetchCarCity,
+      IFNULL(treo.appointment_fetch_car_region,'') appointmentFetchCarRegion,
+      treo.appointment_fetch_car_details_address appointmentFetchCarDetailsAddress,
+      treo.appointment_repay_car_province appointmentRepayCarProvince,
+      treo.appointment_repay_car_city appointmentRepayCarCity,
+      IFNULL(treo.appointment_repay_car_region,'') appointmentRepayCarRegion,
+      treo.appointment_repay_car_details_address appointmentRepayCarDetailsAddress,
+      IFNULL(treo.car_store_name,'') carStoreName,
+      CONCAT(trs.store_register_province,trs.store_register_city,IFNULL(trs.store_register_region,''),trs.details_address) carStoreAddress,
+      treo.status,
+      treo.flow_one_status flowOneStatus,
+      treo.flow_two_status flowTwoStatus,
+      treo.flow_three_status flowThreeStatus,
+      treo.car_rental_fee carRentalFee,
+      treo.base_service_fee baseServiceFee,
+      treo.cash_pledge cashPledge,
+      treo.close_date closeDate
+    FROM t_rental_enterprise_order treo
+    LEFT JOIN t_rental_store trs ON treo.car_store_id = trs.id
+    LEFT JOIN t_rental_company_customer trc ON trc.id = treo.demand_side_id
+    LEFT JOIN t_rental_company_customer trcr ON trcr.id = treo.resource_side_id
+    WHERE treo.id = #{orderId,jdbcType=INTEGER};
+  </select>
+
+  <select id="getPCRentalEnterpriseOrderList" resultType="com.ydc.commom.view.vo.cgj.rentalEnterprise.PCRentalEnterpriseOrderVO"
+          parameterType="com.ydc.commom.view.dto.cgj.rental.RentalEnterpriseOrderDTO">
+    SELECT
+    treo.id orderId,
+    treo.order_no orderNo,
+    treo.demand_side_id demandSideId,
+    treo.demand_side demandSide,
+    treo.resource_side_id resourceSideId,
+    treo.resource_side resourceSide,
+    treo.car_level carLevel,
+    treo.car_brand carBrand,
+    treo.car_series carSeries,
+    treo.car_model carModel,
+    treo.car_structure carStructure,
+    treo.car_seat carSeat,
+    treo.reserve_count reserveCount,
+    treo.appointment_fetch_car_time appointmentFetchCarTimePC,
+    treo.appointment_repay_car_time appointmentRepayCarTimePC,
+    treo.fetch_car_mode fetchCarMode,
+    treo.repay_car_mode repayCarMode,
+    treo.appointment_fetch_car_province appointmentFetchCarProvince,
+    treo.appointment_fetch_car_city appointmentFetchCarCity,
+    IFNULL(treo.appointment_fetch_car_region,'') appointmentFetchCarRegion,
+    treo.appointment_fetch_car_details_address appointmentFetchCarDetailsAddress,
+    treo.appointment_repay_car_province appointmentRepayCarProvince,
+    treo.appointment_repay_car_city appointmentRepayCarCity,
+    IFNULL(treo.appointment_repay_car_region,'') appointmentRepayCarRegion,
+    treo.appointment_repay_car_details_address appointmentRepayCarDetailsAddress,
+    IFNULL(treo.car_store_id,'') carStoreId,
+    IFNULL(treo.car_store_name,'') carStoreName,
+    CONCAT(trs.store_register_province,trs.store_register_city,IFNULL(trs.store_register_region,''),trs.details_address) carStoreAddress,
+    treo.status,
+    IFNULL(treo.flow_one_status,'') flowOneStatus,
+    IFNULL(treo.flow_two_status,'') flowTwoStatus,
+    IFNULL(treo.flow_three_status,'') flowThreeStatus,
+    trd.payment_status paymentStatus,
+    trd.payment_mode paymentMode,
+    treo.come_car_time comeCarTime,
+    treo.repay_car_time repayCarTime,
+    treo.margin_limit marginLimit
+    FROM t_rental_enterprise_order treo
+    LEFT JOIN t_rental_store trs ON treo.car_store_id = trs.id
+    LEFT JOIN t_rental_deposit trd ON trd.rent_car_order_no = treo.order_no AND trd.order_type = 2 AND trd.deposit_type = 1 AND trd.delete_status = 1
+    <where>
+      <if test="orderId != null and orderId != ''">
+        AND treo.id = #{orderId,jdbcType=INTEGER}
+      </if>
+      <if test="realStatus != null and realStatus != ''">
+        AND treo.status = #{realStatus,jdbcType=INTEGER}
+      </if>
+      <if test="flowOneStatus != null and flowOneStatus.size > 0">
+        AND treo.flow_one_status IN
+        <foreach collection="flowOneStatus" item="item" open="(" separator="," close=")">
+        #{item}
+        </foreach>
+      </if>
+      <if test="flowTwoStatus != null and flowTwoStatus.size > 0">
+        AND treo.flow_two_status IN
+        <foreach collection="flowTwoStatus" item="item" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+      <if test="flowThreeStatus != null and flowThreeStatus.size > 0">
+        AND treo.flow_three_status IN
+        <foreach collection="flowThreeStatus" item="item" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+      <if test="demandSide != null and demandSide != ''">
+        AND treo.demand_side LIKE '%${demandSide}%'
+      </if>
+      <if test="resourceSide != null and resourceSide != ''">
+        AND treo.resource_side LIKE '%${resourceSide}%'
+      </if>
+      <if test="carBrand != null and carBrand != ''">
+        AND treo.car_brand = #{carBrand,jdbcType=VARCHAR}
+      </if>
+      <if test="carSeries != null and carSeries != ''">
+        AND treo.car_series = #{carSeries,jdbcType=VARCHAR}
+      </if>
+      <if test="carModel != null and carModel != ''">
+        AND treo.car_model = #{carModel,jdbcType=VARCHAR}
+      </if>
+      <if test="startAppointmentFetchCarTime != null and startAppointmentFetchCarTime != ''">
+        AND treo.appointment_fetch_car_time <![CDATA[>=]]> #{startAppointmentFetchCarTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endAppointmentFetchCarTime != null and endAppointmentFetchCarTime != ''">
+        AND treo.appointment_fetch_car_time <![CDATA[<=]]> #{endAppointmentFetchCarTime,jdbcType=VARCHAR}
+      </if>
+      <if test="startAppointmentRepayCarTime != null and startAppointmentRepayCarTime != ''">
+        AND treo.appointment_repay_car_time <![CDATA[>=]]> #{startAppointmentRepayCarTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endAppointmentRepayCarTime != null and endAppointmentRepayCarTime != ''">
+        AND treo.appointment_repay_car_time <![CDATA[<=]]> #{endAppointmentRepayCarTime,jdbcType=VARCHAR}
+      </if>
+      <if test="startComeCarTime != null and startComeCarTime != ''">
+        AND treo.come_car_time <![CDATA[>=]]> #{startComeCarTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endComeCarTime != null and endComeCarTime != ''">
+        AND treo.come_car_time <![CDATA[<=]]> #{endComeCarTime,jdbcType=VARCHAR}
+      </if>
+      <if test="startRepayCarTime != null and startRepayCarTime != ''">
+        AND treo.repay_car_time <![CDATA[>=]]> #{startRepayCarTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endRepayCarTime != null and endRepayCarTime != ''">
+        AND treo.repay_car_time <![CDATA[<=]]> #{endRepayCarTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+    ORDER BY treo.id DESC
+  </select>
+
+  <select id="getEnterpriseOrderDetailB2BD" parameterType="java.lang.Integer" resultType="com.ydc.commom.view.vo.cgj.rental.EnterpriseOrderDetailB2BDVO">
+    SELECT
+    treo.status,
+    treo.flow_one_status flowOneStatus,
+    treo.flow_two_status flowTwoStatus,
+    treo.flow_three_status flowThreeStatus,
+    treo.car_brand carBrand,
+    treo.car_series carSeries,
+    treo.car_model carModel,
+    treo.car_structure carStructure,
+    treo.car_seat carSeat,
+    treo.car_model_img_name carModelImgName,
+    treo.car_model_img_url carModelImgUrl,
+    trcp.workday_rent workdayRent,
+    trcp.weekend_rent weekendRent,
+    trcp.holiday_rent holidayRent,
+    trcp.day_service_charge dayServiceCharge,
+    treo.margin_limit marginLimit,
+    treo.id orderId,
+    treo.reserve_count reserveCount,
+    treo.order_no orderNo,
+    treo.create_time createTime,
+    treo.appointment_fetch_car_time appointmentFetchCarTime,
+    treo.appointment_repay_car_time appointmentRepayCarTime,
+    treo.car_store_id carStoreId,
+    treo.car_store_name carStoreName,
+    trs.store_register_province storeRegisterProvince,
+    trs.store_register_city storeRegisterCity,
+    trs.store_register_region storeRegisterRegion,
+    trs.details_address storeDetailsAddress,
+    treo.fetch_car_mode fetchCarMode,
+    treo.appointment_fetch_car_province appointmentFetchCarProvince,
+    treo.appointment_fetch_car_city appointmentFetchCarCity,
+    treo.appointment_fetch_car_region appointmentFetchCarRegion,
+    treo.appointment_fetch_car_details_address appointmentFetchCarDetailsAddress,
+    treo.repay_car_mode repayCarMode,
+    treo.appointment_repay_car_province appointmentRepayCarProvince,
+    treo.appointment_repay_car_city appointmentRepayCarCity,
+    treo.appointment_repay_car_region appointmentRepayCarRegion,
+    treo.appointment_repay_car_details_address appointmentRepayCarDetailsAddress,
+    margin.actual_amount actualMargin,
+    margin.payment_status marginPayStatus,
+    margin.payment_time marginPaytTime,
+    margin.actual_refund_time marginRefundTime,
+    treo.car_rental_fee carRentalFee,
+    treo.base_service_fee baseServiceFee,
+    treo.cash_pledge cashPledge,
+    tres.settle_money settleMoney,
+    tres.settle_date settleDate,
+    treo.close_date closeDate
+    FROM t_rental_enterprise_order treo
+    LEFT JOIN t_rental_store trs ON trs.id = treo.car_store_id
+    LEFT JOIN t_rental_deposit margin ON margin.order_type = 2 AND margin.deposit_type = 1 AND margin.delete_status = 1 AND treo.id = margin.order_id
+    LEFT JOIN t_rental_car_publish trcp ON treo.resource_info_id = trcp.id
+    LEFT JOIN t_rental_enterprise_settlement tres ON treo.id = tres.order_id
+    WHERE treo.id = #{orderId,jdbcType=INTEGER}
+    order by  margin.payment_status desc
+    limit 1
+  </select>
+
+  <select id="getEnterpriseOrderDetailB2BR" parameterType="java.lang.Integer" resultType="com.ydc.commom.view.vo.cgj.rental.EnterpriseOrderDetailB2BRVO" >
+    SELECT
+    treo.status,
+    treo.flow_one_status flowOneStatus,
+    treo.flow_two_status flowTwoStatus,
+    treo.flow_three_status flowThreeStatus,
+    treo.car_brand carBrand,
+    treo.car_series carSeries,
+    treo.car_model carModel,
+    treo.car_structure carStructure,
+    treo.car_seat carSeat,
+    treo.car_model_img_name carModelImgName,
+    treo.car_model_img_url carModelImgUrl,
+    trcp.workday_rent workdayRent,
+    trcp.weekend_rent weekendRent,
+    trcp.holiday_rent holidayRent,
+    trcp.day_service_charge dayServiceCharge,
+    treo.margin_limit marginLimit,
+    treo.id orderId,
+    treo.reserve_count reserveCount,
+    treo.order_no orderNo,
+    treo.create_time createTime,
+    treo.appointment_fetch_car_time appointmentFetchCarTime,
+    treo.appointment_repay_car_time appointmentRepayCarTime,
+    treo.car_store_id carStoreId,
+    treo.car_store_name carStoreName,
+    trs.store_register_province storeRegisterProvince,
+    trs.store_register_city storeRegisterCity,
+    trs.store_register_region storeRegisterRegion,
+    trs.details_address storeDetailsAddress,
+    treo.fetch_car_mode fetchCarMode,
+    treo.appointment_fetch_car_province appointmentFetchCarProvince,
+    treo.appointment_fetch_car_city appointmentFetchCarCity,
+    treo.appointment_fetch_car_region appointmentFetchCarRegion,
+    treo.appointment_fetch_car_details_address appointmentFetchCarDetailsAddress,
+    treo.repay_car_mode repayCarMode,
+    treo.appointment_repay_car_province appointmentRepayCarProvince,
+    treo.appointment_repay_car_city appointmentRepayCarCity,
+    treo.appointment_repay_car_region appointmentRepayCarRegion,
+    treo.appointment_repay_car_details_address appointmentRepayCarDetailsAddress,
+    treo.car_rental_fee carRentalFee,
+    treo.base_service_fee baseServiceFee,
+    treo.cash_pledge cashPledge,
+    tres.settle_money settleMoney,
+    tres.settle_date settleDate,
+    treo.close_date closeDate
+    FROM t_rental_enterprise_order treo
+    LEFT JOIN t_rental_store trs ON trs.id = treo.car_store_id
+    LEFT JOIN t_rental_car_publish trcp ON treo.resource_info_id = trcp.id
+    LEFT JOIN t_rental_enterprise_settlement tres ON treo.id = tres.order_id
+    WHERE treo.id = #{orderId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getPCRentalEnterpriseDetailsBasic" parameterType="com.ydc.commom.view.dto.cgj.rental.RentalEnterpriseOrderDTO"
+          resultType="com.ydc.commom.view.vo.cgj.rentalEnterprise.details.PCRentalEnterpriseDetailsBasicVO">
+    SELECT
+    treo.id orderId,
+    treo.resource_info_id resourceInfoId,
+    treo.order_no orderNo,
+    treo.status,
+    treo.flow_one_status flowOneStatus,
+    treo.flow_two_status flowTwoStatus,
+    treo.flow_three_status flowThreeStatus,
+    treo.car_level carLevel,
+    treo.car_brand carBrand,
+    treo.car_series carSeries,
+    treo.car_model carModel,
+    treo.car_structure carStructure,
+    treo.reserve_count reserveCount,
+    treo.car_seat carSeat,
+    treo.demand_side demandSide,
+    treo.resource_side resourceSide,
+    treo.fetch_car_mode fetchCarMode,
+    treo.repay_car_mode repayCarMode,
+    treo.appointment_fetch_car_time appointmentFetchCarTime,
+    treo.appointment_repay_car_time appointmentRepayCarTime,
+    IFNULL(treo.car_store_name,'') carStoreName,
+    CONCAT(trs.store_register_province,trs.store_register_city,IFNULL(trs.store_register_region,''),trs.details_address) carStoreAddress,
+    treo.appointment_fetch_car_province appointmentFetchCarProvince,
+    treo.appointment_fetch_car_city appointmentFetchCarCity,
+    IFNULL(treo.appointment_fetch_car_region,'') appointmentFetchCarRegion,
+    treo.appointment_fetch_car_details_address appointmentFetchCarDetailsAddress,
+    treo.appointment_repay_car_province appointmentRepayCarProvince,
+    treo.appointment_repay_car_city appointmentRepayCarCity,
+    IFNULL(treo.appointment_repay_car_region,'') appointmentRepayCarRegion,
+    treo.appointment_repay_car_details_address appointmentRepayCarDetailsAddress,
+    treo.car_rental_fee carRentalFee,
+    treo.base_service_fee baseServiceFee,
+    treo.cash_pledge cashPledge,
+    treo.come_car_time comeCarTime,
+    treo.come_car_person_name comeCarPersonName,
+    treo.repay_car_time repayCarTime,
+    treo.repay_car_person_name repayCarPersonName,
+    treo.demand_side_id demandSideId
+    FROM t_rental_enterprise_order treo
+    LEFT JOIN t_rental_store trs ON treo.car_store_id = trs.id
+    WHERE treo.id = #{orderId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getPCRentalEnterpriseDetailsDeposit" parameterType="com.ydc.commom.view.dto.cgj.rental.RentalEnterpriseOrderDTO"
+    resultType="com.ydc.commom.view.vo.cgj.rentalEnterprise.details.PCRentalEnterpriseDetailsDepositVO">
+    SELECT
+    trd.payment_status paymentStatus,
+    trd.payment_mode paymentMode,
+    trd.actual_amount actualAmount,
+    trd.payment_time paymentTime,
+    trd.actual_refund_time actualRefundTime,
+    trd.actual_refund_amount actualRefundAmount,
+    trd.pay_voucher_img_name payVoucherImgName,
+    trd.pay_voucher_img_url payVoucherImgUrl,
+    trd.refund_voucher_img_name refundVoucherImgName,
+    trd.refund_voucher_img_url refundVoucherImgUrl,
+    tu.user_name userName
+    FROM t_rental_deposit trd
+    LEFT JOIN t_user tu ON tu.id = trd.create_by
+    WHERE trd.order_id = #{orderId,jdbcType=INTEGER} AND trd.order_type = 2 AND trd.deposit_type = 1 AND trd.delete_status = 1
+  </select>
+
+  <select id="getPCRentalEnterpriseDetailsFeeVoucher" parameterType="com.ydc.commom.view.dto.cgj.rental.RentalEnterpriseOrderDTO"
+          resultType="com.ydc.commom.view.vo.cgj.rentalEnterprise.details.PCRentalEnterpriseDetailsFeeVoucherVO">
+
+    SELECT
+      trfv.one_money oneMoney,
+      trfv.two_money twoMoney,
+      trfv.pay_time payTime,
+      trfv.pay_voucher_img_name payVoucherImgName,
+      trfv.pay_voucher_img_url payVoucherImgUrl,
+      trfv.account_time accountTime,
+      trfv.account_voucher_img_name accountVoucherImgName,
+      trfv.account_voucher_img_url accountVoucherImgUrl,
+      tu.user_name userName,
+      trfv.create_time createTime,
+      trfv.voucher_type voucherType
+    FROM t_rental_fee_voucher trfv
+    LEFT JOIN t_user tu ON tu.id = trfv.create_by
+    WHERE trfv.order_id = #{orderId,jdbcType=INTEGER};
+  </select>
+</mapper>

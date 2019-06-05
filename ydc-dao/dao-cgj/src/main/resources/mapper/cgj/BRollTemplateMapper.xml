@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.service.BRollTemplateDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.BRollTemplate" >
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="roll_name" property="rollName" jdbcType="VARCHAR" />
+      <result column="roll_money" property="rollMoney" jdbcType="DECIMAL" />
+      <result column="roll_content" property="rollContent" jdbcType="VARCHAR" />
+      <result column="roll_code" property="rollCode" jdbcType="VARCHAR" />
+      <result column="channel" property="channel" jdbcType="VARCHAR" />
+      <result column="roll_type" property="rollType" jdbcType="INTEGER" />
+      <result column="batch_number" property="batchNumber" jdbcType="VARCHAR" />
+      <result column="status" property="status" jdbcType="INTEGER" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="create_by" property="createBy" jdbcType="INTEGER" />
+      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+      <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+      id, roll_name, roll_money, roll_content, roll_code, channel, roll_type, batch_number,
+      `status`, create_time, create_by, update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_b_roll_template
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_b_roll_template
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.BRollTemplate" useGeneratedKeys="true" keyProperty="id" >
+      insert into t_b_roll_template (roll_name, roll_money, roll_content,
+      roll_code, channel, roll_type,
+      batch_number, `status`, create_time,
+      create_by, update_time, update_by
+      )
+      values (#{rollName,jdbcType=VARCHAR}, #{rollMoney,jdbcType=DECIMAL}, #{rollContent,jdbcType=VARCHAR},
+      #{rollCode,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{rollType,jdbcType=INTEGER},
+      #{batchNumber,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.BRollTemplate" useGeneratedKeys="true" keyProperty="id" >
+      insert into t_b_roll_template
+      <trim prefix="(" suffix=")" suffixOverrides="," >
+          roll_name,
+          roll_money,
+          roll_content,
+          roll_code,
+          channel,
+          roll_type,
+          batch_number,
+          `status`,
+          create_time,
+          create_by,
+          update_time,
+          update_by,
+      </trim>
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+          #{rollName,jdbcType=VARCHAR},
+          #{rollMoney,jdbcType=DECIMAL},
+          #{rollContent,jdbcType=VARCHAR},
+          #{rollCode,jdbcType=VARCHAR},
+          #{channel,jdbcType=VARCHAR},
+          #{rollType,jdbcType=INTEGER},
+          #{batchNumber,jdbcType=VARCHAR},
+          #{status,jdbcType=INTEGER},
+          #{createTime,jdbcType=TIMESTAMP},
+          #{createBy,jdbcType=INTEGER},
+          #{updateTime,jdbcType=TIMESTAMP},
+          #{updateBy,jdbcType=INTEGER},
+      </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.BRollTemplate" >
+      update t_b_roll_template
+      <set >
+          <if test="rollName != null" >
+              roll_name = #{rollName,jdbcType=VARCHAR},
+          </if>
+          <if test="rollMoney != null" >
+              roll_money = #{rollMoney,jdbcType=DECIMAL},
+          </if>
+          <if test="rollContent != null" >
+              roll_content = #{rollContent,jdbcType=VARCHAR},
+          </if>
+          <if test="rollCode != null" >
+              roll_code = #{rollCode,jdbcType=VARCHAR},
+          </if>
+          <if test="channel != null" >
+              channel = #{channel,jdbcType=VARCHAR},
+          </if>
+          <if test="rollType != null" >
+              roll_type = #{rollType,jdbcType=INTEGER},
+          </if>
+          <if test="batchNumber != null" >
+              batch_number = #{batchNumber,jdbcType=VARCHAR},
+          </if>
+          <if test="status != null" >
+              `status` = #{status,jdbcType=INTEGER},
+          </if>
+          <if test="createTime != null" >
+              create_time = #{createTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="createBy != null" >
+              create_by = #{createBy,jdbcType=INTEGER},
+          </if>
+          <if test="updateTime != null" >
+              update_time = #{updateTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateBy != null" >
+              update_by = #{updateBy,jdbcType=INTEGER},
+          </if>
+      </set>
+      where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.BRollTemplate" >
+      update t_b_roll_template
+      set roll_name = #{rollName,jdbcType=VARCHAR},
+      roll_money = #{rollMoney,jdbcType=DECIMAL},
+      roll_content = #{rollContent,jdbcType=VARCHAR},
+      roll_code = #{rollCode,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      roll_type = #{rollType,jdbcType=INTEGER},
+      batch_number = #{batchNumber,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER}
+      where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getTicketTemplateList" resultType="com.ydc.commom.view.vo.cgj.order.BTicketTemplateVO">
+    SELECT
+    trt.id rollTemplateId,
+    trt.roll_name rollName,
+    trt.roll_money rollMoney,
+    IFNULL(trt.roll_content,'') rollContent,
+    CONCAT(LEFT(trt.roll_code,5), '****' ,RIGHT(trt.roll_code,5)) rollCodeName,
+    trt.roll_code rollCode,
+    <!--CONCAT(LEFT(trt.batch_number,5), '****' ,RIGHT(trt.batch_number,5)) batchNumberName,-->
+    <!--trt.batch_number batchNumber,-->
+    <!--DATE_FORMAT(trt.create_time,'%Y-%m-%d %H:%i:%s') createTime,-->
+    <!--DATE_FORMAT(trt.update_time,'%Y-%m-%d %H:%i:%s') updateTime,-->
+    <!--(CASE trt.status WHEN 1 THEN '已激活' WHEN 2 THEN '未激活' ELSE '' END) statusName,-->
+    trt.status,
+    <!--(CASE trt.roll_type WHEN 1 THEN '洗车劵' WHEN 2 THEN '保养劵' WHEN 3 THEN '车险劵' ELSE '' END) rollTypeName,-->
+    IFNULL(trt.roll_type,'') rollType
+    <include refid="getTicketTemplateListCommon"/>
+    ORDER BY trt.create_time DESC
+  </select>
+
+  <sql id="getTicketTemplateListCommon">
+    FROM t_b_roll_template trt
+    <where>
+      <if test="rollTemplateDTO.rollCode != null and rollTemplateDTO.rollCode != '' or rollTemplateDTO.rollCode == 0">
+        AND trt.roll_code LIKE '%${rollTemplateDTO.rollCode}%'
+      </if>
+    </where>
+  </sql>
+
+  <select id="insertRollTemplateBatch" parameterType="java.util.List">
+      insert into t_b_roll_template (roll_name, roll_money, roll_content,
+      roll_code, channel,roll_type, batch_number,
+      `status`, create_time, create_by,update_time,update_by)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.rollName,jdbcType=VARCHAR}, #{item.rollMoney,jdbcType=DECIMAL}, #{item.rollContent,jdbcType=VARCHAR},
+      #{item.rollCode,jdbcType=VARCHAR},#{item.channel,jdbcType=VARCHAR},  #{item.rollType,jdbcType=INTEGER},
+      #{item.batchNumber,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER},#{item.createTime,jdbcType=TIMESTAMP},
+      #{item.createBy,jdbcType=INTEGER},#{item.updateTime,jdbcType=TIMESTAMP},
+      #{item.updateBy,jdbcType=INTEGER})
+    </foreach>
+    ON DUPLICATE KEY UPDATE
+    roll_name = VALUES(roll_name),
+    roll_money = VALUES(roll_money),
+    roll_content = VALUES(roll_content),
+    channel = VALUES(channel),
+    roll_type = VALUES(roll_type),
+    batch_number = VALUES(batch_number),
+    `status` = VALUES(status),
+    update_time = VALUES(update_time),
+    update_by = VALUES(update_by)
+  </select>
+</mapper>

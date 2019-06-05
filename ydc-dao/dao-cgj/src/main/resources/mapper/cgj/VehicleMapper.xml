@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.user.VehicleDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.Vehicle" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="car_plate" property="carPlate" jdbcType="VARCHAR" />
+    <result column="brand_code" property="brandCode" jdbcType="VARCHAR" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="series_code" property="seriesCode" jdbcType="VARCHAR" />
+    <result column="series" property="series" jdbcType="VARCHAR" />
+    <result column="car_version_code" property="carVersionCode" jdbcType="VARCHAR" />
+    <result column="car_version" property="carVersion" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="engine_number" property="engineNumber" jdbcType="VARCHAR" />
+    <result column="frame_number" property="frameNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, car_plate, brand_code, brand, series_code, series, car_version_code, 
+    car_version, `status`, create_time, create_by, update_time, update_by, mobile_phone, engine_number, frame_number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_vehicle
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_vehicle
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.Vehicle" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_vehicle (member_id, car_plate, brand_code, 
+      brand, series_code, series, 
+      car_version_code, car_version, `status`, 
+      create_time, create_by, update_time, 
+      update_by, mobile_phone, engine_number, frame_number)
+    values (#{memberId,jdbcType=INTEGER}, #{carPlate,jdbcType=VARCHAR}, #{brandCode,jdbcType=VARCHAR}, 
+      #{brand,jdbcType=VARCHAR}, #{seriesCode,jdbcType=VARCHAR}, #{series,jdbcType=VARCHAR}, 
+      #{carVersionCode,jdbcType=VARCHAR}, #{carVersion,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=INTEGER}, #{mobilePhone,jdbcType=VARCHAR}, #{engineNumber,jdbcType=VARCHAR}, #{frameNumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.Vehicle" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_vehicle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      member_id,
+      car_plate,
+      brand_code,
+      brand,
+      series_code,
+      series,
+      car_version_code,
+      car_version,
+      `status`,
+      create_time,
+      create_by,
+      update_time,
+      update_by,
+      mobile_phone,
+      engine_number,
+      frame_number,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{memberId,jdbcType=INTEGER},
+      #{carPlate,jdbcType=VARCHAR},
+      #{brandCode,jdbcType=VARCHAR},
+      #{brand,jdbcType=VARCHAR},
+      #{seriesCode,jdbcType=VARCHAR},
+      #{series,jdbcType=VARCHAR},
+      #{carVersionCode,jdbcType=VARCHAR},
+      #{carVersion,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=INTEGER},
+      #{mobilePhone,jdbcType=VARCHAR},
+      #{engineNumber,jdbcType=VARCHAR},
+      #{frameNumber,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.Vehicle" >
+    update t_vehicle
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="carPlate != null" >
+        car_plate = #{carPlate,jdbcType=VARCHAR},
+      </if>
+      <if test="brandCode != null" >
+        brand_code = #{brandCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesCode != null" >
+        series_code = #{seriesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="series != null" >
+        series = #{series,jdbcType=VARCHAR},
+      </if>
+      <if test="carVersionCode != null" >
+        car_version_code = #{carVersionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="carVersion != null" >
+        car_version = #{carVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="engineNumber != null" >
+        engine_number = #{engineNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="frameNumber != null" >
+        frame_number = #{frameNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.Vehicle" >
+    update t_vehicle
+    set member_id = #{memberId,jdbcType=INTEGER},
+      car_plate = #{carPlate,jdbcType=VARCHAR},
+      brand_code = #{brandCode,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      series_code = #{seriesCode,jdbcType=VARCHAR},
+      series = #{series,jdbcType=VARCHAR},
+      car_version_code = #{carVersionCode,jdbcType=VARCHAR},
+      car_version = #{carVersion,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      engine_number = #{engineNumber,jdbcType=VARCHAR},
+      frame_number = #{frameNumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getVehicleList" resultType="java.util.Map">
+    SELECT
+    tv.id vehicleId,
+    tv.member_id memberId,
+    tv.car_plate carPlate,
+    CONCAT(tv.brand,' ',tv.series,' ',IFNULL(tv.car_version,'')) vehicleData,
+    (CASE tv.status WHEN 1 THEN '正常' WHEN 0 THEN '解绑' ELSE '' END) statusName,
+    tv.status,
+    DATE_FORMAT(tv.create_time,'%Y-%m-%d %H:%i:%s') createTime,
+    DATE_FORMAT(tv.update_time,'%Y-%m-%d %H:%i:%s') updateTime,
+    tv.mobile_phone mobilePhone,
+    tv.engine_number engineNumber,
+    tv.frame_number frameNumber,
+    (SELECT tyvb.icon FROM t_ydhc_vehicle_brand tyvb WHERE tyvb.brand = tv.brand LIMIT 1) brandIcon
+    <include refid="getVehicleListCommon"/>
+    ORDER BY tv.create_time DESC
+  </select>
+
+  <sql id="getVehicleListCommon">
+    FROM t_vehicle tv
+    WHERE tv.status = 1
+      <if test="vehicleDTO.memberId != null and vehicleDTO.memberId != ''">
+        AND tv.member_id = #{vehicleDTO.memberId,jdbcType=INTEGER}
+      </if>
+  </sql>
+
+  <select id="selectByCarPlateAndMemberId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_vehicle
+    where car_plate = #{carPlate,jdbcType=VARCHAR} AND member_id = #{memberId,jdbcType=INTEGER};
+  </select>
+
+  <select id="selectByCarPlate" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_vehicle
+    where car_plate = #{carPlate,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getBrandList" resultType="java.util.Map">
+    SELECT tyvb.id,tyvb.brand,tyvb.label,tyvb.icon FROM t_ydhc_vehicle_brand tyvb ORDER BY tyvb.has_hot DESC
+  </select>
+
+  <select id="getSeriesList" resultType="java.util.Map">
+    SELECT tyvs.id,tyvs.brand,tyvs.series FROM t_ydhc_vehicle_series tyvs
+  </select>
+
+  <select id="getModelList" resultType="java.util.Map">
+    SELECT tyvm.id,
+    tyvm.model,
+    tyvm.series,
+    tyvm.type
+    FROM t_ydhc_vehicle_model tyvm
+  </select>
+  
+  <select id="getVehicleByMemberId" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List" />
+    FROM
+      t_vehicle
+    WHERE
+      member_id = #{memberId}
+      AND status = 1
+      limit 1
+  </select>
+
+  <select id="getVehicleVOById" resultType="com.ydc.commom.view.vo.cgj.VehicleVO">
+    select
+      brand brand,
+      brand_code brandCode,
+      car_plate carPlate,
+      car_version carVersion,
+      car_version_code carVersionCode,
+      id id,
+      member_id memberId,
+      series series,
+      series_code seriesCode,
+      mobile_phone mobilePhone,
+      engine_number engineNumber,
+      frame_number frameNumber,
+      (SELECT tyvb.icon FROM t_ydhc_vehicle_brand tyvb WHERE tyvb.brand = t_vehicle.brand LIMIT 1) brandIcon
+    from t_vehicle
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

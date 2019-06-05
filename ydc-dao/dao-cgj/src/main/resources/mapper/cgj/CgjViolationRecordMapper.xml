@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.ydc.dao.cgj.sys.CgjViolationRecordDao">
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.CgjViolationRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="lsprefix" jdbcType="VARCHAR" property="lsprefix" />
+    <result column="lsnum" jdbcType="VARCHAR" property="lsnum" />
+    <result column="carorg" jdbcType="VARCHAR" property="carorg" />
+    <result column="lstype" jdbcType="VARCHAR" property="lstype" />
+    <result column="frameno" jdbcType="VARCHAR" property="frameno" />
+    <result column="engineno" jdbcType="VARCHAR" property="engineno" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="usercarid" jdbcType="INTEGER" property="usercarid" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="totalprice" jdbcType="VARCHAR" property="totalprice" />
+    <result column="totalscore" jdbcType="VARCHAR" property="totalscore" />
+    <result column="check_time" jdbcType="TIMESTAMP" property="checkTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="INTEGER" property="createBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_by" jdbcType="INTEGER" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, lsprefix, lsnum, carorg, lstype, frameno, engineno, mobile, usercarid, `count`, 
+    totalprice, totalscore, check_time, create_time, create_by, update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_cgj_violation_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_cgj_violation_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.CgjViolationRecord"  useGeneratedKeys="true" keyProperty="id">
+    insert into t_cgj_violation_record (id, lsprefix, lsnum, 
+      carorg, lstype, frameno, 
+      engineno, mobile, usercarid, 
+      `count`, totalprice, totalscore, 
+      check_time, create_time, create_by, 
+      update_time, update_by)
+    values (#{id,jdbcType=INTEGER}, #{lsprefix,jdbcType=VARCHAR}, #{lsnum,jdbcType=VARCHAR}, 
+      #{carorg,jdbcType=VARCHAR}, #{lstype,jdbcType=VARCHAR}, #{frameno,jdbcType=VARCHAR}, 
+      #{engineno,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{usercarid,jdbcType=INTEGER}, 
+      #{count,jdbcType=INTEGER}, #{totalprice,jdbcType=VARCHAR}, #{totalscore,jdbcType=VARCHAR}, 
+      #{checkTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.CgjViolationRecord">
+    insert into t_cgj_violation_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="lsprefix != null">
+        lsprefix,
+      </if>
+      <if test="lsnum != null">
+        lsnum,
+      </if>
+      <if test="carorg != null">
+        carorg,
+      </if>
+      <if test="lstype != null">
+        lstype,
+      </if>
+      <if test="frameno != null">
+        frameno,
+      </if>
+      <if test="engineno != null">
+        engineno,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="usercarid != null">
+        usercarid,
+      </if>
+      <if test="count != null">
+        `count`,
+      </if>
+      <if test="totalprice != null">
+        totalprice,
+      </if>
+      <if test="totalscore != null">
+        totalscore,
+      </if>
+      <if test="checkTime != null">
+        check_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lsprefix != null">
+        #{lsprefix,jdbcType=VARCHAR},
+      </if>
+      <if test="lsnum != null">
+        #{lsnum,jdbcType=VARCHAR},
+      </if>
+      <if test="carorg != null">
+        #{carorg,jdbcType=VARCHAR},
+      </if>
+      <if test="lstype != null">
+        #{lstype,jdbcType=VARCHAR},
+      </if>
+      <if test="frameno != null">
+        #{frameno,jdbcType=VARCHAR},
+      </if>
+      <if test="engineno != null">
+        #{engineno,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="usercarid != null">
+        #{usercarid,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null">
+        #{totalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="totalscore != null">
+        #{totalscore,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.CgjViolationRecord">
+    update t_cgj_violation_record
+    <set>
+      <if test="lsprefix != null">
+        lsprefix = #{lsprefix,jdbcType=VARCHAR},
+      </if>
+      <if test="lsnum != null">
+        lsnum = #{lsnum,jdbcType=VARCHAR},
+      </if>
+      <if test="carorg != null">
+        carorg = #{carorg,jdbcType=VARCHAR},
+      </if>
+      <if test="lstype != null">
+        lstype = #{lstype,jdbcType=VARCHAR},
+      </if>
+      <if test="frameno != null">
+        frameno = #{frameno,jdbcType=VARCHAR},
+      </if>
+      <if test="engineno != null">
+        engineno = #{engineno,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="usercarid != null">
+        usercarid = #{usercarid,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        `count` = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null">
+        totalprice = #{totalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="totalscore != null">
+        totalscore = #{totalscore,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null">
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.CgjViolationRecord">
+    update t_cgj_violation_record
+    set lsprefix = #{lsprefix,jdbcType=VARCHAR},
+      lsnum = #{lsnum,jdbcType=VARCHAR},
+      carorg = #{carorg,jdbcType=VARCHAR},
+      lstype = #{lstype,jdbcType=VARCHAR},
+      frameno = #{frameno,jdbcType=VARCHAR},
+      engineno = #{engineno,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      usercarid = #{usercarid,jdbcType=INTEGER},
+      `count` = #{count,jdbcType=INTEGER},
+      totalprice = #{totalprice,jdbcType=VARCHAR},
+      totalscore = #{totalscore,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectOneRecord" parameterType="com.ydc.commom.view.dto.cgj.sys.CgjViolationRecordQueDTO"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_cgj_violation_record
+    <where>
+      1=1
+      <if test="lsprefix != null">
+       and lsprefix = #{lsprefix,jdbcType=VARCHAR}
+      </if>
+      <if test="lsnum != null">
+        and lsnum = #{lsnum,jdbcType=VARCHAR}
+      </if>
+      <if test="carorg != null">
+        and carorg = #{carorg,jdbcType=VARCHAR}
+      </if>
+      <if test="lstype != null">
+        and lstype = #{lstype,jdbcType=VARCHAR}
+      </if>
+      <if test="frameno != null">
+        and  frameno = #{frameno,jdbcType=VARCHAR}
+      </if>
+      <if test="engineno != null">
+        and engineno = #{engineno,jdbcType=VARCHAR}
+      </if>
+      <if test="mobile != null">
+        and mobile = #{mobile,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.car.CommCarDao">
+    <resultMap id="BaseResultMap" type="com.ydc.model.cgj.car.CommCar">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="source" jdbcType="VARCHAR" property="source"/>
+        <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+        <result column="store" jdbcType="VARCHAR" property="store"/>
+        <result column="brand" jdbcType="VARCHAR" property="brand"/>
+        <result column="series" jdbcType="VARCHAR" property="series"/>
+        <result column="model" jdbcType="VARCHAR" property="model"/>
+        <result column="model_id" jdbcType="INTEGER" property="modelId"/>
+        <result column="production_place" jdbcType="VARCHAR" property="productionPlace"/>
+        <result column="country" jdbcType="VARCHAR" property="country"/>
+        <result column="car_plate" jdbcType="VARCHAR" property="carPlate"/>
+        <result column="up_plate_date" jdbcType="DATE" property="upPlateDate"/>
+        <result column="vin" jdbcType="VARCHAR" property="vin"/>
+        <result column="engine_no" jdbcType="VARCHAR" property="engineNo"/>
+        <result column="mileage" jdbcType="DECIMAL" property="mileage"/>
+        <result column="oil_gauge_scale" jdbcType="VARCHAR" property="oilGaugeScale"/>
+        <result column="oil_mass" jdbcType="DECIMAL" property="oilMass"/>
+        <result column="facade_colour" jdbcType="VARCHAR" property="facadeColour"/>
+        <result column="interior_colour" jdbcType="VARCHAR" property="interiorColour"/>
+        <result column="transfer_times" jdbcType="INTEGER" property="transferTimes"/>
+        <result column="as_deadline" jdbcType="DATE" property="asDeadline"/>
+        <result column="sali_deadline" jdbcType="DATE" property="saliDeadline"/>
+        <result column="ci_deadline" jdbcType="DATE" property="ciDeadline"/>
+        <result column="car_level" jdbcType="VARCHAR" property="carLevel"/>
+        <result column="car_structure" jdbcType="VARCHAR" property="carStructure"/>
+        <result column="car_seat" jdbcType="VARCHAR" property="carSeat"/>
+        <result column="gear_box" jdbcType="VARCHAR" property="gearBox"/>
+        <result column="engine" jdbcType="VARCHAR" property="engine"/>
+        <result column="fuel_form" jdbcType="VARCHAR" property="fuelForm"/>
+        <result column="fuel_labeling" jdbcType="VARCHAR" property="fuelLabeling"/>
+        <result column="tank_volume" jdbcType="INTEGER" property="tankVolume"/>
+        <result column="output_volume" jdbcType="DECIMAL" property="outputVolume"/>
+        <result column="emissions_standard" jdbcType="VARCHAR" property="emissionsStandard"/>
+        <result column="drive" jdbcType="VARCHAR" property="drive"/>
+        <result column="seat_texture" jdbcType="VARCHAR" property="seatTexture"/>
+        <result column="gasbag_number" jdbcType="INTEGER" property="gasbagNumber"/>
+        <result column="has_gps_navigation" jdbcType="INTEGER" property="hasGpsNavigation"/>
+        <result column="has_parking_sensors" jdbcType="INTEGER" property="hasParkingSensors"/>
+        <result column="Sound_box" jdbcType="VARCHAR" property="soundBox"/>
+        <result column="main_img_url" jdbcType="VARCHAR" property="mainImgUrl"/>
+        <result column="main_img_name" jdbcType="VARCHAR" property="mainImgName"/>
+        <result column="use_status" jdbcType="VARCHAR" property="useStatus"/>
+        <result column="operation_status" jdbcType="VARCHAR" property="operationStatus"/>
+        <result column="turn_out_type" jdbcType="VARCHAR" property="turnOutType"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="INTEGER" property="createBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_by" jdbcType="INTEGER" property="updateBy"/>
+        <result column="use_status_update_time" jdbcType="TIMESTAMP" property="useStatusUpdateTime"/>
+        <result column="use_status_update_by" jdbcType="INTEGER" property="useStatusUpdateBy"/>
+    </resultMap>
+
+    <!--基础字段查询-->
+    <sql id="Base_Column_List">
+    id, source, store_id, store, brand, series, model,model_id, production_place,
+    country, car_plate, up_plate_date, vin, engine_no, mileage,oil_gauge_scale, oil_mass,
+    facade_colour, interior_colour, transfer_times,
+    as_deadline, sali_deadline, ci_deadline, car_level, car_structure, car_seat, gear_box, 
+    engine, fuel_form, fuel_labeling, tank_volume, output_volume, emissions_standard, 
+    drive, seat_texture, gasbag_number, has_gps_navigation, has_parking_sensors, Sound_box, 
+    main_img_url,main_img_name, use_status, operation_status, turn_out_type, create_time, create_by,
+    update_time, update_by
+  </sql>
+
+    <!--查询汽车列表通用-->
+    <sql id="getCarListCommon">
+        FROM t_comm_car tcc
+        left join t_rental_store trs on tcc.store_id = trs.id
+        WHERE 1=1
+        <if test="carPlate != null and carPlate != ''">
+            AND tcc.car_plate like concat(concat('%',#{carPlate,jdbcType=VARCHAR}),'%')
+        </if>
+        <if test="storeId != null and storeId != ''">
+            AND tcc.store_id = #{storeId,jdbcType=INTEGER}
+        </if>
+        <if test="brand != null and brand != ''">
+            AND tcc.brand = #{brand,jdbcType=VARCHAR}
+        </if>
+        <if test="series != null and series != ''">
+            AND tcc.series = #{series,jdbcType=VARCHAR}
+        </if>
+        <if test="model != null and model != ''">
+            AND tcc.model = #{model,jdbcType=VARCHAR}
+        </if>
+        <if test="carLevel != null and carLevel != ''">
+            AND tcc.car_level = #{carLevel,jdbcType=VARCHAR}
+        </if>
+        <if test="useStatus != null and useStatus != ''">
+            AND tcc.use_status = #{useStatus,jdbcType=VARCHAR}
+        </if>
+        <if test="operationStatus != null and operationStatus != ''">
+            AND tcc.operation_status = #{operationStatus,jdbcType=VARCHAR}
+        </if>
+        <if test="source != null and source != ''">
+            AND tcc.source = #{source,jdbcType=VARCHAR}
+        </if>
+        <if test="storeRegisterProvinceCode != null and storeRegisterProvinceCode != ''">
+            AND trs.store_register_province_code = #{storeRegisterProvinceCode,jdbcType=VARCHAR}
+        </if>
+        <if test="storeRegisterCityCode != null and storeRegisterCityCode != ''">
+            AND trs.store_register_city_code = #{storeRegisterCityCode,jdbcType=VARCHAR}
+        </if>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_comm_car
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="getCarInfoSimpleById" parameterType="java.lang.Integer"
+            resultType="com.ydc.commom.view.vo.cgj.rental.CommCarSimpleVO">
+        select
+        id carId, store_id storeId, store, brand, series, model,
+        car_plate carPlate, mileage, oil_mass oilMass
+        from t_comm_car
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_comm_car
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ydc.model.cgj.car.CommCar"
+            useGeneratedKeys="true">
+    insert into t_comm_car (source, store_id, store,
+      brand, series, model, model_id,
+      production_place, country, car_plate,
+      up_plate_date, vin, engine_no, 
+      mileage, oil_gauge_scale,oil_mass, facade_colour, interior_colour,
+      transfer_times, as_deadline, sali_deadline, 
+      ci_deadline, car_level, car_structure, 
+      car_seat, gear_box, engine, 
+      fuel_form, fuel_labeling, tank_volume, 
+      output_volume, emissions_standard, drive, 
+      seat_texture, gasbag_number, has_gps_navigation, 
+      has_parking_sensors, Sound_box, main_img_url, main_img_name,
+      use_status, operation_status, turn_out_type, 
+      create_time, create_by, update_time, 
+      update_by)
+    values (#{source,jdbcType=VARCHAR}, #{storeId,jdbcType=INTEGER}, #{store,jdbcType=VARCHAR},
+      #{brand,jdbcType=VARCHAR}, #{series,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{modelId,jdbcType=INTEGER},
+      #{productionPlace,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{carPlate,jdbcType=VARCHAR},
+      #{upPlateDate,jdbcType=DATE}, #{vin,jdbcType=VARCHAR}, #{engineNo,jdbcType=VARCHAR}, 
+      #{mileage,jdbcType=DECIMAL},#{oilGaugeScale,jdbcType=VARCHAR}, #{oilMass,jdbcType=DECIMAL},
+      #{facadeColour,jdbcType=VARCHAR}, #{interiorColour,jdbcType=VARCHAR},
+      #{transferTimes,jdbcType=INTEGER}, #{asDeadline,jdbcType=DATE}, #{saliDeadline,jdbcType=DATE}, 
+      #{ciDeadline,jdbcType=DATE}, #{carLevel,jdbcType=VARCHAR}, #{carStructure,jdbcType=VARCHAR}, 
+      #{carSeat,jdbcType=VARCHAR}, #{gearBox,jdbcType=VARCHAR}, #{engine,jdbcType=VARCHAR},
+      #{fuelForm,jdbcType=VARCHAR}, #{fuelLabeling,jdbcType=VARCHAR}, #{tankVolume,jdbcType=INTEGER}, 
+      #{outputVolume,jdbcType=DECIMAL}, #{emissionsStandard,jdbcType=VARCHAR}, #{drive,jdbcType=VARCHAR}, 
+      #{seatTexture,jdbcType=VARCHAR}, #{gasbagNumber,jdbcType=INTEGER}, #{hasGpsNavigation,jdbcType=INTEGER}, 
+      #{hasParkingSensors,jdbcType=INTEGER}, #{soundBox,jdbcType=VARCHAR}, #{mainImgUrl,jdbcType=VARCHAR}, #{mainImgName,jdbcType=VARCHAR},
+      #{useStatus,jdbcType=VARCHAR}, #{operationStatus,jdbcType=VARCHAR}, #{turnOutType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ydc.model.cgj.car.CommCar"
+            useGeneratedKeys="true">
+        insert into t_comm_car
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="source != null">
+                source,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="store != null">
+                store,
+            </if>
+            <if test="brand != null">
+                brand,
+            </if>
+            <if test="series != null">
+                series,
+            </if>
+            <if test="model != null">
+                model,
+            </if>
+            <if test="productionPlace != null">
+                production_place,
+            </if>
+            <if test="country != null">
+                country,
+            </if>
+            <if test="carPlate != null">
+                car_plate,
+            </if>
+            <if test="upPlateDate != null">
+                up_plate_date,
+            </if>
+            <if test="vin != null">
+                vin,
+            </if>
+            <if test="engineNo != null">
+                engine_no,
+            </if>
+            <if test="mileage != null">
+                mileage,
+            </if>
+            <if test="oilMass != null">
+                oil_mass,
+            </if>
+            <if test="facadeColour != null">
+                facade_colour,
+            </if>
+            <if test="interiorColour != null">
+                interior_colour,
+            </if>
+            <if test="transferTimes != null">
+                transfer_times,
+            </if>
+            <if test="asDeadline != null">
+                as_deadline,
+            </if>
+            <if test="saliDeadline != null">
+                sali_deadline,
+            </if>
+            <if test="ciDeadline != null">
+                ci_deadline,
+            </if>
+            <if test="carLevel != null">
+                car_level,
+            </if>
+            <if test="carStructure != null">
+                car_structure,
+            </if>
+            <if test="carSeat != null">
+                car_seat,
+            </if>
+            <if test="gearBox != null">
+                gear_box,
+            </if>
+            <if test="engine != null">
+                engine,
+            </if>
+            <if test="fuelForm != null">
+                fuel_form,
+            </if>
+            <if test="fuelLabeling != null">
+                fuel_labeling,
+            </if>
+            <if test="tankVolume != null">
+                tank_volume,
+            </if>
+            <if test="outputVolume != null">
+                output_volume,
+            </if>
+            <if test="emissionsStandard != null">
+                emissions_standard,
+            </if>
+            <if test="drive != null">
+                drive,
+            </if>
+            <if test="seatTexture != null">
+                seat_texture,
+            </if>
+            <if test="gasbagNumber != null">
+                gasbag_number,
+            </if>
+            <if test="hasGpsNavigation != null">
+                has_gps_navigation,
+            </if>
+            <if test="hasParkingSensors != null">
+                has_parking_sensors,
+            </if>
+            <if test="soundBox != null">
+                Sound_box,
+            </if>
+            <if test="mainImgUrl != null">
+                main_img_url,
+            </if>
+            <if test="useStatus != null">
+                use_status,
+            </if>
+            <if test="operationStatus != null">
+                operation_status,
+            </if>
+            <if test="turnOutType != null">
+                turn_out_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="source != null">
+                #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="store != null">
+                #{store,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null">
+                #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="series != null">
+                #{series,jdbcType=VARCHAR},
+            </if>
+            <if test="model != null">
+                #{model,jdbcType=VARCHAR},
+            </if>
+            <if test="productionPlace != null">
+                #{productionPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="country != null">
+                #{country,jdbcType=VARCHAR},
+            </if>
+            <if test="carPlate != null">
+                #{carPlate,jdbcType=VARCHAR},
+            </if>
+            <if test="upPlateDate != null">
+                #{upPlateDate,jdbcType=DATE},
+            </if>
+            <if test="vin != null">
+                #{vin,jdbcType=VARCHAR},
+            </if>
+            <if test="engineNo != null">
+                #{engineNo,jdbcType=VARCHAR},
+            </if>
+            <if test="mileage != null">
+                #{mileage,jdbcType=DECIMAL},
+            </if>
+            <if test="oilMass != null">
+                #{oilMass,jdbcType=DECIMAL},
+            </if>
+            <if test="facadeColour != null">
+                #{facadeColour,jdbcType=VARCHAR},
+            </if>
+            <if test="interiorColour != null">
+                #{interiorColour,jdbcType=VARCHAR},
+            </if>
+            <if test="transferTimes != null">
+                #{transferTimes,jdbcType=INTEGER},
+            </if>
+            <if test="asDeadline != null">
+                #{asDeadline,jdbcType=DATE},
+            </if>
+            <if test="saliDeadline != null">
+                #{saliDeadline,jdbcType=DATE},
+            </if>
+            <if test="ciDeadline != null">
+                #{ciDeadline,jdbcType=DATE},
+            </if>
+            <if test="carLevel != null">
+                #{carLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="carStructure != null">
+                #{carStructure,jdbcType=VARCHAR},
+            </if>
+            <if test="carSeat != null">
+                #{carSeat,jdbcType=VARCHAR},
+            </if>
+            <if test="gearBox != null">
+                #{gearBox,jdbcType=VARCHAR},
+            </if>
+            <if test="engine != null">
+                #{engine,jdbcType=VARCHAR},
+            </if>
+            <if test="fuelForm != null">
+                #{fuelForm,jdbcType=VARCHAR},
+            </if>
+            <if test="fuelLabeling != null">
+                #{fuelLabeling,jdbcType=VARCHAR},
+            </if>
+            <if test="tankVolume != null">
+                #{tankVolume,jdbcType=INTEGER},
+            </if>
+            <if test="outputVolume != null">
+                #{outputVolume,jdbcType=DECIMAL},
+            </if>
+            <if test="emissionsStandard != null">
+                #{emissionsStandard,jdbcType=VARCHAR},
+            </if>
+            <if test="drive != null">
+                #{drive,jdbcType=VARCHAR},
+            </if>
+            <if test="seatTexture != null">
+                #{seatTexture,jdbcType=VARCHAR},
+            </if>
+            <if test="gasbagNumber != null">
+                #{gasbagNumber,jdbcType=INTEGER},
+            </if>
+            <if test="hasGpsNavigation != null">
+                #{hasGpsNavigation,jdbcType=INTEGER},
+            </if>
+            <if test="hasParkingSensors != null">
+                #{hasParkingSensors,jdbcType=INTEGER},
+            </if>
+            <if test="soundBox != null">
+                #{soundBox,jdbcType=VARCHAR},
+            </if>
+            <if test="mainImgUrl != null">
+                #{mainImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="useStatus != null">
+                #{useStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="operationStatus != null">
+                #{operationStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="turnOutType != null">
+                #{turnOutType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="java.util.Map">
+        update t_comm_car
+        <set>
+            <if test="source != null">
+                source = #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="store != null">
+                store = #{store,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null">
+                brand = #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="series != null">
+                series = #{series,jdbcType=VARCHAR},
+            </if>
+            <if test="model != null">
+                model = #{model,jdbcType=VARCHAR},
+            </if>
+            <if test="productionPlace != null">
+                production_place = #{productionPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="country != null">
+                country = #{country,jdbcType=VARCHAR},
+            </if>
+            <if test="carPlate != null">
+                car_plate = #{carPlate,jdbcType=VARCHAR},
+            </if>
+            <if test="upPlateDate != null">
+                up_plate_date = #{upPlateDate,jdbcType=DATE},
+            </if>
+            <if test="vin != null">
+                vin = #{vin,jdbcType=VARCHAR},
+            </if>
+            <if test="engineNo != null">
+                engine_no = #{engineNo,jdbcType=VARCHAR},
+            </if>
+            <if test="mileage != null">
+                mileage = #{mileage,jdbcType=DECIMAL},
+            </if>
+            <if test="oilMass != null">
+                oil_mass = #{oilMass,jdbcType=DECIMAL},
+            </if>
+            <if test="facadeColour != null">
+                facade_colour = #{facadeColour,jdbcType=VARCHAR},
+            </if>
+            <if test="interiorColour != null">
+                interior_colour = #{interiorColour,jdbcType=VARCHAR},
+            </if>
+            <if test="transferTimes != null">
+                transfer_times = #{transferTimes,jdbcType=INTEGER},
+            </if>
+            <if test="asDeadline != null">
+                as_deadline = #{asDeadline,jdbcType=DATE},
+            </if>
+            <if test="saliDeadline != null">
+                sali_deadline = #{saliDeadline,jdbcType=DATE},
+            </if>
+            <if test="ciDeadline != null">
+                ci_deadline = #{ciDeadline,jdbcType=DATE},
+            </if>
+            <if test="carLevel != null">
+                car_level = #{carLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="carStructure != null">
+                car_structure = #{carStructure,jdbcType=VARCHAR},
+            </if>
+            <if test="carSeat != null">
+                car_seat = #{carSeat,jdbcType=VARCHAR},
+            </if>
+            <if test="gearBox != null">
+                gear_box = #{gearBox,jdbcType=VARCHAR},
+            </if>
+            <if test="engine != null">
+                engine = #{engine,jdbcType=VARCHAR},
+            </if>
+            <if test="fuelForm != null">
+                fuel_form = #{fuelForm,jdbcType=VARCHAR},
+            </if>
+            <if test="fuelLabeling != null">
+                fuel_labeling = #{fuelLabeling,jdbcType=VARCHAR},
+            </if>
+            <if test="tankVolume != null">
+                tank_volume = #{tankVolume,jdbcType=INTEGER},
+            </if>
+            <if test="outputVolume != null">
+                output_volume = #{outputVolume,jdbcType=DECIMAL},
+            </if>
+            <if test="emissionsStandard != null">
+                emissions_standard = #{emissionsStandard,jdbcType=VARCHAR},
+            </if>
+            <if test="drive != null">
+                drive = #{drive,jdbcType=VARCHAR},
+            </if>
+            <if test="seatTexture != null">
+                seat_texture = #{seatTexture,jdbcType=VARCHAR},
+            </if>
+            <if test="gasbagNumber != null">
+                gasbag_number = #{gasbagNumber,jdbcType=INTEGER},
+            </if>
+            <if test="hasGpsNavigation != null">
+                has_gps_navigation = #{hasGpsNavigation,jdbcType=INTEGER},
+            </if>
+            <if test="hasParkingSensors != null">
+                has_parking_sensors = #{hasParkingSensors,jdbcType=INTEGER},
+            </if>
+            <if test="soundBox != null">
+                Sound_box = #{soundBox,jdbcType=VARCHAR},
+            </if>
+            <if test="mainImgUrl != null">
+                main_img_url = #{mainImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="useStatus != null">
+                use_status = #{useStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="operationStatus != null">
+                operation_status = #{operationStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="turnOutType != null">
+                turn_out_type = #{turnOutType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=INTEGER},
+            </if>
+            <if test="useStatusUpdateTime != null">
+                use_status_update_time = #{useStatusUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="useStatusUpdateBy != null">
+                use_status_update_by = #{useStatusUpdateBy,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateUseStatus" parameterType="com.ydc.commom.view.dto.cgj.rental.CommCarUpdateUseStatusDTO">
+        update t_comm_car
+        set
+            use_status = #{useStatus,jdbcType=VARCHAR},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            update_by = #{updateBy,jdbcType=INTEGER},
+            use_status_update_time = #{useStatusUpdateTime,jdbcType=TIMESTAMP},
+            use_status_update_by = #{useStatusUpdateBy,jdbcType=INTEGER}
+        where
+            id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateOperationStatus" parameterType="com.ydc.commom.view.dto.cgj.rental.CommCarUpdateOperationStatusDTO">
+        update t_comm_car
+        set
+            operation_status = #{operationStatus,jdbcType=VARCHAR},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            update_by = #{updateBy,jdbcType=INTEGER}
+        where
+            id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.car.CommCar">
+    update t_comm_car
+    set source = #{source,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=INTEGER},
+      store = #{store,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      series = #{series,jdbcType=VARCHAR},
+      model = #{model,jdbcType=VARCHAR},
+      model_id = #{modelId,jdbcType=INTEGER},
+      production_place = #{productionPlace,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      car_plate = #{carPlate,jdbcType=VARCHAR},
+      up_plate_date = #{upPlateDate,jdbcType=DATE},
+      vin = #{vin,jdbcType=VARCHAR},
+      engine_no = #{engineNo,jdbcType=VARCHAR},
+      mileage = #{mileage,jdbcType=DECIMAL},
+      oil_gauge_scale = #{oilGaugeScale,jdbcType=VARCHAR},
+      oil_mass = #{oilMass,jdbcType=DECIMAL},
+      facade_colour = #{facadeColour,jdbcType=VARCHAR},
+      interior_colour = #{interiorColour,jdbcType=VARCHAR},
+      transfer_times = #{transferTimes,jdbcType=INTEGER},
+      as_deadline = #{asDeadline,jdbcType=DATE},
+      sali_deadline = #{saliDeadline,jdbcType=DATE},
+      ci_deadline = #{ciDeadline,jdbcType=DATE},
+      car_level = #{carLevel,jdbcType=VARCHAR},
+      car_structure = #{carStructure,jdbcType=VARCHAR},
+      car_seat = #{carSeat,jdbcType=VARCHAR},
+      gear_box = #{gearBox,jdbcType=VARCHAR},
+      engine = #{engine,jdbcType=VARCHAR},
+      fuel_form = #{fuelForm,jdbcType=VARCHAR},
+      fuel_labeling = #{fuelLabeling,jdbcType=VARCHAR},
+      tank_volume = #{tankVolume,jdbcType=INTEGER},
+      output_volume = #{outputVolume,jdbcType=DECIMAL},
+      emissions_standard = #{emissionsStandard,jdbcType=VARCHAR},
+      drive = #{drive,jdbcType=VARCHAR},
+      seat_texture = #{seatTexture,jdbcType=VARCHAR},
+      gasbag_number = #{gasbagNumber,jdbcType=INTEGER},
+      has_gps_navigation = #{hasGpsNavigation,jdbcType=INTEGER},
+      has_parking_sensors = #{hasParkingSensors,jdbcType=INTEGER},
+      Sound_box = #{soundBox,jdbcType=VARCHAR},
+      main_img_url = #{mainImgUrl,jdbcType=VARCHAR},
+      main_img_name = #{mainImgName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!--查询车辆列表-->
+    <select id="getCarList" parameterType="com.ydc.commom.view.dto.cgj.rental.CommCarQueryDTO"
+            resultType="com.ydc.commom.view.vo.cgj.rental.CommCarQueryVO">
+        SELECT
+        tcc.id,
+        trs.store_register_province storeRegisterProvince,
+        trs.store_register_city storeRegisterCity,
+        trs.store_name storeName,
+        tcc.car_plate carPlate,
+        tcc.oil_mass oilMass,
+        tcc.mileage,
+        tcc.brand,
+        tcc.series,
+        tcc.model,
+        tcc.car_level carLevel,
+        tcc.source,
+        DATE_FORMAT(tcc.create_time,'%Y-%m-%d %H:%i:%s') createTime,
+        DATE_FORMAT(tcc.as_deadline,'%Y-%m-%d') asDeadline,
+        DATE_FORMAT(tcc.sali_deadline,'%Y-%m-%d') saliDeadline,
+        DATE_FORMAT(tcc.ci_deadline,'%Y-%m-%d') ciDeadline,
+        tcc.operation_status operationStatus,
+        tcc.turn_out_type turnOutType,
+        tcc.use_status useStatus
+        <include refid="getCarListCommon"/>
+        <if test="orderBy == 1">
+            ORDER BY tcc.create_time DESC
+        </if>
+        <if test="orderBy == 2">
+            ORDER BY tcc.use_status_update_time DESC
+        </if>
+    </select>
+
+    <!--查询列表总数-->
+    <select id="getCarListCount" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT COUNT(1) total_count
+        <include refid="getCarListCommon"/>
+    </select>
+
+    <!--通过车牌或车架号或发动机号查询-->
+    <select id="selectByPlateOrVinOrEngineNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from t_comm_car
+        where car_plate = #{keyWord} or vin = #{keyWord} or engine_no = #{keyWord} limit 1
+    </select>
+
+
+    <select id="getCarLevelGroup" resultType="java.util.Map">
+      SELECT car_level carLevel,car_level carLevelName  FROM t_comm_car WHERE use_status = '1' GROUP BY car_level;
+  </select>
+
+    <select id="getBrandByCarLevel" resultType="java.util.Map">
+      SELECT brand,brand brandName FROM t_comm_car
+      WHERE car_level = #{commCarDTO.carLevel,jdbcType=VARCHAR}
+            AND use_status = '1' GROUP BY brand;
+    </select>
+
+    <select id="getSeriesByBrand" resultType="java.util.Map">
+      SELECT series,series seriesName FROM t_comm_car
+      WHERE car_level = #{commCarDTO.carLevel,jdbcType=VARCHAR}
+            AND brand = #{commCarDTO.brand,jdbcType=VARCHAR}
+            AND use_status = '1' GROUP BY series;
+  </select>
+
+    <select id="getModelBySeries" resultType="java.util.Map">
+      SELECT model,model modelName FROM t_comm_car
+      WHERE car_level = #{commCarDTO.carLevel,jdbcType=VARCHAR}
+            AND brand = #{commCarDTO.brand,jdbcType=VARCHAR}
+            AND series = #{commCarDTO.series,jdbcType=VARCHAR}
+            AND use_status = '1' GROUP BY model;
+  </select>
+
+    <select id="getCarPlateList" resultType="com.ydc.commom.view.vo.cgj.rental.CarPlateVO">
+        SELECT id carPlateId,car_plate carPlate FROM t_comm_car
+        WHERE operation_status = '1' AND use_status = '1' AND turn_out_type = '0';
+    </select>
+
+    <select id="getEnabledCarByStoreId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_comm_car
+        where store_id = #{commCarDTO.storeId,jdbcType=INTEGER} AND use_status = 1
+    </select>
+</mapper>

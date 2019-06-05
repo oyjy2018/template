@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.rental.RentalViolationDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.rental.RentalViolation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="car_id" property="carId" jdbcType="INTEGER" />
+    <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="dispose_order_id" property="disposeOrderId" jdbcType="INTEGER" />
+    <result column="violation_time" property="violationTime" jdbcType="TIMESTAMP" />
+    <result column="violation_persion_name" property="violationPersionName" jdbcType="VARCHAR" />
+    <result column="violation_persion_id_card" property="violationPersionIdCard" jdbcType="VARCHAR" />
+    <result column="violation_type" property="violationType" jdbcType="VARCHAR" />
+    <result column="violation_penalty" property="violationPenalty" jdbcType="DECIMAL" />
+    <result column="violation_score" property="violationScore" jdbcType="INTEGER" />
+    <result column="violation_at_province_code" property="violationAtProvinceCode" jdbcType="VARCHAR" />
+    <result column="violation_at_province" property="violationAtProvince" jdbcType="VARCHAR" />
+    <result column="violation_at_city_code" property="violationAtCityCode" jdbcType="VARCHAR" />
+    <result column="violation_at_city" property="violationAtCity" jdbcType="VARCHAR" />
+    <result column="violation_at_district_code" property="violationAtDistrictCode" jdbcType="VARCHAR" />
+    <result column="violation_at_district" property="violationAtDistrict" jdbcType="VARCHAR" />
+    <result column="violation_at_address" property="violationAtAddress" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="file_url" jdbcType="VARCHAR" property="fileUrl"/>
+    <result column="file_name" jdbcType="VARCHAR" property="fileName"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, car_id, order_type, order_id, dispose_order_id, violation_time, violation_persion_name, 
+    violation_persion_id_card, violation_type, violation_penalty, violation_score, violation_at_province_code, 
+    violation_at_province, violation_at_city_code, violation_at_city, violation_at_district_code, 
+    violation_at_district, violation_at_address, create_time, create_by, update_time, 
+    update_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_rental_violation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_rental_violation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.rental.RentalViolation" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_rental_violation (car_id, order_type, order_id, 
+      dispose_order_id, violation_time, violation_persion_name, 
+      violation_persion_id_card, violation_type, 
+      violation_penalty, violation_score, violation_at_province_code, 
+      violation_at_province, violation_at_city_code, 
+      violation_at_city, violation_at_district_code, 
+      violation_at_district, violation_at_address, 
+      create_time, create_by, update_time, 
+      update_by)
+    values (#{carId,jdbcType=INTEGER}, #{orderType,jdbcType=VARCHAR}, #{orderId,jdbcType=INTEGER}, 
+      #{disposeOrderId,jdbcType=INTEGER}, #{violationTime,jdbcType=TIMESTAMP}, #{violationPersionName,jdbcType=VARCHAR}, 
+      #{violationPersionIdCard,jdbcType=VARCHAR}, #{violationType,jdbcType=VARCHAR}, 
+      #{violationPenalty,jdbcType=DECIMAL}, #{violationScore,jdbcType=INTEGER}, #{violationAtProvinceCode,jdbcType=VARCHAR},
+      #{violationAtProvince,jdbcType=VARCHAR}, #{violationAtCityCode,jdbcType=VARCHAR}, 
+      #{violationAtCity,jdbcType=VARCHAR}, #{violationAtDistrictCode,jdbcType=VARCHAR}, 
+      #{violationAtDistrict,jdbcType=VARCHAR}, #{violationAtAddress,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.rental.RentalViolation" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_rental_violation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      car_id,
+      order_type,
+      order_id,
+      dispose_order_id,
+      violation_time,
+      violation_persion_name,
+      violation_persion_id_card,
+      violation_type,
+      violation_penalty,
+      violation_score,
+      violation_at_province_code,
+      violation_at_province,
+      violation_at_city_code,
+      violation_at_city,
+      violation_at_district_code,
+      violation_at_district,
+      violation_at_address,
+      status,
+      create_time,
+      create_by,
+      update_time,
+      update_by,
+      file_name, file_url,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{carId,jdbcType=INTEGER},
+      #{orderType,jdbcType=VARCHAR},
+      #{orderId,jdbcType=INTEGER},
+      #{disposeOrderId,jdbcType=INTEGER},
+      #{violationTime,jdbcType=TIMESTAMP},
+      #{violationPersionName,jdbcType=VARCHAR},
+      #{violationPersionIdCard,jdbcType=VARCHAR},
+      #{violationType,jdbcType=VARCHAR},
+      #{violationPenalty,jdbcType=DECIMAL},
+      #{violationScore,jdbcType=INTEGER},
+      #{violationAtProvinceCode,jdbcType=VARCHAR},
+      #{violationAtProvince,jdbcType=VARCHAR},
+      #{violationAtCityCode,jdbcType=VARCHAR},
+      #{violationAtCity,jdbcType=VARCHAR},
+      #{violationAtDistrictCode,jdbcType=VARCHAR},
+      #{violationAtDistrict,jdbcType=VARCHAR},
+      #{violationAtAddress,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=INTEGER},
+      #{fileName,jdbcType=VARCHAR}, #{fileUrl,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.rental.RentalViolation" >
+    update t_rental_violation
+    <set >
+      <if test="carId != null" >
+        car_id = #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="disposeOrderId != null" >
+        dispose_order_id = #{disposeOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="violationTime != null" >
+        violation_time = #{violationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="violationPersionName != null" >
+        violation_persion_name = #{violationPersionName,jdbcType=VARCHAR},
+      </if>
+      <if test="violationPersionIdCard != null" >
+        violation_persion_id_card = #{violationPersionIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="violationType != null" >
+        violation_type = #{violationType,jdbcType=VARCHAR},
+      </if>
+      <if test="violationPenalty != null" >
+        violation_penalty = #{violationPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="violationScore != null" >
+        violation_score = #{violationScore,jdbcType=INTEGER},
+      </if>
+      <if test="violationAtProvinceCode != null" >
+        violation_at_province_code = #{violationAtProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="violationAtProvince != null" >
+        violation_at_province = #{violationAtProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="violationAtCityCode != null" >
+        violation_at_city_code = #{violationAtCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="violationAtCity != null" >
+        violation_at_city = #{violationAtCity,jdbcType=VARCHAR},
+      </if>
+      <if test="violationAtDistrictCode != null" >
+        violation_at_district_code = #{violationAtDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="violationAtDistrict != null" >
+        violation_at_district = #{violationAtDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="violationAtAddress != null" >
+        violation_at_address = #{violationAtAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null">
+        file_url = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.rental.RentalViolation" >
+    update t_rental_violation
+    set car_id = #{carId,jdbcType=INTEGER},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=INTEGER},
+      dispose_order_id = #{disposeOrderId,jdbcType=INTEGER},
+      violation_time = #{violationTime,jdbcType=TIMESTAMP},
+      violation_persion_name = #{violationPersionName,jdbcType=VARCHAR},
+      violation_persion_id_card = #{violationPersionIdCard,jdbcType=VARCHAR},
+      violation_type = #{violationType,jdbcType=VARCHAR},
+      violation_penalty = #{violationPenalty,jdbcType=DECIMAL},
+      violation_score = #{violationScore,jdbcType=INTEGER},
+      violation_at_province_code = #{violationAtProvinceCode,jdbcType=VARCHAR},
+      violation_at_province = #{violationAtProvince,jdbcType=VARCHAR},
+      violation_at_city_code = #{violationAtCityCode,jdbcType=VARCHAR},
+      violation_at_city = #{violationAtCity,jdbcType=VARCHAR},
+      violation_at_district_code = #{violationAtDistrictCode,jdbcType=VARCHAR},
+      violation_at_district = #{violationAtDistrict,jdbcType=VARCHAR},
+      violation_at_address = #{violationAtAddress,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--通过条件获取违章列表-->
+  <select id="getRentalViolationList" resultType="com.ydc.commom.view.vo.cgj.rental.RentalViolationVO" parameterType="com.ydc.commom.view.dto.cgj.RentalViolationDTO" >
+    SELECT
+      trv.id,
+      trv.car_id carId,
+      trv.order_id orderId,
+      trv.order_type orderType,
+      trv.dispose_order_id disposeOrderId,
+      DATE_FORMAT(trv.violation_time, '%Y-%m-%d %H:%i:%s') violationTime,
+      trv.violation_persion_name violationPersionName,
+      trv.violation_persion_id_card violationPersionIdCard,
+      trv.violation_type violationType,
+      trv.violation_penalty violationPenalty,
+      trv.violation_score violationScore,
+      trv.violation_at_province_code violationAtProvinceCode,
+      trv.violation_at_province violationAtProvince,
+      trv.violation_at_city_code violationAtCityCode,
+      trv.violation_at_city violationAtCity,
+      trv.violation_at_district_code violationAtDistrictCode,
+      trv.violation_at_district violationAtDistrict,
+      trv.violation_at_address violationAtAddress,
+      trv.status,
+      trv.deal_status dealStatus,
+      tmc.store,
+      tmc.car_plate carPlate,
+      DATE_FORMAT(t.comeCarTime, '%Y-%m-%d %H:%i:%s') comeCarTime,
+      DATE_FORMAT(t.repayCarTime, '%Y-%m-%d %H:%i:%s') repayCarTime
+    FROM
+      t_rental_violation trv
+      LEFT JOIN t_comm_car tmc ON tmc.id = trv.car_id
+      LEFT JOIN (
+        SELECT
+          trv.id, tro.come_car_time comeCarTime, tro.repay_car_time repayCarTime
+        FROM
+          t_rental_order tro
+        LEFT JOIN
+          t_rental_violation trv ON trv.order_id = tro.id
+        WHERE
+          trv.order_type = 0
+        UNION ALL
+        SELECT
+          trv.id, trom.come_car_time comeCarTime, trom.repay_car_time repayCarTime
+        FROM
+          t_rental_order_maintenance trom
+          LEFT JOIN
+          t_rental_violation trv ON trv.order_id = trom.id
+        WHERE
+          trv.order_type = 1
+      ) t on t.id = trv.id
+    WHERE
+    trv.status = 1
+    <if test="id != null">
+      AND trv.id = #{id}
+    </if>
+    <if test="orderId != null and orderId != ''">
+      AND trv.order_id = #{orderId}
+    </if>
+    <if test="carPlate != null and carPlate != ''">
+      AND tmc.car_plate = #{carPlate}
+    </if>
+    <if test="store != null and store != ''">
+      AND tmc.store_id = #{store}
+    </if>
+    <if test="violationStartTime != null and violationStartTime != '' and violationEndTime != null and violationEndTime != ''">
+      AND trv.violation_time BETWEEN #{violationStartTime} AND #{violationEndTime}
+    </if>
+    ORDER BY trv.violation_time DESC
+  </select>
+
+  <!--通过id获取违章详情-->
+  <select id="getRentalViolationById" resultType="com.ydc.commom.view.vo.cgj.rental.RentalViolationVO" parameterType="int" >
+    SELECT
+    trv.id,
+    trv.car_id carId,
+    trv.order_id orderId,
+    trv.order_type orderType,
+    trv.dispose_order_id disposeOrderId,
+    DATE_FORMAT(trv.violation_time, '%Y-%m-%d %H:%i:%s') violationTime,
+    trv.violation_persion_name violationPersionName,
+    trv.violation_persion_id_card violationPersionIdCard,
+    trv.violation_type violationType,
+    trv.violation_penalty violationPenalty,
+    trv.violation_score violationScore,
+    trv.violation_at_province_code violationAtProvinceCode,
+    trv.violation_at_province violationAtProvince,
+    trv.violation_at_city_code violationAtCityCode,
+    trv.violation_at_city violationAtCity,
+    trv.violation_at_district_code violationAtDistrictCode,
+    trv.violation_at_district violationAtDistrict,
+    trv.violation_at_address violationAtAddress,
+    trv.status,
+    trv.file_name fileName,
+    trv.file_url fileUrl,
+    trv.deal_status dealStatus,
+    trv.deal_by dealBy,
+    trv.deal_charge_file_url dealChargeFileUrl,
+    trv.deal_charge_file_name dealChargeFileName,
+    trv.deal_commit_time dealCommitTime,
+    trv.deal_commit_by dealCommitBy,
+    tmc.store,
+    tmc.car_plate carPlate,
+    tmc.series,
+    tmc.model,
+    tmc.brand,
+    DATE_FORMAT(t.comeCarTime, '%Y-%m-%d %H:%i:%s') comeCarTime,
+    DATE_FORMAT(t.repayCarTime, '%Y-%m-%d %H:%i:%s') repayCarTime,
+    t.comeWarehouseStoreName,
+    t.coachmanName,
+    t.repayCarWarehouseStoreName,
+    t.repayCarCoachmanName
+    FROM
+    t_rental_violation trv
+    LEFT JOIN t_comm_car tmc ON tmc.id = trv.car_id
+    LEFT JOIN (
+    SELECT trv.id, tro.come_car_time comeCarTime, tro.repay_car_time repayCarTime,
+    tro.come_warehouse_store_name comeWarehouseStoreName, tro.coachman_name coachmanName,
+    tro.repay_car_warehouse_store_name repayCarWarehouseStoreName, tro.repay_car_coachman_name repayCarCoachmanName
+    FROM
+    t_rental_order tro
+    LEFT JOIN t_rental_violation trv ON trv.order_id = tro.id
+    WHERE trv.order_type = 0
+    UNION ALL
+    SELECT trv.id, trom.come_car_time comeCarTime,trom.repay_car_time repayCarTime,
+    trom.come_warehouse_store_name comeWarehouseStoreName,trom.come_car_user_name coachmanName,
+    trom.repay_car_store_name repayCarWarehouseStoreName,trom.repay_car_user_name repayCarCoachmanName
+    FROM
+    t_rental_order_maintenance trom
+    LEFT JOIN t_rental_violation trv ON trv.order_id = trom.id
+    WHERE trv.order_type = 1
+    ) t on t.id = trv.id
+    WHERE
+    trv.id = #{id} and trv.status = 1
+  </select>
+
+  <update id="updateRentalViolationStatus" >
+    update t_rental_violation
+    set status = 0
+    where id = #{id}
+  </update>
+
+  <select id="selectViolationByMaintenanceOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    t_rental_violation trv
+    WHERE
+    trv.order_type = '1'
+    AND
+    trv.order_id = #{id}
+    AND
+    trv.`status` = 1
+  </select>
+
+  <update id="updateDealStatus" parameterType="com.ydc.commom.view.dto.cgj.rental.RentalViolationUpdateDealStatusDTO">
+    update
+       t_rental_violation rv
+    set
+       rv.deal_status = #{dealStatus},
+       rv.deal_by = #{dealBy},
+       rv.deal_charge_file_url = #{dealChargeFileUrl},
+       rv.deal_charge_file_name = #{dealChargeFileName},
+       rv.update_by = #{updateBy},
+       rv.update_time = #{updateTime},
+       rv.deal_commit_time = #{dealCommitTime},
+       rv.deal_commit_by = #{dealCommitBy}
+    where
+       rv.id = #{id}
+  </update>
+
+</mapper>

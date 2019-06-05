@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.rental.RentalRefuelInfoDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.rental.RentalRefuelInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="maintenance_id" property="maintenanceId" jdbcType="INTEGER" />
+    <result column="car_id" property="carId" jdbcType="INTEGER" />
+    <result column="refuel_amount" property="refuelAmount" jdbcType="DECIMAL" />
+    <result column="refuel_unit_price" property="refuelUnitPrice" jdbcType="DECIMAL" />
+    <result column="refuel_ogarage_oil_mass" property="refuelOgarageOilMass" jdbcType="DECIMAL" />
+    <result column="refuel_money" property="refuelMoney" jdbcType="DECIMAL" />
+    <result column="refuel_driver" property="refuelDriver" jdbcType="VARCHAR" />
+    <result column="refuel_payment_way" property="refuelPaymentWay" jdbcType="TINYINT" />
+    <result column="refuel_oil_card_balance" property="refuelOilCardBalance" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, maintenance_id, car_id, refuel_amount, refuel_unit_price, refuel_ogarage_oil_mass, 
+    refuel_money, refuel_driver, refuel_payment_way, refuel_oil_card_balance, `status`, 
+    create_time, create_by, update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_rental_refuel_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_rental_refuel_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.rental.RentalRefuelInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_rental_refuel_info (maintenance_id, car_id, refuel_amount, 
+      refuel_unit_price, refuel_ogarage_oil_mass, 
+      refuel_money, refuel_driver, refuel_payment_way, 
+      refuel_oil_card_balance, `status`, create_time, 
+      create_by, update_time, update_by
+      )
+    values (#{maintenanceId,jdbcType=INTEGER}, #{carId,jdbcType=INTEGER}, #{refuelAmount,jdbcType=DECIMAL}, 
+      #{refuelUnitPrice,jdbcType=DECIMAL}, #{refuelOgarageOilMass,jdbcType=DECIMAL}, 
+      #{refuelMoney,jdbcType=DECIMAL}, #{refuelDriver,jdbcType=VARCHAR}, #{refuelPaymentWay,jdbcType=TINYINT}, 
+      #{refuelOilCardBalance,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.rental.RentalRefuelInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_rental_refuel_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      maintenance_id,
+      car_id,
+      refuel_amount,
+      refuel_unit_price,
+      refuel_ogarage_oil_mass,
+      refuel_money,
+      refuel_driver,
+      refuel_payment_way,
+      refuel_oil_card_balance,
+      `status`,
+      create_time,
+      create_by,
+      update_time,
+      update_by,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{maintenanceId,jdbcType=INTEGER},
+      #{carId,jdbcType=INTEGER},
+      #{refuelAmount,jdbcType=DECIMAL},
+      #{refuelUnitPrice,jdbcType=DECIMAL},
+      #{refuelOgarageOilMass,jdbcType=DECIMAL},
+      #{refuelMoney,jdbcType=DECIMAL},
+      #{refuelDriver,jdbcType=VARCHAR},
+      #{refuelPaymentWay,jdbcType=TINYINT},
+      #{refuelOilCardBalance,jdbcType=DECIMAL},
+      #{status,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.rental.RentalRefuelInfo" >
+    update t_rental_refuel_info
+    <set >
+      <if test="maintenanceId != null" >
+        maintenance_id = #{maintenanceId,jdbcType=INTEGER},
+      </if>
+      <if test="carId != null" >
+        car_id = #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="refuelAmount != null" >
+        refuel_amount = #{refuelAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="refuelUnitPrice != null" >
+        refuel_unit_price = #{refuelUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="refuelOgarageOilMass != null" >
+        refuel_ogarage_oil_mass = #{refuelOgarageOilMass,jdbcType=DECIMAL},
+      </if>
+      <if test="refuelMoney != null" >
+        refuel_money = #{refuelMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="refuelDriver != null" >
+        refuel_driver = #{refuelDriver,jdbcType=VARCHAR},
+      </if>
+      <if test="refuelPaymentWay != null" >
+        refuel_payment_way = #{refuelPaymentWay,jdbcType=TINYINT},
+      </if>
+      <if test="refuelOilCardBalance != null" >
+        refuel_oil_card_balance = #{refuelOilCardBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.rental.RentalRefuelInfo" >
+    update t_rental_refuel_info
+    set maintenance_id = #{maintenanceId,jdbcType=INTEGER},
+      car_id = #{carId,jdbcType=INTEGER},
+      refuel_amount = #{refuelAmount,jdbcType=DECIMAL},
+      refuel_unit_price = #{refuelUnitPrice,jdbcType=DECIMAL},
+      refuel_ogarage_oil_mass = #{refuelOgarageOilMass,jdbcType=DECIMAL},
+      refuel_money = #{refuelMoney,jdbcType=DECIMAL},
+      refuel_driver = #{refuelDriver,jdbcType=VARCHAR},
+      refuel_payment_way = #{refuelPaymentWay,jdbcType=TINYINT},
+      refuel_oil_card_balance = #{refuelOilCardBalance,jdbcType=DECIMAL},
+      `status` = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectRefuelByMaintenanceId" resultMap="BaseResultMap">
+    SELECT
+      id,
+      refuel_amount,
+      refuel_unit_price,
+      refuel_ogarage_oil_mass,
+      refuel_money,
+      refuel_payment_way,
+      refuel_oil_card_balance
+    FROM
+      t_rental_refuel_info
+    WHERE
+      maintenance_id = #{maintenanceId} AND
+      `status` = 1
+  </select>
+</mapper>

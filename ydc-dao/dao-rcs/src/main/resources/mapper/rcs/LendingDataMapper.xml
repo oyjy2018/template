@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.rcs.LendingDataDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.rcs.LendingData" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="loan_id" property="loanId" jdbcType="INTEGER" />
+    <result column="contract_number" property="contractNumber" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="loan_product" property="loanProduct" jdbcType="INTEGER" />
+    <result column="loan_nature" property="loanNature" jdbcType="TINYINT" />
+    <result column="create_source" property="createSource" jdbcType="TINYINT" />
+    <result column="repayment_mode" property="repaymentMode" jdbcType="INTEGER" />
+    <result column="has_second_loan" property="hasSecondLoan" jdbcType="CHAR" />
+    <result column="loan_period" property="loanPeriod" jdbcType="TINYINT" />
+    <result column="loan_money" property="loanMoney" jdbcType="DECIMAL" />
+    <result column="bidding_money" property="biddingMoney" jdbcType="DECIMAL" />
+    <result column="bidding_platform" property="biddingPlatform" jdbcType="VARCHAR" />
+    <result column="jkylilv" property="jkylilv" jdbcType="VARCHAR" />
+    <result column="loan_date" property="loanDate" jdbcType="DATE" />
+    <result column="full_scale_time" property="fullScaleTime" jdbcType="TIMESTAMP" />
+    <result column="vehicle_status" property="vehicleStatus" jdbcType="INTEGER" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="marriage_status" property="marriageStatus" jdbcType="VARCHAR" />
+    <result column="work_position" property="workPosition" jdbcType="VARCHAR" />
+    <result column="monthly_income" property="monthlyIncome" jdbcType="VARCHAR" />
+    <result column="is_house" property="isHouse" jdbcType="VARCHAR" />
+    <result column="buy_type" property="buyType" jdbcType="CHAR" />
+    <result column="monthly_installment_payment" property="monthlyInstallmentPayment" jdbcType="DECIMAL" />
+    <result column="house_property" property="houseProperty" jdbcType="VARCHAR" />
+    <result column="vehicle_number" property="vehicleNumber" jdbcType="VARCHAR" />
+    <result column="fist_register_date" property="fistRegisterDate" jdbcType="DATE" />
+    <result column="last_transfer_date" property="lastTransferDate" jdbcType="DATE" />
+    <result column="vehicle_type" property="vehicleType" jdbcType="VARCHAR" />
+    <result column="vehicle_brand" property="vehicleBrand" jdbcType="VARCHAR" />
+    <result column="vehicle_model" property="vehicleModel" jdbcType="VARCHAR" />
+    <result column="vehicle_colour" property="vehicleColour" jdbcType="VARCHAR" />
+    <result column="vehicle_mileage" property="vehicleMileage" jdbcType="INTEGER" />
+    <result column="vehicle_attribution" property="vehicleAttribution" jdbcType="VARCHAR" />
+    <result column="vehicle_pledge_count" property="vehiclePledgeCount" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="statistics_date" property="statisticsDate" jdbcType="VARCHAR" />
+    <result column="asset_side" property="assetSide" jdbcType="CHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="supervisor_id" property="supervisorId" jdbcType="INTEGER" />
+    <result column="supervisor_name" property="supervisorName" jdbcType="VARCHAR" />
+    <result column="customer_manager_id" property="customerManagerId" jdbcType="INTEGER" />
+    <result column="customer_manager_name" property="customerManagerName" jdbcType="VARCHAR" />
+    <result column="team_manager_id" property="teamManagerId" jdbcType="INTEGER" />
+    <result column="team_manager_name" property="teamManagerName" jdbcType="VARCHAR" />
+    <result column="appraiser_person_id" property="appraiserPersonId" jdbcType="INTEGER" />
+    <result column="appraiser_person_name" property="appraiserPersonName" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, loan_id, contract_number, customer_name, org_id, org_name, loan_product, loan_nature, 
+    create_source, repayment_mode, has_second_loan, loan_period, loan_money, bidding_money, 
+    bidding_platform, jkylilv, loan_date, full_scale_time, vehicle_status, gender, age, 
+    marriage_status, work_position, monthly_income, is_house, buy_type, monthly_installment_payment, 
+    house_property, vehicle_number, fist_register_date, last_transfer_date, vehicle_type, 
+    vehicle_brand, vehicle_model, vehicle_colour, vehicle_mileage, vehicle_attribution, 
+    vehicle_pledge_count, create_time, statistics_date, asset_side, create_user_id, create_user_name, 
+    supervisor_id, supervisor_name, customer_manager_id, customer_manager_name, team_manager_id, 
+    team_manager_name, appraiser_person_id, appraiser_person_name, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_rp_lending_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="getLendingDataByFullScaleTime" resultType="com.ydc.commom.view.dto.rcs.LendingDataDTO">
+    SELECT
+    thcl.customer_id customerId,
+    thcl.customer_name customerName,
+    thcl.id_card idCard,
+    thcl.gender,
+    thcl.age,
+    thcl.mobile_phone mobilePhone,
+    thcl.email,
+    thcl.loan_id loanId,
+    trld.full_scale_time fullScaleTime,
+    trld.bidding_money biddingMoney,
+    1 AS source,
+    1 AS whetherRealName,
+    0 AS whetherIssue,
+    DATE_FORMAT(NOW(),'%Y-%m-%d %h:%i:%s') AS createTime,
+    0 AS rollNumber,
+    1 AS whetherLoan
+    FROM t_rp_lending_data trld,t_hi_customer_loan thcl
+    WHERE trld.loan_id = thcl.loan_id
+    <if test="startTime != null and startTime != ''">
+      AND trld.full_scale_time <![CDATA[>=]]> #{startTime,jdbcType=VARCHAR}
+    </if>
+    <if test="endTime != null and endTime != ''">
+      AND trld.full_scale_time <![CDATA[>=]]> #{endTime,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+</mapper>

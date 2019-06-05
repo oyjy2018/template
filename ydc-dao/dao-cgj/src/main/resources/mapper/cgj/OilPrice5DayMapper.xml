@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.user.OilPrice5DayDao">
+    <resultMap id="BaseResultMap" type="com.ydc.model.cgj.OilPrice5Day">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="oil_id" property="oilId" jdbcType="INTEGER"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="n89_price" property="n89Price" jdbcType="VARCHAR"/>
+        <result column="n92_price" property="n92Price" jdbcType="VARCHAR"/>
+        <result column="n95_price" property="n95Price" jdbcType="VARCHAR"/>
+        <result column="n0_price" property="n0Price" jdbcType="VARCHAR"/>
+        <result column="unit" property="unit" jdbcType="VARCHAR"/>
+        <result column="date" property="date" jdbcType="TIMESTAMP"/>
+        <result column="spider_url" property="spiderUrl" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, oil_id, province, city, n89_price, n92_price, n95_price, n0_price, unit , date ,spider_url
+    </sql>
+
+    <select id="selectToday" resultType="com.ydc.model.cgj.OilPrice5Day" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        t_spi_oil_5day
+        WHERE
+        date = DATE_FORMAT(now(),"%Y-%m-%d")
+        AND province=#{province}
+        AND city=#{city}
+    </select>
+
+    <select id="getHistory" resultType="com.ydc.model.cgj.OilPrice5Day" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        t_spi_oil_5day
+        WHERE
+        province=#{province}
+        AND city=#{city}
+    </select>
+
+</mapper>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.common.DictionaryDao">
+    <resultMap id="BaseResultMap" type="com.ydc.model.cgj.Dictionary">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="dict_name" property="dictName" jdbcType="VARCHAR"/>
+        <result column="dict_code" property="dictCode" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, dict_name, dict_code, remark, `status`, sort, create_time, create_by, update_time,
+        update_by
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_cfg_dictionary
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_cfg_dictionary
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ydc.model.cgj.Dictionary" useGeneratedKeys="true" keyProperty="id">
+        insert into t_cfg_dictionary (dict_name, dict_code, remark,
+        `status`, sort, create_time,
+        create_by, update_time, update_by
+        )
+        values (#{dictName,jdbcType=VARCHAR}, #{dictCode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+        #{status,jdbcType=CHAR}, #{sort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.ydc.model.cgj.Dictionary" useGeneratedKeys="true" keyProperty="id">
+        insert into t_cfg_dictionary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            dict_name,
+            dict_code,
+            remark,
+            `status`,
+            sort,
+            create_time,
+            create_by,
+            update_time,
+            update_by,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{dictName,jdbcType=VARCHAR},
+            #{dictCode,jdbcType=VARCHAR},
+            #{remark,jdbcType=VARCHAR},
+            #{status,jdbcType=CHAR},
+            #{sort,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{createBy,jdbcType=INTEGER},
+            #{updateTime,jdbcType=TIMESTAMP},
+            #{updateBy,jdbcType=INTEGER},
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.Dictionary">
+        update t_cfg_dictionary
+        <set>
+            <if test="dictName != null">
+                dict_name = #{dictName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictCode != null">
+                dict_code = #{dictCode,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=CHAR},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.Dictionary">
+        update t_cfg_dictionary
+        set dict_name = #{dictName,jdbcType=VARCHAR},
+        dict_code = #{dictCode,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR},
+        `status` = #{status,jdbcType=CHAR},
+        sort = #{sort,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_by = #{createBy,jdbcType=INTEGER},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_by = #{updateBy,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="getValidDictionary" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_cfg_dictionary
+        where status = '1';
+    </select>
+
+    <!-- 根据dict_code查询对于的信息  -->
+    <select id="getConfigInfoByDictCode" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_cfg_dictionary
+        WHERE dict_code = #{parentDictCode,jdbcType=VARCHAR} AND status = '1'
+    </select>
+
+</mapper>

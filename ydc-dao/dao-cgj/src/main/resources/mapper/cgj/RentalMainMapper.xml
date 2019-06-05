@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.rental.RentalMainDao">
+
+    <!--查询首页banner-->
+    <select id="getMainBannerUrl" resultType="com.ydc.commom.view.vo.cgj.rental.RentalCarImgVO">
+        SELECT file_name fileName, file_url fileUrl from t_cgj_comm_img where img_type = 5
+    </select>
+
+    <!--寻找车辆-->
+    <select id="queryPublishCar" parameterType="com.ydc.commom.view.dto.cgj.rental.RentalCarMainQueryDTO"
+                        resultType="com.ydc.commom.view.vo.cgj.rental.RentalCarMainQueryVO">
+        select se.id seriesId, se.model, se.brand, se.series, se.main_img_name mainImgName, se.main_img_url mainImgUrl, ca.car_level carLevel, ca.car_structure carStructure,
+        ca.car_seat carSeat, pu.workday_rent workdayRent, CONCAT(st.store_register_city, st.store_register_region) storeAddress,
+        pu.id publishId
+        from t_rental_car ca
+        left join t_rental_store st on ca.store_id = st.id
+        left join t_comm_car_series se on ca.car_series_id = se.id
+        left join t_rental_car_publish pu on pu.id = (SELECT publish_id from t_rental_car_publish_detail where car_id = ca.id order by id desc limit 1)
+        left join t_rental_car_publish_num num on num.car_series_id = ca.car_series_id and num.publish_id = pu.id and num.car_level = ca.car_level
+        <where>
+            ca.status = 2 and num.car_num > 0
+            <if test="city != null and city != ''">
+                and st.store_register_city like concat('%',concat(#{city},'%'))
+            </if>
+            <if test="carLevel != null and carLevel != ''">
+                and ca.car_level = #{carLevel}
+            </if>
+            <if test="lowestPrice != null">
+                and pu.workday_rent >= #{lowestPrice}
+            </if>
+            <if test="highestPrice != null">
+                and pu.workday_rent <![CDATA[ <= ]]> #{highestPrice}
+            </if>
+            <if test="brand != null and brand != ''">
+                and se.brand = #{brand}
+            </if>
+        </where>
+        GROUP BY se.model, se.main_img_url, ca.car_level, ca.car_structure, ca.car_seat, pu.workday_rent
+        ORDER BY pu.create_time desc
+        LIMIT #{page}, #{rows}
+    </select>
+
+    <!--查询首页车辆详情-->
+    <select id="queryCarDetail" parameterType="com.ydc.commom.view.dto.cgj.rental.RentalCarMainDetailQueryDTO"
+            resultType="com.ydc.commom.view.vo.cgj.rental.RentalCarMainQueryDetailVO">
+        select le.pre_authorization preAuthorization, pu.workday_rent workdayRent, pu.weekend_rent weekendRent,
+        pu.holiday_rent holidayRent, pu.day_service_charge dayServiceCharge, pu.id publishId, pu.company_id companyId,
+        cu.registered_company_name companyName, se.main_img_name mainImgName, se.main_img_url mainImgUrl,
+        se.brand, se.series, se.model, ca.car_level carLevel, se.car_structure carStructure, ca.car_seat carSeat,
+        ca.store_id storeId, st.store_name storeName, num.car_num carNum
+        from t_rental_car ca
+        left join t_comm_car_series se on ca.car_series_id = se.id
+        left join t_rental_car_publish_detail de on de.car_id = ca.id
+        left join t_rental_car_publish pu on de.publish_id = pu.id
+        left join t_rental_company_customer cu on cu.id = pu.company_id
+        left join t_rental_store st on st.id = ca.store_id
+        left join t_rental_car_level le on le.car_level = ca.car_level
+        left join t_rental_car_publish_num num on num.publish_id = pu.id and num.car_series_id = se.id and num.car_level = ca.car_level
+        where pu.id = #{publishId} and ca.car_level = #{carLevel} and se.id = #{seriesId}
+        limit 1
+    </select>
+
+    <!--品牌列表-->
+    <select id="getBrandList" resultType="String">
+        select distinct se.brand from t_rental_car_publish_detail de
+        left join t_rental_car ca on ca.id = de.car_id
+        left join t_comm_car_series se on se.id = ca.car_series_id
+    </select>
+
+    <!--城市列表(己发布+己出租)-->
+    <select id="getAllCities" resultType="String">
+        select distinct st.store_register_city from t_rental_car ca
+        left join t_rental_store st on ca.store_id = st.id
+        where ca.status = 2 or ca.status = 4
+    </select>
+
+</mapper>

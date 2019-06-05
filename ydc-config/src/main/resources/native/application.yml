@@ -1,0 +1,23 @@
+#eureka:
+#  client:
+#      serviceUrl:
+#          defaultZone: http://ydc1001:ydc1001@localhost:20000/eureka/
+#      registry-fetch-interval-seconds: 5
+server:
+  port: 19000
+spring:
+  cloud:
+    config:
+      enabled: true
+      server:
+          native:
+            search-locations: F:/config/native
+  profiles:
+    active: native
+  application:
+    name: ydc-config
+  security:
+    user:
+      name: ydc1002
+      password: ydc1002
+

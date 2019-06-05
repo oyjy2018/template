@@ -1,0 +1,25 @@
+#eureka:
+#  client:
+#      serviceUrl:
+#          defaultZone: http://localhost:20000/eureka/
+#      registry-fetch-interval-seconds: 5
+server:
+  port: 19000
+spring:
+  cloud:
+    config:
+      enabled: true
+      server:
+        svn:
+          uri: http://119.23.249.36:81/svn/ydc
+          username: dengjiangbin
+          password: dengjiangbin0619
+        default-label: config/pro
+  profiles:
+    active: subversion
+  application:
+    name: ydc-config
+  security:
+    user:
+      name: ydc1002
+      password: ydc1002

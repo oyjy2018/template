@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.common.MenuDao">
+    <resultMap id="BaseResultMap" type="com.ydc.model.cgj.Menu">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
+        <result column="menu_code" property="menuCode" jdbcType="VARCHAR"/>
+        <result column="menu_url" property="menuUrl" jdbcType="VARCHAR"/>
+        <result column="parent_menu_code" property="parentMenuCode" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="hierarchy" property="hierarchy" jdbcType="TINYINT"/>
+        <result column="menu_type" property="menuType" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, menu_name, menu_code, menu_url, parent_menu_code, sort, `hierarchy`, menu_type,
+        `status`, create_time, create_by, update_time, update_by
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_cfg_menu
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_cfg_menu
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ydc.model.cgj.Menu" useGeneratedKeys="true" keyProperty="id">
+        insert into t_cfg_menu (menu_name, menu_code, menu_url,
+        parent_menu_code, sort, `hierarchy`,
+        menu_type, `status`, create_time,
+        create_by, update_time, update_by
+        )
+        values (#{menuName,jdbcType=VARCHAR}, #{menuCode,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR},
+        #{parentMenuCode,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{hierarchy,jdbcType=TINYINT},
+        #{menuType,jdbcType=INTEGER}, #{status,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.ydc.model.cgj.Menu" useGeneratedKeys="true" keyProperty="id">
+        insert into t_cfg_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            menu_name,
+            menu_code,
+            menu_url,
+            parent_menu_code,
+            sort,
+            `hierarchy`,
+            menu_type,
+            `status`,
+            create_time,
+            create_by,
+            update_time,
+            update_by,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{menuName,jdbcType=VARCHAR},
+            #{menuCode,jdbcType=VARCHAR},
+            #{menuUrl,jdbcType=VARCHAR},
+            #{parentMenuCode,jdbcType=VARCHAR},
+            #{sort,jdbcType=INTEGER},
+            #{hierarchy,jdbcType=TINYINT},
+            #{menuType,jdbcType=INTEGER},
+            #{status,jdbcType=CHAR},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{createBy,jdbcType=INTEGER},
+            #{updateTime,jdbcType=TIMESTAMP},
+            #{updateBy,jdbcType=INTEGER},
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.Menu">
+        update t_cfg_menu
+        <set>
+            <if test="menuName != null">
+                menu_name = #{menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="menuCode != null">
+                menu_code = #{menuCode,jdbcType=VARCHAR},
+            </if>
+            <if test="menuUrl != null">
+                menu_url = #{menuUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="parentMenuCode != null">
+                parent_menu_code = #{parentMenuCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="hierarchy != null">
+                `hierarchy` = #{hierarchy,jdbcType=TINYINT},
+            </if>
+            <if test="menuType != null">
+                menu_type = #{menuType,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=CHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.Menu">
+        update t_cfg_menu
+        set menu_name = #{menuName,jdbcType=VARCHAR},
+        menu_code = #{menuCode,jdbcType=VARCHAR},
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+        parent_menu_code = #{parentMenuCode,jdbcType=VARCHAR},
+        sort = #{sort,jdbcType=INTEGER},
+        `hierarchy` = #{hierarchy,jdbcType=TINYINT},
+        menu_type = #{menuType,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=CHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_by = #{createBy,jdbcType=INTEGER},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_by = #{updateBy,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="getAllMenuAndFunction" resultType="java.util.Map" parameterType="java.lang.String">
+        SELECT m.menu_code `key`, m.menu_name `name`, 'menu' type,m.parent_menu_code parentKey from t_cfg_menu m where m.service_identifying = #{serviceIdentifying} and m.menu_code like 'rental:%' and m.status = 1
+        UNION
+        select f.fun_code `key`, f.fun_name `name`, 'function' type,f.menu_code parentKey from t_cfg_function f where f.service_identifying = #{serviceIdentifying} and f.fun_code like 'rental:%'  and f.status = 1
+    </select>
+</mapper>

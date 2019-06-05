@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.user.IntegralDao">
+    <resultMap id="BaseResultMap" type="com.ydc.model.cgj.Integral">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="member_id" property="memberId" jdbcType="INTEGER"/>
+        <result column="usable_integral" property="usableIntegral" jdbcType="DECIMAL"/>
+        <result column="version" property="version" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, member_id, usable_integral, version, create_time, create_by, update_time, update_by
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_integral
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_integral
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ydc.model.cgj.Integral" useGeneratedKeys="true" keyProperty="id">
+        insert into t_integral (member_id, usable_integral, version,
+        create_time, create_by, update_time,
+        update_by)
+        values (#{memberId,jdbcType=INTEGER}, #{usableIntegral,jdbcType=DECIMAL}, #{version,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP},
+        #{updateBy,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ydc.model.cgj.Integral" useGeneratedKeys="true" keyProperty="id">
+        insert into t_integral
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            member_id,
+            usable_integral,
+            version,
+            create_time,
+            create_by,
+            update_time,
+            update_by,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{memberId,jdbcType=INTEGER},
+            #{usableIntegral,jdbcType=DECIMAL},
+            #{version,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{createBy,jdbcType=INTEGER},
+            #{updateTime,jdbcType=TIMESTAMP},
+            #{updateBy,jdbcType=INTEGER},
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.Integral">
+        update t_integral
+        <set>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="usableIntegral != null">
+                usable_integral = #{usableIntegral,jdbcType=DECIMAL},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.Integral">
+        update t_integral
+        set member_id = #{memberId,jdbcType=INTEGER},
+        usable_integral = #{usableIntegral,jdbcType=DECIMAL},
+        version = #{version,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_by = #{createBy,jdbcType=INTEGER},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_by = #{updateBy,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+
+
+    <select id="getIntegralList" resultType="java.util.Map">
+        SELECT
+        IFNULL(ti.id,'') integralId,
+        tm.id memberId,
+        tm.mobile_phone mobilePhone,
+        tm.member_name memberName,
+        IFNULL(tm.id_card,'') idCard,
+        <!--CONCAT(LEFT(tm.id_card,3), '****' ,RIGHT(tm.id_card,4)) idCard,-->
+        DATE_FORMAT(tm.create_time,'%Y-%m-%d %H:%i:%s') createTime,
+        IFNULL(ti.usable_integral,0.00) usableIntegral
+        <include refid="getIntegralListCommon"/>
+        ORDER BY tm.create_time DESC
+    </select>
+
+    <sql id="getIntegralListCommon">
+        FROM t_member tm
+        LEFT JOIN t_integral ti ON ti.member_id = tm.id
+        <where>
+            <if test="integralManageDTO.mobilePhone != null and integralManageDTO.mobilePhone != ''">
+                AND tm.mobile_phone LIKE '%${integralManageDTO.mobilePhone}%'
+            </if>
+            <if test="integralManageDTO.createTimeStart != null and integralManageDTO.createTimeStart != ''">
+                AND tm.create_time <![CDATA[>=]]> #{integralManageDTO.createTimeStart,jdbcType=VARCHAR}
+            </if>
+            <if test="integralManageDTO.createTimeEnd != null and integralManageDTO.createTimeEnd != ''">
+                AND tm.create_time <![CDATA[<=]]> #{integralManageDTO.createTimeEnd,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </sql>
+
+    <!--积分充值-->
+    <update id="saveOrUpdateIntegral" parameterType="java.util.Map">
+        UPDATE t_integral ti
+        SET ti.usable_integral = ti.usable_integral + #{usableIntegral,jdbcType=DECIMAL} ,
+        ti.version = ti.version +1,
+        ti.update_by = #{updateBy,jdbcType=INTEGER}
+        WHERE ti.member_id = #{memberId,jdbcType=INTEGER};
+    </update>
+
+    <!--消耗积分-->
+    <update id="updateIntegral" parameterType="java.util.Map">
+        UPDATE t_integral ti
+        SET ti.usable_integral = ti.usable_integral - #{usableIntegral,jdbcType=DECIMAL} ,
+        ti.version = ti.version +1,
+        ti.update_by = #{updateBy,jdbcType=INTEGER}
+        WHERE ti.id = #{integralId,jdbcType=INTEGER} AND ti.version = #{version,jdbcType=INTEGER};
+    </update>
+
+    <select id="getIntegralByMumberId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_integral ti WHERE ti.member_id = #{memberId,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertBatch">
+        insert into t_integral (member_id, usable_integral, version,
+        create_time, create_by)
+        VALUES
+        <foreach collection ="list" item="item" separator =",">
+            (#{item.memberId}, #{item.usableIntegral}, #{item.version},#{item.createTime,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=INTEGER})
+        </foreach >
+    </insert>
+
+    <update id="updateBatch">
+        <foreach collection="list" item="item">
+            UPDATE t_integral ti
+            SET ti.usable_integral = ti.usable_integral + #{item.usableIntegral,jdbcType=DECIMAL},
+            ti.version = ti.version +1,
+            ti.update_by = #{item.updateBy,jdbcType=INTEGER}
+            WHERE ti.member_id = #{item.memberId,jdbcType=INTEGER};
+        </foreach>
+    </update>
+</mapper>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.rental.RentalSettlementDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.rental.RentalSettlement" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="real_rent_days" property="realRentDays" jdbcType="DECIMAL" />
+    <result column="rent_total" property="rentTotal" jdbcType="DECIMAL" />
+    <result column="integrated_service_fee" property="integratedServiceFee" jdbcType="DECIMAL" />
+    <result column="overdue_days" property="overdueDays" jdbcType="DECIMAL" />
+    <result column="overdue_fee" property="overdueFee" jdbcType="DECIMAL" />
+    <result column="exceed_mileage_fee" property="exceedMileageFee" jdbcType="DECIMAL" />
+    <result column="fuel_fee" property="fuelFee" jdbcType="DECIMAL" />
+    <result column="other_fee" property="otherFee" jdbcType="DECIMAL" />
+    <result column="should_charge_total" property="shouldChargeTotal" jdbcType="DECIMAL" />
+    <result column="actual_amount" property="actualAmount" jdbcType="DECIMAL" />
+    <result column="rent_car_pre_authorization_amount" property="rentCarPreAuthorizationAmount" jdbcType="DECIMAL" />
+    <result column="return_rent_car_pre_authorization_amount" property="returnRentCarPreAuthorizationAmount" jdbcType="DECIMAL" />
+    <result column="violation_pre_authorization_amount" property="violationPreAuthorizationAmount" jdbcType="DECIMAL" />
+    <result column="violation_auth_refund_amount" property="violationAuthRefundAmount" jdbcType="DECIMAL" />
+    <result column="violation_payroll" property="violationPayroll" jdbcType="DECIMAL" />
+    <result column="rental_auth_status" property="rentalAuthStatus" jdbcType="TINYINT" />
+    <result column="violation_auth_status" property="violationAuthStatus" jdbcType="TINYINT" />
+    <result column="settle_status" property="settleStatus" jdbcType="TINYINT" />
+    <result column="settle_user_id" property="settleUserId" jdbcType="INTEGER" />
+    <result column="settle_user_name" property="settleUserName" jdbcType="VARCHAR" />
+    <result column="settle_time" property="settleTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, order_id, real_rent_days, rent_total, integrated_service_fee, overdue_days,
+    overdue_fee, exceed_mileage_fee, fuel_fee, other_fee, should_charge_total, actual_amount,
+    rent_car_pre_authorization_amount, return_rent_car_pre_authorization_amount, violation_pre_authorization_amount,
+    violation_auth_refund_amount, violation_payroll, rental_auth_status, violation_auth_status,
+    settle_status, settle_user_id, settle_user_name, settle_time, `status`, create_time,
+    create_by, update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_rental_settlement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_rental_settlement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.commom.view.dto.cgj.rental.RentalSettlementDTO" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_rental_settlement (member_id, order_id, real_rent_days,
+    rent_total, integrated_service_fee, overdue_days,
+    overdue_fee, exceed_mileage_fee, fuel_fee,
+    other_fee, should_charge_total, actual_amount,
+    rent_car_pre_authorization_amount, return_rent_car_pre_authorization_amount,
+    violation_pre_authorization_amount, violation_auth_refund_amount,
+    violation_payroll, rental_auth_status, violation_auth_status,
+    settle_status, settle_user_id, settle_user_name,
+    settle_time, `status`, create_time,
+    create_by
+    )
+    values (#{memberId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{realRentDays,jdbcType=DECIMAL},
+    #{rentTotal,jdbcType=DECIMAL}, #{integratedServiceFee,jdbcType=DECIMAL}, #{overdueDays,jdbcType=DECIMAL},
+    #{overdueFee,jdbcType=DECIMAL}, #{exceedMileageFee,jdbcType=DECIMAL}, #{fuelFee,jdbcType=DECIMAL},
+    #{otherFee,jdbcType=DECIMAL}, #{shouldChargeTotal,jdbcType=DECIMAL}, #{actualAmount,jdbcType=DECIMAL},
+    #{rentCarPreAuthorizationAmount,jdbcType=DECIMAL}, #{returnRentCarPreAuthorizationAmount,jdbcType=DECIMAL},
+    #{violationPreAuthorizationAmount,jdbcType=DECIMAL}, #{violationAuthRefundAmount,jdbcType=DECIMAL},
+    #{violationPayroll,jdbcType=DECIMAL}, #{rentalAuthStatus,jdbcType=TINYINT}, #{violationAuthStatus,jdbcType=TINYINT},
+    #{settleStatus,jdbcType=TINYINT}, #{settleUserId,jdbcType=INTEGER}, #{settleUserName,jdbcType=VARCHAR},
+    #{settleTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+    #{createBy,jdbcType=INTEGER}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.rental.RentalSettlement" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_rental_settlement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      member_id,
+      order_id,
+      real_rent_days,
+      rent_total,
+      integrated_service_fee,
+      overdue_days,
+      overdue_fee,
+      exceed_mileage_fee,
+      fuel_fee,
+      other_fee,
+      should_charge_total,
+      actual_amount,
+      rent_car_pre_authorization_amount,
+      return_rent_car_pre_authorization_amount,
+      violation_pre_authorization_amount,
+      violation_auth_refund_amount,
+      violation_payroll,
+      rental_auth_status,
+      violation_auth_status,
+      settle_status,
+      settle_user_id,
+      settle_user_name,
+      settle_time,
+      `status`,
+      create_time,
+      create_by,
+      update_time,
+      update_by,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{memberId,jdbcType=INTEGER},
+      #{orderId,jdbcType=INTEGER},
+      #{realRentDays,jdbcType=DECIMAL},
+      #{rentTotal,jdbcType=DECIMAL},
+      #{integratedServiceFee,jdbcType=DECIMAL},
+      #{overdueDays,jdbcType=DECIMAL},
+      #{overdueFee,jdbcType=DECIMAL},
+      #{exceedMileageFee,jdbcType=DECIMAL},
+      #{fuelFee,jdbcType=DECIMAL},
+      #{otherFee,jdbcType=DECIMAL},
+      #{shouldChargeTotal,jdbcType=DECIMAL},
+      #{actualAmount,jdbcType=DECIMAL},
+      #{rentCarPreAuthorizationAmount,jdbcType=DECIMAL},
+      #{returnRentCarPreAuthorizationAmount,jdbcType=DECIMAL},
+      #{violationPreAuthorizationAmount,jdbcType=DECIMAL},
+      #{violationAuthRefundAmount,jdbcType=DECIMAL},
+      #{violationPayroll,jdbcType=DECIMAL},
+      #{rentalAuthStatus,jdbcType=TINYINT},
+      #{violationAuthStatus,jdbcType=TINYINT},
+      #{settleStatus,jdbcType=TINYINT},
+      #{settleUserId,jdbcType=INTEGER},
+      #{settleUserName,jdbcType=VARCHAR},
+      #{settleTime,jdbcType=TIMESTAMP},
+      #{status,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.rental.RentalSettlement" >
+    update t_rental_settlement
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="realRentDays != null" >
+        real_rent_days = #{realRentDays,jdbcType=DECIMAL},
+      </if>
+      <if test="rentTotal != null" >
+        rent_total = #{rentTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="integratedServiceFee != null" >
+        integrated_service_fee = #{integratedServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueDays != null" >
+        overdue_days = #{overdueDays,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueFee != null" >
+        overdue_fee = #{overdueFee,jdbcType=DECIMAL},
+      </if>
+      <if test="exceedMileageFee != null" >
+        exceed_mileage_fee = #{exceedMileageFee,jdbcType=DECIMAL},
+      </if>
+      <if test="fuelFee != null" >
+        fuel_fee = #{fuelFee,jdbcType=DECIMAL},
+      </if>
+      <if test="otherFee != null" >
+        other_fee = #{otherFee,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldChargeTotal != null" >
+        should_charge_total = #{shouldChargeTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="actualAmount != null" >
+        actual_amount = #{actualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rentCarPreAuthorizationAmount != null" >
+        rent_car_pre_authorization_amount = #{rentCarPreAuthorizationAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="returnRentCarPreAuthorizationAmount != null" >
+        return_rent_car_pre_authorization_amount = #{returnRentCarPreAuthorizationAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="violationPreAuthorizationAmount != null" >
+        violation_pre_authorization_amount = #{violationPreAuthorizationAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="violationAuthRefundAmount != null" >
+        violation_auth_refund_amount = #{violationAuthRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="violationPayroll != null" >
+        violation_payroll = #{violationPayroll,jdbcType=DECIMAL},
+      </if>
+      <if test="rentalAuthStatus != null" >
+        rental_auth_status = #{rentalAuthStatus,jdbcType=TINYINT},
+      </if>
+      <if test="violationAuthStatus != null" >
+        violation_auth_status = #{violationAuthStatus,jdbcType=TINYINT},
+      </if>
+      <if test="settleStatus != null" >
+        settle_status = #{settleStatus,jdbcType=TINYINT},
+      </if>
+      <if test="settleUserId != null" >
+        settle_user_id = #{settleUserId,jdbcType=INTEGER},
+      </if>
+      <if test="settleUserName != null" >
+        settle_user_name = #{settleUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="settleTime != null" >
+        settle_time = #{settleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.rental.RentalSettlement" >
+    update t_rental_settlement
+    set member_id = #{memberId,jdbcType=INTEGER},
+    order_id = #{orderId,jdbcType=INTEGER},
+    real_rent_days = #{realRentDays,jdbcType=DECIMAL},
+    rent_total = #{rentTotal,jdbcType=DECIMAL},
+    integrated_service_fee = #{integratedServiceFee,jdbcType=DECIMAL},
+    overdue_days = #{overdueDays,jdbcType=DECIMAL},
+    overdue_fee = #{overdueFee,jdbcType=DECIMAL},
+    exceed_mileage_fee = #{exceedMileageFee,jdbcType=DECIMAL},
+    fuel_fee = #{fuelFee,jdbcType=DECIMAL},
+    other_fee = #{otherFee,jdbcType=DECIMAL},
+    should_charge_total = #{shouldChargeTotal,jdbcType=DECIMAL},
+    actual_amount = #{actualAmount,jdbcType=DECIMAL},
+    rent_car_pre_authorization_amount = #{rentCarPreAuthorizationAmount,jdbcType=DECIMAL},
+    return_rent_car_pre_authorization_amount = #{returnRentCarPreAuthorizationAmount,jdbcType=DECIMAL},
+    violation_pre_authorization_amount = #{violationPreAuthorizationAmount,jdbcType=DECIMAL},
+    violation_auth_refund_amount = #{violationAuthRefundAmount,jdbcType=DECIMAL},
+    violation_payroll = #{violationPayroll,jdbcType=DECIMAL},
+    rental_auth_status = #{rentalAuthStatus,jdbcType=TINYINT},
+    violation_auth_status = #{violationAuthStatus,jdbcType=TINYINT},
+    settle_status = #{settleStatus,jdbcType=TINYINT},
+    settle_user_id = #{settleUserId,jdbcType=INTEGER},
+    settle_user_name = #{settleUserName,jdbcType=VARCHAR},
+    settle_time = #{settleTime,jdbcType=TIMESTAMP},
+    `status` = #{status,jdbcType=TINYINT},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    create_by = #{createBy,jdbcType=INTEGER},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getRentalSettlement" resultType="com.ydc.commom.view.vo.cgj.rental.RentalSettlementVO">
+    SELECT
+    tro.id orderId,
+    tro.car_number carNumber,
+    tro.mobile_phone mobilePhone,
+    tro.name,
+    IFNULL(trd.payable_amount,'0') rentalAuthPayableAmount,
+    DATE_FORMAT(tro.appointment_repay_car_time,'%Y-%m-%d %H:%i:%s') appointmentRepayCarTime,
+    DATE_FORMAT(tro.come_car_time,'%Y-%m-%d %H:%i:%s') comeCarTime,
+    DATE_FORMAT(tro.repay_car_time,'%Y-%m-%d %H:%i:%s') repayCarTime,
+    IF((tro.repay_car_oil_amount - IFNULL(tro.come_warehouse_oil_amount,0))<![CDATA[<=]]>0,0,tro.repay_car_oil_amount - IFNULL(tro.come_warehouse_oil_amount,0)) comeWarehouseOilAmount
+    FROM t_rental_order tro
+    LEFT JOIN t_rental_deposit trd ON trd.order_id = tro.id AND trd.deposit_type = 1
+    where tro.id = #{orderId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getRentalSettlementByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_rental_settlement
+    where order_id = #{orderId,jdbcType=INTEGER} AND status = 1;
+  </select>
+
+
+  <select id="getRentalSettlement2VOByOrderId" resultType="com.ydc.commom.view.vo.cgj.rental.RentalSettlement2VO"  >
+    select
+    trs.real_rent_days realRentDays,
+    trs.rent_total rentTotal,
+    trs.integrated_service_fee integratedServiceFee,
+    trs.overdue_days overdueDays,
+    trs.overdue_fee overdueFee,
+    trs.exceed_mileage_fee exceedMileageFee,
+    trs.fuel_fee fuelFee,
+    trs.other_fee otherFee,
+    trs.should_charge_total shouldChargeTotal,
+    trs.violation_pre_authorization_amount violationPreAuthorizationAmount,
+    trs.rent_car_pre_authorization_amount rentCarPreAuthorizationAmount,
+    trs.return_rent_car_pre_authorization_amount returnRentCarPreAuthorizationAmount,
+    DATE_FORMAT(trs.settle_time,'%Y-%m-%d %H:%i:%s') settleTime,
+    (IFNULL(trs.should_charge_total,0) - IFNULL(trs.actual_amount,0)) payableAmount,
+    <!--IF(tro.status = 4 ,-->
+      <!--(CASE tro.flow_one_status WHEN 0 THEN '已还车-待结算' WHEN 1 THEN '已还车-部分结算' WHEN 100 THEN '已还车-已结算' ELSE '' END)-->
+    <!--,'已还车-待结算') rentalOrderStatusName,-->
+    tro.status,
+    tro.flow_one_status flowOneStatus,
+    trs.rental_auth_status rentalAuthStatus,
+    trd.actual_amount deductRentCarPreAuthorizationAmount
+    from t_rental_settlement trs
+    LEFT JOIN t_rental_order tro ON tro.id = trs.order_id
+    LEFT JOIN t_rental_deposit trd ON trd.order_id = trs.order_id AND trd.deposit_type = 1
+    where trs.order_id = #{orderId,jdbcType=INTEGER} AND trs.status = 1;
+  </select>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_rental_settlement
+    where order_id = #{orderId,jdbcType=INTEGER} and status = 1
+  </select>
+</mapper>

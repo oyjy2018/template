@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.user.MemberApplicationDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.MemberApplication" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+    <result column="member_login_name" property="memberLoginName" jdbcType="VARCHAR" />
+    <result column="member_phone" property="memberPhone" jdbcType="VARCHAR" />
+    <result column="member_password" property="memberPassword" jdbcType="VARCHAR" />
+    <result column="member_status" property="memberStatus" jdbcType="TINYINT" />
+    <result column="application" property="application" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, member_name, member_login_name, member_phone, member_password, member_status, `application`,
+    `status`, create_time, create_by, update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_member_application
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_member_application
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.MemberApplication" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_member_application (member_id, member_name, member_login_name, member_phone,
+      member_password, member_status, `application`, 
+      `status`, create_time, create_by, 
+      update_time, update_by)
+    values (#{memberId,jdbcType=INTEGER}, #{memberName,jdbcType=VARCHAR}, #{memberLoginName,jdbcType=VARCHAR}, #{memberPhone,jdbcType=VARCHAR},
+      #{memberPassword,jdbcType=VARCHAR}, #{memberStatus,jdbcType=TINYINT}, #{application,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.MemberApplication" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_member_application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      member_id,
+      member_name,
+      member_login_name,
+      member_phone,
+      member_password,
+      member_status,
+      `application`,
+      `status`,
+      create_time,
+      create_by,
+      update_time,
+      update_by,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{memberId,jdbcType=INTEGER},
+      #{memberName,jdbcType=VARCHAR},
+      #{memberLoginName,jdbcType=VARCHAR},
+      #{memberPhone,jdbcType=VARCHAR},
+      #{memberPassword,jdbcType=VARCHAR},
+      #{memberStatus,jdbcType=TINYINT},
+      #{application,jdbcType=INTEGER},
+      #{status,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.MemberApplication" >
+    update t_member_application
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberLoginName != null" >
+        member_login_name = #{memberLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPhone != null" >
+        member_phone = #{memberPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPassword != null" >
+        member_password = #{memberPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="memberStatus != null" >
+        member_status = #{memberStatus,jdbcType=TINYINT},
+      </if>
+      <if test="application != null" >
+        `application` = #{application,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.MemberApplication" >
+    update t_member_application
+    set member_id = #{memberId,jdbcType=INTEGER},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      member_login_name = #{memberLoginName,jdbcType=VARCHAR},
+      member_phone = #{memberPhone,jdbcType=VARCHAR},
+      member_password = #{memberPassword,jdbcType=VARCHAR},
+      member_status = #{memberStatus,jdbcType=TINYINT},
+      `application` = #{application,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getMemberApplication" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List"/>
+    FROM
+      t_member_application
+    <where>
+      <if test="mobilePhone != null and mobilePhone != ''">
+        member_phone = #{mobilePhone} AND
+      </if>
+      <if test="loginName != null and loginName != ''">
+        member_login_name = #{loginName} AND
+      </if>
+      application = #{application} AND
+      status = 1
+      LIMIT 1
+    </where>
+  </select>
+
+  <update id="updatePasswordByMobilePhone">
+    UPDATE
+      t_member_application
+    SET
+      member_password = #{password}
+    WHERE
+      member_id = #{memberId} AND
+      member_phone = #{mobilePhone} AND
+      `status` = 1
+  </update>
+
+  <update id="updateStatusByMemberId">
+    UPDATE
+      t_member_application
+    SET
+      member_status = #{memberDTO.status}
+    WHERE
+      member_id = #{memberDTO.memberId} AND
+      application = #{memberDTO.application} AND
+      `status` = 1
+  </update>
+
+  <select id="getMemberApplicationList" resultType="java.util.Map">
+    SELECT
+      tm.id memberId,
+      IFNULL(tm.mobile_phone,'') mobilePhone,
+      <!--IFNULL(CONCAT(LEFT(tm.mobile_phone,3), '****' ,RIGHT(tm.mobile_phone,4)),'') mobilePhone,-->
+      <!--IFNULL(CONCAT(LEFT(tm.id_card,3), '****' ,RIGHT(tm.id_card,4)),'') idCard,-->
+      IFNULL(tm.id_card,'') idCard,
+      tm.real_name realName,
+      DATE_FORMAT(tma.create_time,'%Y-%m-%d %H:%i:%s') createTime,
+      (case when tm.whether_real_name=1 then '已认证'  when tm.whether_real_name=0 then '未认证'
+        when tm.whether_real_name=2 then '认证中' end) identityCertificate,
+      (case when tm.drivers_license_certificate=1 then '是' else '否'end) driversLicenseCertificate,
+      tma.member_status memberStatus
+    FROM
+      t_member_application tma
+      LEFT JOIN t_member tm ON tma.member_id = tm.id
+    WHERE
+      tma.application = #{memberDTO.application} AND
+      <if test="memberDTO.mobilePhone != null and memberDTO.mobilePhone != ''">
+        tm.mobile_phone = #{memberDTO.mobilePhone} AND
+      </if>
+      <if test="memberDTO.realName != null and memberDTO.realName != ''">
+        tm.real_name = #{memberDTO.realName} AND
+      </if>
+      <if test="memberDTO.identityCertificate != null and memberDTO.identityCertificate != -1">
+        tm.whether_real_name = #{memberDTO.identityCertificate} AND
+      </if>
+      <if test="memberDTO.driversLicenseCertificate != null and memberDTO.driversLicenseCertificate != -1">
+        tm.drivers_license_certificate = #{memberDTO.driversLicenseCertificate} AND
+      </if>
+      <if test="memberDTO.status != null and memberDTO.status != -1">
+        tma.member_status = #{memberDTO.status} AND
+      </if>
+      <if test="memberDTO.createTimeStart != null and memberDTO.createTimeStart != '' and memberDTO.createTimeEnd != null and memberDTO.createTimeEnd != ''">
+        tma.create_time BETWEEN #{memberDTO.createTimeStart} AND #{memberDTO.createTimeEnd} AND
+      </if>
+      tma.`status` = 1
+    order by tma.create_time DESC
+  </select>
+
+  <insert id="insertMemberApplicationBatch" parameterType="com.ydc.model.cgj.MemberApplication">
+    insert into t_member_application (member_id, member_name, member_login_name, member_phone,
+    member_password, member_status, `application`,
+    `status`, create_time, create_by,
+    update_time, update_by)
+    values
+    <foreach collection="list" item="item" separator=",">
+    (#{item.memberId,jdbcType=INTEGER}, #{item.memberName,jdbcType=VARCHAR}, #{item.memberLoginName,jdbcType=VARCHAR}, #{item.memberPhone,jdbcType=VARCHAR},
+    #{item.memberPassword,jdbcType=VARCHAR}, #{item.memberStatus,jdbcType=TINYINT}, #{item.application,jdbcType=INTEGER},
+    #{item.status,jdbcType=TINYINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=INTEGER},
+    #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updateBy,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>

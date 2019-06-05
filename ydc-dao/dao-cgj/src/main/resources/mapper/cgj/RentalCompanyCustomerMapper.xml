@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.ydc.dao.cgj.rental.RentalCompanyCustomerDao">
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.rental.RentalCompanyCustomer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="registered_phone" jdbcType="VARCHAR" property="registeredPhone" />
+    <result column="registered_company_name" jdbcType="VARCHAR" property="registeredCompanyName" />
+    <result column="authentication_date" jdbcType="TIMESTAMP" property="authenticationDate" />
+    <result column="license" jdbcType="VARCHAR" property="license" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="registered_company_address" jdbcType="VARCHAR" property="registeredCompanyAddress" />
+    <result column="company_abbreviation" jdbcType="VARCHAR" property="companyAbbreviation" />
+    <result column="credit_code" jdbcType="VARCHAR" property="creditCode" />
+    <result column="legal_person" jdbcType="VARCHAR" property="legalPerson" />
+    <result column="id_card_front_image" jdbcType="VARCHAR" property="idCardFrontImage" />
+    <result column="id_card_back_image" jdbcType="VARCHAR" property="idCardBackImage" />
+    <result column="id_card_no" jdbcType="VARCHAR" property="idCardNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="car_num" jdbcType="INTEGER" property="carNum" />
+    <result column="company_province" jdbcType="VARCHAR" property="companyProvince" />
+    <result column="company_city" jdbcType="VARCHAR" property="companyCity" />
+    <result column="company_area" jdbcType="VARCHAR" property="companyArea" />
+    <result column="company_address" jdbcType="VARCHAR" property="companyAddress" />
+    <result column="authentication_status" jdbcType="TINYINT" property="authenticationStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="delete_status" jdbcType="TINYINT" property="deleteStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="INTEGER" property="createBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_by" jdbcType="INTEGER" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, registered_phone, registered_company_name, authentication_date, license, company_name, 
+    registered_company_address, company_abbreviation, credit_code, legal_person, id_card_front_image, 
+    id_card_back_image, id_card_no, `name`, phone, car_num, company_province, company_city, 
+    company_area, company_address, authentication_status,remark, delete_status, create_time,
+    create_by, update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_rental_company_customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_rental_company_customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.rental.RentalCompanyCustomer">
+    insert into t_rental_company_customer (id, registered_phone, registered_company_name, 
+      authentication_date, license, company_name, 
+      registered_company_address, company_abbreviation, 
+      credit_code, legal_person, id_card_front_image, 
+      id_card_back_image, id_card_no, `name`, 
+      phone, car_num, company_province, 
+      company_city, company_area, company_address, 
+      authentication_status,remark, delete_status, create_time,
+      create_by, update_time, update_by
+      )
+    values (#{id,jdbcType=INTEGER}, #{registeredPhone,jdbcType=VARCHAR}, #{registeredCompanyName,jdbcType=VARCHAR}, 
+      #{authenticationDate,jdbcType=TIMESTAMP}, #{license,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{registeredCompanyAddress,jdbcType=VARCHAR}, #{companyAbbreviation,jdbcType=VARCHAR}, 
+      #{creditCode,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR}, #{idCardFrontImage,jdbcType=VARCHAR}, 
+      #{idCardBackImage,jdbcType=VARCHAR}, #{idCardNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{carNum,jdbcType=INTEGER}, #{companyProvince,jdbcType=VARCHAR}, 
+      #{companyCity,jdbcType=VARCHAR}, #{companyArea,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR}, 
+      #{authenticationStatus,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR},#{deleteStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.rental.RentalCompanyCustomer">
+    insert into t_rental_company_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="registeredPhone != null">
+        registered_phone,
+      </if>
+      <if test="registeredCompanyName != null">
+        registered_company_name,
+      </if>
+      <if test="authenticationDate != null">
+        authentication_date,
+      </if>
+      <if test="license != null">
+        license,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="registeredCompanyAddress != null">
+        registered_company_address,
+      </if>
+      <if test="companyAbbreviation != null">
+        company_abbreviation,
+      </if>
+      <if test="creditCode != null">
+        credit_code,
+      </if>
+      <if test="legalPerson != null">
+        legal_person,
+      </if>
+      <if test="idCardFrontImage != null">
+        id_card_front_image,
+      </if>
+      <if test="idCardBackImage != null">
+        id_card_back_image,
+      </if>
+      <if test="idCardNo != null">
+        id_card_no,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="carNum != null">
+        car_num,
+      </if>
+      <if test="companyProvince != null">
+        company_province,
+      </if>
+      <if test="companyCity != null">
+        company_city,
+      </if>
+      <if test="companyArea != null">
+        company_area,
+      </if>
+      <if test="companyAddress != null">
+        company_address,
+      </if>
+      <if test="authenticationStatus != null">
+        authentication_status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="deleteStatus != null">
+        delete_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="registeredPhone != null">
+        #{registeredPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCompanyName != null">
+        #{registeredCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationDate != null">
+        #{authenticationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="license != null">
+        #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCompanyAddress != null">
+        #{registeredCompanyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAbbreviation != null">
+        #{companyAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCode != null">
+        #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null">
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardFrontImage != null">
+        #{idCardFrontImage,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardBackImage != null">
+        #{idCardBackImage,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNo != null">
+        #{idCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="carNum != null">
+        #{carNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyProvince != null">
+        #{companyProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCity != null">
+        #{companyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="companyArea != null">
+        #{companyArea,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationStatus != null">
+        #{authenticationStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.rental.RentalCompanyCustomer">
+    update t_rental_company_customer
+    <set>
+      <if test="registeredPhone != null">
+        registered_phone = #{registeredPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCompanyName != null">
+        registered_company_name = #{registeredCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="personalPortrait != null">
+        personal_portrait = #{personalPortrait,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationDate != null">
+        authentication_date = #{authenticationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="license != null">
+        license = #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCompanyAddress != null">
+        registered_company_address = #{registeredCompanyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAbbreviation != null">
+        company_abbreviation = #{companyAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCode != null">
+        credit_code = #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null">
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardFrontImage != null">
+        id_card_front_image = #{idCardFrontImage,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardBackImage != null">
+        id_card_back_image = #{idCardBackImage,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNo != null">
+        id_card_no = #{idCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="carNum != null">
+        car_num = #{carNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyProvince != null">
+        company_province = #{companyProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCity != null">
+        company_city = #{companyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="companyArea != null">
+        company_area = #{companyArea,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationStatus != null">
+        authentication_status = #{authenticationStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        delete_status = #{deleteStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.rental.RentalCompanyCustomer">
+    update t_rental_company_customer
+    set registered_phone = #{registeredPhone,jdbcType=VARCHAR},
+      registered_company_name = #{registeredCompanyName,jdbcType=VARCHAR},
+      authentication_date = #{authenticationDate,jdbcType=TIMESTAMP},
+      license = #{license,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      registered_company_address = #{registeredCompanyAddress,jdbcType=VARCHAR},
+      company_abbreviation = #{companyAbbreviation,jdbcType=VARCHAR},
+      credit_code = #{creditCode,jdbcType=VARCHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      id_card_front_image = #{idCardFrontImage,jdbcType=VARCHAR},
+      id_card_back_image = #{idCardBackImage,jdbcType=VARCHAR},
+      id_card_no = #{idCardNo,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      car_num = #{carNum,jdbcType=INTEGER},
+      company_province = #{companyProvince,jdbcType=VARCHAR},
+      company_city = #{companyCity,jdbcType=VARCHAR},
+      company_area = #{companyArea,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      authentication_status = #{authenticationStatus,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      delete_status = #{deleteStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--获取企业客户列表-->
+  <select id="getCompanyCustomerList" parameterType="com.ydc.commom.view.dto.cgj.CompanyCustomerDTO"
+          resultMap="CompanyCustomerMap">
+    SELECT
+      id,
+      registered_company_name,
+      IFNULL(CONCAT(LEFT(registered_phone,3), '****' ,RIGHT(registered_phone,4)),'') registered_phone,
+      name,
+      IFNULL(CONCAT(LEFT(phone,3), '****' ,RIGHT(phone,4)),'') phone,
+      authentication_status,
+      DATE_FORMAT(authentication_date, '%Y-%m-%d %H:%i:%s') authentication_date,
+      car_num,
+      DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') create_time,
+      delete_status
+    FROM
+      t_rental_company_customer
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="registeredPhone != null and registeredPhone != ''">
+        AND registered_phone = #{registeredPhone}
+      </if>
+      <if test="authenticationStatus != null ">
+        AND authentication_status = #{authenticationStatus}
+      </if>
+      <if test="registeredCompanyName != null and registeredCompanyName != ''">
+        AND registered_company_name like CONCAT('%',#{registeredCompanyName},'%' )
+      </if>
+      <if test="deleteStatus != null ">
+        AND delete_status = #{deleteStatus}
+      </if>
+      <if test="authenticationStartDate != null and authenticationStartDate != '' and authenticationEndDate != null and authenticationEndDate != ''">
+        AND authentication_date BETWEEN #{authenticationStartDate} AND #{authenticationEndDate}
+      </if>
+      <if test="createStartTime != null and createStartTime != '' and createEndTime != null and createEndTime != ''">
+        AND create_time BETWEEN #{createStartTime} AND #{createEndTime}
+      </if>
+    </trim>
+    ORDER BY create_time DESC
+  </select>
+
+  <!--获取企业客户详情-->
+  <select id="getCompanyCustomerById" parameterType="int" resultMap="CompanyCustomerMap">
+    select trcc.id, trcc.registered_phone,trcc.registered_company_name,trcc.personal_portrait,
+      DATE_FORMAT(trcc.authentication_date, '%Y-%m-%d %H:%i:%s') authentication_date, trcc.license,
+      trcc.company_name, trcc.registered_company_address, trcc.company_abbreviation, credit_code, trcc.legal_person,
+      trcc.id_card_front_image, trcc.id_card_back_image,
+    trcc.id_card_no viewIdCardNo,
+    IFNULL(CONCAT(LEFT(trcc.id_card_no,6), '****' ,RIGHT(trcc.id_card_no,4)),'') as id_card_no,
+      trcc.name,trcc.phone, trcc.car_num, trcc.company_province,
+      trcc.company_city, trcc.company_area, trcc.company_address, trcc.authentication_status, trcc.delete_status,trcc.remark,
+      DATE_FORMAT(trcc.create_time, '%Y-%m-%d %H:%i:%s') create_time,trcc.create_by,
+      DATE_FORMAT(trcc.update_time, '%Y-%m-%d %H:%i:%s') update_time, trcc.update_by,trcl.id as account_id,trcl.phone as account_phone,
+      (select count(1) from t_rental_car where company_id = trcc.id and status != 5) as car,
+      (select count(1) from t_rental_store where their_enterprise_id = trcc.id and status = 1) as  store
+    from t_rental_company_customer trcc
+    left join t_rental_company_login_account trcl on trcl.company_customer_id = trcc.id and trcl.delete_status = 1
+    where trcc.id = #{id}
+  </select>
+
+  <resultMap id="CompanyCustomerMap" type="com.ydc.commom.view.vo.cgj.rental.RentalCompanyCustomerVO">
+    <id column="id"  property="id" />
+    <result column="registered_phone" property="registeredPhone" />
+    <result column="registered_company_name" property="registeredCompanyName" />
+    <result column="personal_portrait" property="personalPortrait" />
+    <result column="authentication_date" property="authenticationDate" />
+    <result column="license" property="license" />
+    <result column="company_name" property="companyName" />
+    <result column="registered_company_address" property="registeredCompanyAddress" />
+    <result column="company_abbreviation" property="companyAbbreviation" />
+    <result column="credit_code" property="creditCode" />
+    <result column="legal_person" property="legalPerson" />
+    <result column="id_card_front_image" property="idCardFrontImage" />
+    <result column="id_card_back_image" property="idCardBackImage" />
+    <result column="id_card_no" property="idCardNo" />
+    <result column="viewIdCardNo" property="viewIdCardNo" />
+    <result column="name" property="name" />
+    <result column="phone" property="phone" />
+    <result column="car_num" property="carNum" />
+    <result column="company_province" property="companyProvince" />
+    <result column="company_city" property="companyCity" />
+    <result column="company_area" property="companyArea" />
+    <result column="company_address" property="companyAddress" />
+    <result column="authentication_status" property="authenticationStatus" />
+    <result column="remark" property="remark" />
+    <result column="delete_status" property="deleteStatus" />
+    <result column="create_time" property="createTime" />
+    <result column="create_by" property="createBy" />
+    <result column="update_time" property="updateTime" />
+    <result column="update_by" property="updateBy" />
+    <result column="car" property="car" />
+    <result column="store" property="store" />
+    <collection property="accountList" ofType="com.ydc.model.cgj.rental.RentalCompanyLoginAccount">
+      <id column="account_id" property="id" />
+      <result column="company_customer_id" property="companyCustomerId" />
+      <result column="account_phone" property="phone" />
+    </collection>
+  </resultMap>
+
+  <!--通过条件获取企业待审核列表-->
+  <select id="getCompanyAuditedList" parameterType="com.ydc.commom.view.dto.cgj.CompanyCustomerDTO"
+          resultMap="CompanyCustomerMap">
+    SELECT
+    id,
+    registered_phone,
+    registered_company_name,
+    DATE_FORMAT(authentication_date, '%Y-%m-%d %H:%i:%s') authentication_date,
+    car_num,
+    DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') create_time
+    FROM
+    t_rental_company_customer
+    <where>
+      <if test="registeredPhone != null and registeredPhone != ''">
+        registered_phone = #{registeredPhone} AND
+      </if>
+      <if test="registeredCompanyName != null and registeredCompanyName != ''">
+        registered_company_name like CONCAT('%',#{registeredCompanyName},'%' ) AND
+      </if>
+      <if test="authenticationStartDate != null and authenticationStartDate != '' and authenticationEndDate != null and authenticationEndDate != ''">
+        authentication_date BETWEEN #{authenticationStartDate} AND #{authenticationEndDate} AND
+      </if>
+      authentication_status = 1
+    </where>
+    ORDER BY authentication_date DESC
+  </select>
+
+  <!--通过手机号码查询企业客户信息-->
+  <select id="getCompanyCustomerByMobilePhone" parameterType="string" resultMap="CompanyCustomerMap">
+    select trcc.id, trcc.registered_phone,trcc.registered_company_name,
+    DATE_FORMAT(trcc.authentication_date, '%Y-%m-%d %H:%i:%s') authentication_date, trcc.license,
+    trcc.company_name, trcc.registered_company_address, trcc.company_abbreviation, credit_code, trcc.legal_person,
+    trcc.id_card_front_image, trcc.id_card_back_image,
+    IFNULL(CONCAT(LEFT(trcc.id_card_no,6), '****' ,RIGHT(trcc.id_card_no,4)),'') id_card_no,
+    trcc.name,trcc.phone, trcc.car_num, trcc.company_province,
+    trcc.company_city, trcc.company_area, trcc.company_address, trcc.authentication_status, trcc.delete_status,
+    DATE_FORMAT(trcc.create_time, '%Y-%m-%d %H:%i:%s') create_time,trcc.create_by,
+    DATE_FORMAT(trcc.update_time, '%Y-%m-%d %H:%i:%s') update_time, trcc.update_by,trcl.id as account_id,trcl.phone as account_phone
+    from t_rental_company_customer trcc
+    left join t_rental_company_login_account trcl on trcl.company_customer_id = trcc.id and trcl.delete_status = 1
+    where trcc.registered_phone = #{phone} or trcl.phone = #{phone}
+  </select>
+
+  <!--通过企业公司名查询对应数量-->
+  <select id="getCompanyCustomerByCompanyName" parameterType="string" resultType="int">
+    select count(*) from t_rental_company_customer where registered_company_name = #{registeredCompanyName}
+  </select>
+
+  <!--获取個人中心-->
+  <select id="personalCenter" parameterType="int" resultMap="CompanyCustomerMap">
+    select id, authentication_status,
+    IFNULL(CONCAT(LEFT(registered_phone,3), '****' ,RIGHT(registered_phone,4)),'') registered_phone
+    from t_rental_company_customer
+    where id = #{id}
+  </select>
+</mapper>

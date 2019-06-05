@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.user.UserRoleFunctionDao" >
+
+  <select id="getFunInfoById" resultType="string">
+    SELECT fun_code FROM t_cfg_function WHERE id IN ( SELECT fun_id FROM t_cfg_role_fun WHERE role_id = #{roleId} ) AND status = 1;
+  </select>
+
+  <!--查询所有功能-->
+  <select id="getAllFunctions" resultType="java.util.HashMap">
+    select
+    id,
+    fun_name funName,
+    fun_code funCode,
+    fun_short_name funShortName,
+    menu_code menuCode,
+    service_identifying serviceIdentifying,
+    status
+    from t_cfg_function
+    WHERE status = '1';
+  </select>
+
+  <!--查询所有角色-->
+  <select id="getAllRoles" resultType="java.util.HashMap">
+    select
+    id,
+    role_name roleName,
+    view_type viewType,
+    service_identifying serviceIdentifying,
+    status
+    from t_cfg_role
+    where status = '1';
+  </select>
+
+  <select id="getAllRoleFun" resultType="java.util.HashMap">
+    select
+    role_id roleId,
+    fun_id funId
+    from t_cfg_role_fun where role_id IS NOT NULL AND role_id != '' AND fun_id IS NOT NULL AND fun_id != '';
+  </select>
+
+  <select id="getVersion" resultType="java.lang.Double">
+    SELECT MAX(version) FROM t_cfg_role_fun where role_id IS NOT NULL AND role_id != '' AND fun_id IS NOT NULL AND fun_id != '';
+  </select>
+
+  <select id="getAllMenus" resultType="java.util.Map">
+    SELECT
+      menu_code menuCode,
+      parent_menu_code parentMenuCode,
+      substring_index(menu_name,':',1) menuName
+    FROM
+      t_cfg_menu
+    WHERE
+      menu_code NOT LIKE 'rentalB%'
+      AND `status` = 1
+      AND parent_menu_code IS NOT NULL AND parent_menu_code <![CDATA[ <> ]]> '';
+  </select>
+
+  <select id="getAllFunMenusList" resultType="com.ydc.model.cgj.Menus">
+      SELECT
+        id,
+        menu_code menuCode,
+        fun_code funCode,
+        service_identifying serviceIdentifying,
+        fun_name funName
+      FROM t_cfg_function
+      WHERE fun_code LIKE '%query' AND `status` = 1 AND menu_code IN
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+
+  <select id="getRoleFunMenusList" resultType="java.util.Map">
+    select
+    role_id roleId,
+    fun_id funId
+    from t_cfg_role_fun
+    where role_id IS NOT NULL
+    AND role_id != ''
+    AND fun_id IS NOT NULL
+    AND fun_id != ''
+    AND fun_id IN (SELECT id FROM t_cfg_function WHERE fun_code LIKE '%query' AND fun_code NOT LIKE 'rentalB%' AND `status` = 1);
+  </select>
+</mapper>

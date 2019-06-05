@@ -1,0 +1,21 @@
+server:
+  port: 20000
+spring:
+  application:
+    name: ydc-eureka
+  profiles:
+      active: pro
+  security:
+    user:
+      name: ydc100101
+      password: ydc100101
+eureka:
+  instance:
+    prefer-ip-address: true
+  server:
+        enable-self-preservation: false      # 关闭自我保护模式（默认为打开） 内网通信可以关闭自我保护模式
+  client:
+      register-with-eureka: false
+      fetch-registry: false
+      service-url:
+        defaultZone: http://ydc100101:ydc100101@47.106.253.134:20000/eureka/

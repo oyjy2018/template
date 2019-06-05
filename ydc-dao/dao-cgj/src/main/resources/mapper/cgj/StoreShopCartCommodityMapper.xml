@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.store.StoreShopCartCommodityDao" >
+    <resultMap id="BaseResultMap" type="com.ydc.model.cgj.StoreShopCartCommodity" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="member_id" property="memberId" jdbcType="INTEGER" />
+        <result column="commodity_id" property="commodityId" jdbcType="INTEGER" />
+        <result column="commodity_model_id" property="commodityModelId" jdbcType="INTEGER" />
+        <result column="supplier_code" property="supplierCode" jdbcType="VARCHAR" />
+        <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+        <result column="commodity_number" property="commodityNumber" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_by" property="createBy" jdbcType="INTEGER" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+        <result column="delete_status" property="deleteStatus" jdbcType="INTEGER" />
+
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, member_id, commodity_id, commodity_model_id, supplier_code, supplier_name,
+        commodity_number, create_time, create_by, update_time, update_by,delete_status
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from t_store_shop_cart_commodity
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_store_shop_cart_commodity
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ydc.model.cgj.StoreShopCartCommodity" useGeneratedKeys="true" keyProperty="id" >
+        insert into t_store_shop_cart_commodity ( member_id, commodity_id,
+        commodity_model_id, supplier_code, supplier_name,
+        commodity_number, create_time, create_by,
+        update_time, update_by,delete_status)
+        values ( #{memberId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER},
+        #{commodityModelId,jdbcType=INTEGER}, #{supplierCode,jdbcType=VARCHAR}, #{supplierName,jdbcType=VARCHAR},
+        #{commodityNumber,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER},
+        #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER},1)
+    </insert>
+    <insert id="insertSelective" parameterType="com.ydc.model.cgj.StoreShopCartCommodity" useGeneratedKeys="true" keyProperty="id" >
+        insert into t_store_shop_cart_commodity
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            member_id,
+            commodity_id,
+            commodity_model_id,
+            supplier_code,
+            supplier_name,
+            commodity_number,
+            create_time,
+            create_by,
+            update_time,
+            update_by,
+            delete_status,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #{memberId,jdbcType=INTEGER},
+            #{commodityId,jdbcType=INTEGER},
+            #{commodityModelId,jdbcType=INTEGER},
+            #{supplierCode,jdbcType=VARCHAR},
+            #{supplierName,jdbcType=VARCHAR},
+            #{commodityNumber,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{createBy,jdbcType=INTEGER},
+            #{updateTime,jdbcType=TIMESTAMP},
+            #{updateBy,jdbcType=INTEGER},
+            1,
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.StoreShopCartCommodity" >
+        update t_store_shop_cart_commodity
+        <set >
+            <if test="memberId != null" >
+                member_id = #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityId != null" >
+                commodity_id = #{commodityId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityModelId != null" >
+                commodity_model_id = #{commodityModelId,jdbcType=INTEGER},
+            </if>
+            <if test="supplierCode != null" >
+                supplier_code = #{supplierCode,jdbcType=VARCHAR},
+            </if>
+            <if test="supplierName != null" >
+                supplier_name = #{supplierName,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityNumber != null" >
+                commodity_number = #{commodityNumber,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null" >
+                update_by = #{updateBy,jdbcType=INTEGER},
+            </if>
+            <if test="deleteStatus != null" >
+                delete_status = #{deleteStatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.StoreShopCartCommodity" >
+        update t_store_shop_cart_commodity
+        set
+        member_id = #{memberId,jdbcType=INTEGER},
+        commodity_id = #{commodityId,jdbcType=INTEGER},
+        commodity_model_id = #{commodityModelId,jdbcType=INTEGER},
+        supplier_code = #{supplierCode,jdbcType=VARCHAR},
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+        commodity_number = #{commodityNumber,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_by = #{createBy,jdbcType=INTEGER},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_by = #{updateBy,jdbcType=INTEGER},
+        delete_status = #{deleteStatus,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="selectStoreShopCart" resultMap="BaseResultMap" parameterType="java.util.Map" >
+        select
+        <include refid="Base_Column_List" />
+        from t_store_shop_cart_commodity
+        <where>
+            <if test="id != null" >
+                id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="memberId != null" >
+               and   member_id = #{memberId,jdbcType=INTEGER}
+            </if>
+            <if test="commodityId != null" >
+                and commodity_id = #{commodityId,jdbcType=INTEGER}
+            </if>
+            <if test="commodityModelId != null" >
+                and commodity_model_id = #{commodityModelId,jdbcType=INTEGER}
+            </if>
+            <if test="supplierCode != null" >
+                and supplier_code = #{supplierCode,jdbcType=VARCHAR}
+            </if>
+            <if test="supplierName != null" >
+                and  supplier_name = #{supplierName,jdbcType=VARCHAR}
+            </if>
+            <if test="commodityNumber != null" >
+                and  commodity_number = #{commodityNumber,jdbcType=INTEGER}
+            </if>
+            <if test="deleteStatus != null" >
+                and  delete_status = #{deleteStatus,jdbcType=INTEGER}
+            </if>
+
+        </where>
+
+
+    </select>
+    <!-- 查询会员购物车中 有效的商品-->
+    <select id="getMemberValidationShopCartCommodity" parameterType="java.util.Map"  resultType="com.ydc.commom.view.dto.cgj.shopCart.ShopCartCommodityDTO" >
+        SELECT
+        cc.id AS commodityId,
+        cc.title,
+        cc.supplier_code AS supplierCode,
+        cc.supplier_name AS supplierName,
+        cci.img_type AS imgType,
+        cci.file_name AS fileName,
+        cci.file_url AS fileUrl,
+        cci.little_file_name AS  littleFileName,
+        cci.little_file_url AS littleFileUrl,
+        ccm.model,
+        ccm.id as commodityModelId,
+        ccm.sell_price AS sellPrice,
+        ccm.market_price AS marketPrice,
+        ccm.inventory,
+        scm.id,
+        scm.commodity_number AS commodityNum,
+        scm.create_time	AS createTime
+        FROM
+        t_store_shop_cart_commodity  scm
+        LEFT JOIN t_c_commodity  cc ON  scm.commodity_id=cc.id
+        LEFT JOIN t_c_commodity_img cci ON cci.commodity_id=scm.commodity_id
+        LEFT JOIN t_c_commodity_model ccm ON scm.commodity_model_id=ccm.id
+        WHERE
+        scm.member_id=#{memberId,jdbcType=INTEGER}
+        AND scm.delete_status=1
+        AND cc.release_status=1
+        AND cc.status=1
+        AND ccm.inventory>0
+        AND cci.`img_type`=1
+        GROUP BY scm.supplier_code,scm.`commodity_model_id`
+        ORDER BY scm.create_time DESC
+
+    </select>
+
+    <!-- 查询会员购物车中 无效的商品-->
+    <select id="getMemberInvalidationShopCartCommodity" parameterType="java.util.Map"  resultType="com.ydc.commom.view.dto.cgj.shopCart.ShopCartCommodityDTO" >
+        SELECT
+        cc.id AS commodityId,
+        cc.title,
+        cc.supplier_code AS supplierCode,
+        cc.supplier_name AS supplierName,
+        cci.img_type AS imgType,
+        cci.file_name AS fileName,
+        cci.file_url AS fileUrl,
+        cci.little_file_name AS  littleFileName,
+        cci.little_file_url AS littleFileUrl,
+        ccm.model,
+        ccm.id as commodityModelId,
+        ccm.sell_price AS sellPrice,
+        ccm.market_price AS marketPrice,
+        ccm.inventory,
+        scm.id,
+        scm.commodity_number AS commodityNum,
+        scm.create_time	AS createTime
+        FROM
+        t_store_shop_cart_commodity  scm
+        LEFT JOIN t_c_commodity  cc ON  scm.commodity_id=cc.id
+        LEFT JOIN t_c_commodity_img cci ON cci.commodity_id=scm.commodity_id
+        LEFT JOIN t_c_commodity_model ccm ON scm.commodity_model_id=ccm.id
+        WHERE
+        scm.member_id=#{memberId,jdbcType=INTEGER}
+        AND scm.delete_status=1
+        AND cci.`img_type`=1
+        AND ( cc.release_status!=1 OR cc.status!=1 OR ccm.inventory <![CDATA[ < ]]> 1 )
+        ORDER BY scm.create_time DESC
+    </select>
+
+    <select id="getMemberShopCartNum" parameterType="java.util.Map"  resultType="java.util.Map">
+        SELECT
+        SUM(ccm.sell_price)  AS totalSellPrice,
+        SUM(ccm.market_price) AS totalMarketPrice,
+        SUM(scm.commodity_number) AS totalCommodityNum
+        FROM
+        t_store_shop_cart_commodity  scm
+        LEFT JOIN t_c_commodity  cc ON  scm.commodity_id=cc.id
+        LEFT JOIN t_c_commodity_model ccm ON scm.commodity_model_id=ccm.id
+        WHERE
+        scm.member_id=#{memberId,jdbcType=INTEGER} and
+        scm.delete_status=1
+        AND cc.release_status=1
+        AND cc.status=1
+        AND ccm.inventory>0
+    </select>
+    <update id="updateByIds" parameterType="java.util.Map" >
+        update t_store_shop_cart_commodity
+        set
+        delete_status=#{deleteStatus,jdbcType=INTEGER},
+        update_time = NOW(),
+        update_by = #{updateBy,jdbcType=INTEGER}
+        where
+        id in
+        <foreach item="ids" collection="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+        <if test="memberId !=null">
+             and   member_id=#{memberId,jdbcType=INTEGER}
+        </if>
+    </update>
+
+    <update id="updateDeleteStatus">
+        update t_store_shop_cart_commodity
+        set
+        delete_status = #{deleteStatus,jdbcType=INTEGER},
+        update_time = NOW(),
+        update_by = #{updateBy,jdbcType=INTEGER}
+        where member_id = #{memberId,jdbcType=INTEGER}
+            AND commodity_id = #{commodityId,jdbcType=INTEGER}
+            AND commodity_model_id = #{commodityModelId,jdbcType=INTEGER}
+    </update>
+</mapper>

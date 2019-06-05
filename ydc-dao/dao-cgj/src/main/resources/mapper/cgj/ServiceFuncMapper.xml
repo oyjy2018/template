@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.service.ServiceFuncDao" >
+
+    <resultMap id="BaseResultMap" type="com.ydc.model.cgj.ServiceFunc" >
+            <id column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <result column="service_id" property="serviceId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <result column="func_name" property="funcName" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <result column="url"  property="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <result column="show_type"  property="showType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <result column="remark"  property="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <result column="delete_status"  property="deleteStatus" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <result column="create_time"  property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+            <result column="create_by"  property="createBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <result column="update_time"  property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+            <result column="update_by"  property="updateBy" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, service_id, func_name, url, show_type, remark, delete_status, create_time, create_by,
+        update_time, update_by
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_cgj_service_func
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!-- 查询所有的服务功能列表，用于pc端配置 -->
+    <select id="getServiceFuncListAllByServiceId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from t_cgj_service_func
+        where service_id = #{serviceId,jdbcType=INTEGER}
+    </select>
+
+    <!-- 查询有效的服务功能列表，用于H5或者APP端展示 -->
+    <select id="getServiceFuncListByServiceId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from t_cgj_service_func
+        where service_id = #{serviceId,jdbcType=INTEGER} AND delete_status = 1
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_cgj_service_func
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.ydc.model.cgj.ServiceFunc" useGeneratedKeys="true" keyProperty="id">
+        insert into t_cgj_service_func (id, service_id, func_name, 
+            url, show, remark, 
+            delete_status, create_time, create_by, 
+            update_time, update_by)
+        values (#{id,jdbcType=INTEGER}, #{serviceId,jdbcType=INTEGER}, #{funcName,jdbcType=VARCHAR}, 
+            #{url,jdbcType=VARCHAR}, #{show,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+            #{deleteStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, 
+            #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.ydc.model.cgj.ServiceFunc" >
+        insert into t_cgj_service_func
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="serviceId != null" >
+                service_id,
+            </if>
+            <if test="funcName != null" >
+                func_name,
+            </if>
+            <if test="url != null" >
+                url,
+            </if>
+            <if test="show != null" >
+                show,
+            </if>
+            <if test="remark != null" >
+                remark,
+            </if>
+            <if test="deleteStatus != null" >
+                delete_status,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="createBy != null" >
+                create_by,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+            <if test="updateBy != null" >
+                update_by,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="serviceId != null" >
+                #{serviceId,jdbcType=INTEGER},
+            </if>
+            <if test="funcName != null" >
+                #{funcName,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="show != null" >
+                #{show,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null" >
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteStatus != null" >
+                #{deleteStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null" >
+                #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null" >
+                #{updateBy,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.ServiceFunc" >
+        update t_cgj_service_func
+        <set >
+            <if test="serviceId != null" >
+                service_id = #{serviceId,jdbcType=INTEGER},
+            </if>
+            <if test="funcName != null" >
+                func_name = #{funcName,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="show != null" >
+                show = #{show,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null" >
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteStatus != null" >
+                delete_status = #{deleteStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null" >
+                update_by = #{updateBy,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.ServiceFunc" >
+        update t_cgj_service_func
+        set service_id = #{serviceId,jdbcType=INTEGER},
+            func_name = #{funcName,jdbcType=VARCHAR},
+            url = #{url,jdbcType=VARCHAR},
+            show = #{show,jdbcType=INTEGER},
+            remark = #{remark,jdbcType=VARCHAR},
+            delete_status = #{deleteStatus,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            create_by = #{createBy,jdbcType=INTEGER},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            update_by = #{updateBy,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.rental.OrganizationDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.rental.Organization" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="org_short_name" property="orgShortName" jdbcType="VARCHAR" />
+    <result column="org_number" property="orgNumber" jdbcType="VARCHAR" />
+    <result column="hierarchy" property="hierarchy" jdbcType="TINYINT" />
+    <result column="org_address_province" property="orgAddressProvince" jdbcType="VARCHAR" />
+    <result column="org_address_city" property="orgAddressCity" jdbcType="VARCHAR" />
+    <result column="org_address_region" property="orgAddressRegion" jdbcType="VARCHAR" />
+    <result column="org_address" property="orgAddress" jdbcType="VARCHAR" />
+    <result column="org_eamil" property="orgEamil" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, org_name, org_short_name, org_number, `hierarchy`, org_address_province, org_address_city, 
+    org_address_region, org_address, org_eamil, `status`, sort, create_time, create_by, 
+    update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_cfg_organization
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_cfg_organization
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.rental.Organization" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_cfg_organization (org_name, org_short_name, org_number, 
+      `hierarchy`, org_address_province, org_address_city, 
+      org_address_region, org_address, org_eamil, 
+      `status`, sort, create_time, 
+      create_by, update_time, update_by)
+    values (#{orgName,jdbcType=VARCHAR}, #{orgShortName,jdbcType=VARCHAR}, #{orgNumber,jdbcType=VARCHAR}, 
+      #{hierarchy,jdbcType=TINYINT}, #{orgAddressProvince,jdbcType=VARCHAR}, #{orgAddressCity,jdbcType=VARCHAR}, 
+      #{orgAddressRegion,jdbcType=VARCHAR}, #{orgAddress,jdbcType=VARCHAR}, #{orgEamil,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{sort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.rental.Organization" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_cfg_organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      org_name,
+      org_short_name,
+      org_number,
+      `hierarchy`,
+      org_address_province,
+      org_address_city,
+      org_address_region,
+      org_address,
+      org_eamil,
+      `status`,
+      sort,
+      create_time,
+      create_by,
+      update_time,
+      update_by,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{orgName,jdbcType=VARCHAR},
+      #{orgShortName,jdbcType=VARCHAR},
+      #{orgNumber,jdbcType=VARCHAR},
+      #{hierarchy,jdbcType=TINYINT},
+      #{orgAddressProvince,jdbcType=VARCHAR},
+      #{orgAddressCity,jdbcType=VARCHAR},
+      #{orgAddressRegion,jdbcType=VARCHAR},
+      #{orgAddress,jdbcType=VARCHAR},
+      #{orgEamil,jdbcType=VARCHAR},
+      #{status,jdbcType=CHAR},
+      #{sort,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.rental.Organization" >
+    update t_cfg_organization
+    <set >
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgShortName != null" >
+        org_short_name = #{orgShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNumber != null" >
+        org_number = #{orgNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="hierarchy != null" >
+        `hierarchy` = #{hierarchy,jdbcType=TINYINT},
+      </if>
+      <if test="orgAddressProvince != null" >
+        org_address_province = #{orgAddressProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddressCity != null" >
+        org_address_city = #{orgAddressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddressRegion != null" >
+        org_address_region = #{orgAddressRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddress != null" >
+        org_address = #{orgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgEamil != null" >
+        org_eamil = #{orgEamil,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=CHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.rental.Organization" >
+    update t_cfg_organization
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      org_short_name = #{orgShortName,jdbcType=VARCHAR},
+      org_number = #{orgNumber,jdbcType=VARCHAR},
+      `hierarchy` = #{hierarchy,jdbcType=TINYINT},
+      org_address_province = #{orgAddressProvince,jdbcType=VARCHAR},
+      org_address_city = #{orgAddressCity,jdbcType=VARCHAR},
+      org_address_region = #{orgAddressRegion,jdbcType=VARCHAR},
+      org_address = #{orgAddress,jdbcType=VARCHAR},
+      org_eamil = #{orgEamil,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=CHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getOrganization" resultType="com.ydc.model.cgj.rental.Organization">
+    select
+    id,
+    org_name orgName,
+    org_short_name orgShortName,
+    org_number orgNumber,
+    `hierarchy`,
+    org_address_province orgAddressProvince,
+    org_address_city orgAddressCity,
+    org_address_region orgAddressRegion,
+    org_address orgAddress,
+    org_eamil orgEamil,
+    status
+    from t_cfg_organization
+    where `status` = '1'
+  </select>
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info"  name="service-user" packages="">
+    <Properties>
+        <Property name="log_pattern">%d{MM:dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n</Property>
+        <Property name="log_charset">UTF-8</Property>
+        <Property  name="log_name">service-user</Property>
+        <Property  name="log_path">/logs/service</Property>
+    </Properties>
+    <!--共有8个级别，按照从低到高为：All < Trace < Debug < Info < Warn < Error < Fatal < OFF.-->
+    <Appenders>
+        <!--控制台输出-->
+        <Console name="STDOUT" target="SYSTEM_OUT" ignoreExceptions="false">
+            <PatternLayout pattern="${log_pattern}"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="${log_path}/${log_name}.log"
+                     filePattern="${log_path}/${log_name}/${log_name}-%d{yyyy-MM-dd}-%i.log.gz" >
+            <Filters>
+                <!--设置只输出级别-->
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="${log_pattern}" />
+            <Policies>
+                <!--每天创建一个新的文件-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!--单个文件最大值-->
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <!--设置i 值得覆盖-->
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${log_path}/${log_name}" maxDepth="1">
+                    <IfFileName glob="/${log_name}-*.log.gz">
+                        <IfLastModified age="31d">
+                            <IfAny>
+                                <IfAccumulatedFileSize exceeds="10GB" />
+                                <IfAccumulatedFileCount exceeds="10" />
+                            </IfAny>
+                        </IfLastModified>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <File name="ErrorFile"   fileName="${log_path}/error/${log_name}-error.log" append="false">
+            <PatternLayout pattern="${log_pattern}" />
+            <Filters>
+                <!--设置只输出级别-->
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <AsyncLogger name="com.ydc" level="info" includeLocation="true">
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="ErrorFile"/>
+        </AsyncLogger>
+       <!-- <Logger name="com.zaxxer.hikari"  >
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+        <Logger name="org.springframework" >
+            <AppenderRef ref="STDOUT"/>
+        </Logger>-->
+        <Root level="info" >
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+</Configuration>

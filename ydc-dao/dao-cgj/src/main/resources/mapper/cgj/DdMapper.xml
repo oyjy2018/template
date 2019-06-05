@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.user.DdDao">
+    <resultMap id="BaseResultMap" type="com.ydc.model.cgj.Dd">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="dd_corp_id" property="ddCorpId" jdbcType="VARCHAR" />
+        <result column="dd_corp_secret" property="ddCorpSecret" jdbcType="VARCHAR" />
+        <result column="dd_sso_secret" property="ddSsoSecret" jdbcType="VARCHAR" />
+        <result column="dd_appId" property="ddAppid" jdbcType="VARCHAR" />
+        <result column="dd_appSecret" property="ddAppsecret" jdbcType="VARCHAR" />
+        <result column="dd_agentid" property="ddAgentid" jdbcType="VARCHAR" />
+        <result column="redirect_uri" property="redirectUri" jdbcType="VARCHAR" />
+        <result column="service_identifying" property="serviceIdentifying" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, dd_corp_id, dd_corp_secret, dd_sso_secret, dd_appId, dd_appSecret, dd_agentid,
+        redirect_uri, service_identifying, `status`, create_time, create_by
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_cfg_dd
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_cfg_dd
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ydc.model.cgj.Dd" useGeneratedKeys="true" keyProperty="id">
+        insert into t_cfg_dd (dd_corp_id, dd_corp_secret, dd_sso_secret,
+        dd_appId, dd_appSecret, dd_agentid,
+        redirect_uri, service_identifying, `status`,
+        create_time, create_by)
+        values (#{ddCorpId,jdbcType=VARCHAR}, #{ddCorpSecret,jdbcType=VARCHAR}, #{ddSsoSecret,jdbcType=VARCHAR},
+        #{ddAppid,jdbcType=VARCHAR}, #{ddAppsecret,jdbcType=VARCHAR}, #{ddAgentid,jdbcType=VARCHAR},
+        #{redirectUri,jdbcType=VARCHAR}, #{serviceIdentifying,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ydc.model.cgj.Dd" useGeneratedKeys="true" keyProperty="id">
+        insert into t_cfg_dd
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            dd_corp_id,
+            dd_corp_secret,
+            dd_sso_secret,
+            dd_appId,
+            dd_appSecret,
+            dd_agentid,
+            redirect_uri,
+            service_identifying,
+            `status`,
+            create_time,
+            create_by,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #{ddCorpId,jdbcType=VARCHAR},
+            #{ddCorpSecret,jdbcType=VARCHAR},
+            #{ddSsoSecret,jdbcType=VARCHAR},
+            #{ddAppid,jdbcType=VARCHAR},
+            #{ddAppsecret,jdbcType=VARCHAR},
+            #{ddAgentid,jdbcType=VARCHAR},
+            #{redirectUri,jdbcType=VARCHAR},
+            #{serviceIdentifying,jdbcType=VARCHAR},
+            #{status,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{createBy,jdbcType=INTEGER},
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.Dd">
+        update t_cfg_dd
+        <set >
+            <if test="ddCorpId != null" >
+                dd_corp_id = #{ddCorpId,jdbcType=VARCHAR},
+            </if>
+            <if test="ddCorpSecret != null" >
+                dd_corp_secret = #{ddCorpSecret,jdbcType=VARCHAR},
+            </if>
+            <if test="ddSsoSecret != null" >
+                dd_sso_secret = #{ddSsoSecret,jdbcType=VARCHAR},
+            </if>
+            <if test="ddAppid != null" >
+                dd_appId = #{ddAppid,jdbcType=VARCHAR},
+            </if>
+            <if test="ddAppsecret != null" >
+                dd_appSecret = #{ddAppsecret,jdbcType=VARCHAR},
+            </if>
+            <if test="ddAgentid != null" >
+                dd_agentid = #{ddAgentid,jdbcType=VARCHAR},
+            </if>
+            <if test="redirectUri != null" >
+                redirect_uri = #{redirectUri,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceIdentifying != null" >
+                service_identifying = #{serviceIdentifying,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.Dd">
+        update t_cfg_dd
+        set dd_corp_id = #{ddCorpId,jdbcType=VARCHAR},
+        dd_corp_secret = #{ddCorpSecret,jdbcType=VARCHAR},
+        dd_sso_secret = #{ddSsoSecret,jdbcType=VARCHAR},
+        dd_appId = #{ddAppid,jdbcType=VARCHAR},
+        dd_appSecret = #{ddAppsecret,jdbcType=VARCHAR},
+        dd_agentid = #{ddAgentid,jdbcType=VARCHAR},
+        redirect_uri = #{redirectUri,jdbcType=VARCHAR},
+        service_identifying = #{serviceIdentifying,jdbcType=VARCHAR},
+        `status` = #{status,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_by = #{createBy,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="getDdConfig" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_cfg_dd
+        where status = '1'
+    </select>
+
+    <select id="getDdConfigByServiceIdentifying" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_cfg_dd
+        where service_identifying = #{serviceIdentifying,jdbcType=VARCHAR} AND status = '1';
+    </select>
+</mapper>

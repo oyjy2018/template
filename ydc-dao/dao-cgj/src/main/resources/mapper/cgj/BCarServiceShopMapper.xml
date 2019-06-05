@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.service.BCarServiceShopDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.BCarServiceShop" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="store_logo" property="storeLogo" jdbcType="VARCHAR" />
+    <result column="store_code" property="storeCode" jdbcType="VARCHAR" />
+    <result column="store_identifying" property="storeIdentifying" jdbcType="VARCHAR" />
+    <result column="service_phone" property="servicePhone" jdbcType="VARCHAR" />
+    <result column="store_register_province" property="storeRegisterProvince" jdbcType="VARCHAR" />
+    <result column="store_register_city" property="storeRegisterCity" jdbcType="VARCHAR" />
+    <result column="store_register_region" property="storeRegisterRegion" jdbcType="VARCHAR" />
+    <result column="details_address" property="detailsAddress" jdbcType="VARCHAR" />
+    <result column="business_hours_start_time" property="businessHoursStartTime" jdbcType="VARCHAR" />
+    <result column="business_hours_end_time" property="businessHoursEndTime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="serve_gather" property="serveGather" jdbcType="VARCHAR" />
+    <result column="whether_putaway" property="whetherPutaway" jdbcType="INTEGER" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="priority" property="priority" jdbcType="TINYINT" />
+    <result column="priority_time" property="priorityTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, store_name, store_logo, store_code, store_identifying, service_phone, store_register_province,
+    store_register_city, store_register_region, details_address, business_hours_start_time,
+    business_hours_end_time, `status`, serve_gather, whether_putaway, category, longitude,
+    latitude, priority, priority_time, create_time, create_by, update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_b_car_service_shop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_b_car_service_shop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.BCarServiceShop" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_b_car_service_shop (store_name, store_logo, store_code,
+    store_identifying, service_phone, store_register_province,
+    store_register_city, store_register_region,
+    details_address, business_hours_start_time,
+    business_hours_end_time, `status`, serve_gather,
+    whether_putaway, category, longitude,
+    latitude, priority, priority_time,
+    create_time, create_by, update_time,
+    update_by)
+    values (#{storeName,jdbcType=VARCHAR}, #{storeLogo,jdbcType=VARCHAR}, #{storeCode,jdbcType=VARCHAR},
+    #{storeIdentifying,jdbcType=VARCHAR}, #{servicePhone,jdbcType=VARCHAR}, #{storeRegisterProvince,jdbcType=VARCHAR},
+    #{storeRegisterCity,jdbcType=VARCHAR}, #{storeRegisterRegion,jdbcType=VARCHAR},
+    #{detailsAddress,jdbcType=VARCHAR}, #{businessHoursStartTime,jdbcType=VARCHAR},
+    #{businessHoursEndTime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{serveGather,jdbcType=VARCHAR},
+    #{whetherPutaway,jdbcType=INTEGER}, #{category,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL},
+    #{latitude,jdbcType=DECIMAL}, #{priority,jdbcType=TINYINT}, #{priorityTime,jdbcType=TIMESTAMP},
+    #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP},
+    #{updateBy,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.BCarServiceShop" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_b_car_service_shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      store_name,
+      store_logo,
+      store_code,
+      store_identifying,
+      service_phone,
+      store_register_province,
+      store_register_city,
+      store_register_region,
+      details_address,
+      business_hours_start_time,
+      business_hours_end_time,
+      `status`,
+      serve_gather,
+      whether_putaway,
+      category,
+      longitude,
+      latitude,
+      priority,
+      priority_time,
+      create_time,
+      create_by,
+      update_time,
+      update_by,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{storeName,jdbcType=VARCHAR},
+      #{storeLogo,jdbcType=VARCHAR},
+      #{storeCode,jdbcType=VARCHAR},
+      #{storeIdentifying,jdbcType=VARCHAR},
+      #{servicePhone,jdbcType=VARCHAR},
+      #{storeRegisterProvince,jdbcType=VARCHAR},
+      #{storeRegisterCity,jdbcType=VARCHAR},
+      #{storeRegisterRegion,jdbcType=VARCHAR},
+      #{detailsAddress,jdbcType=VARCHAR},
+      #{businessHoursStartTime,jdbcType=VARCHAR},
+      #{businessHoursEndTime,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER},
+      #{serveGather,jdbcType=VARCHAR},
+      #{whetherPutaway,jdbcType=INTEGER},
+      #{category,jdbcType=VARCHAR},
+      #{longitude,jdbcType=DECIMAL},
+      #{latitude,jdbcType=DECIMAL},
+      #{priority,jdbcType=TINYINT},
+      #{priorityTime,jdbcType=TIMESTAMP},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.BCarServiceShop" >
+    update t_b_car_service_shop
+    <set >
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLogo != null" >
+        store_logo = #{storeLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCode != null" >
+        store_code = #{storeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeIdentifying != null" >
+        store_identifying = #{storeIdentifying,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null" >
+        service_phone = #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRegisterProvince != null" >
+        store_register_province = #{storeRegisterProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRegisterCity != null" >
+        store_register_city = #{storeRegisterCity,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRegisterRegion != null" >
+        store_register_region = #{storeRegisterRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="detailsAddress != null" >
+        details_address = #{detailsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="businessHoursStartTime != null" >
+        business_hours_start_time = #{businessHoursStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="businessHoursEndTime != null" >
+        business_hours_end_time = #{businessHoursEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="serveGather != null" >
+        serve_gather = #{serveGather,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherPutaway != null" >
+        whether_putaway = #{whetherPutaway,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="priorityTime != null" >
+        priority_time = #{priorityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.BCarServiceShop" >
+    update t_b_car_service_shop
+    set store_name = #{storeName,jdbcType=VARCHAR},
+    store_logo = #{storeLogo,jdbcType=VARCHAR},
+    store_code = #{storeCode,jdbcType=VARCHAR},
+    store_identifying = #{storeIdentifying,jdbcType=VARCHAR},
+    service_phone = #{servicePhone,jdbcType=VARCHAR},
+    store_register_province = #{storeRegisterProvince,jdbcType=VARCHAR},
+    store_register_city = #{storeRegisterCity,jdbcType=VARCHAR},
+    store_register_region = #{storeRegisterRegion,jdbcType=VARCHAR},
+    details_address = #{detailsAddress,jdbcType=VARCHAR},
+    business_hours_start_time = #{businessHoursStartTime,jdbcType=VARCHAR},
+    business_hours_end_time = #{businessHoursEndTime,jdbcType=VARCHAR},
+    `status` = #{status,jdbcType=INTEGER},
+    serve_gather = #{serveGather,jdbcType=VARCHAR},
+    whether_putaway = #{whetherPutaway,jdbcType=INTEGER},
+    category = #{category,jdbcType=VARCHAR},
+    longitude = #{longitude,jdbcType=DECIMAL},
+    latitude = #{latitude,jdbcType=DECIMAL},
+    priority = #{priority,jdbcType=TINYINT},
+    priority_time = #{priorityTime,jdbcType=TIMESTAMP},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    create_by = #{createBy,jdbcType=INTEGER},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getBStoreList" resultType="com.ydc.commom.view.vo.cgj.order.BStoreListVO">
+    SELECT
+    tbs.id storeId,
+    tbs.store_name storeName,
+    IFNULL(tbs.store_logo,'') storeLogo,
+    tbs.store_code storeCode,
+    IFNULL(tbs.store_identifying,'') storeIdentifying,
+    IFNULL(tbs.service_phone,'') servicePhone,
+    <!--CONCAT(LEFT(tbs.service_phone,3), '****' ,RIGHT(tbs.service_phone,4)) servicePhone,-->
+    CONCAT(IFNULL(tbs.store_register_province,''),tbs.store_register_city,IFNULL(tbs.store_register_region,'')) region,
+    tbs.details_address detailsAddress,
+    CONCAT(tbs.business_hours_start_time,'~',tbs.business_hours_end_time) businessHours,
+    <!--(CASE tbs.status WHEN 0 THEN '无效' WHEN 1 THEN '有效' ELSE '' END) statusName,-->
+    tbs.status,
+    <!--(CASE tbs.whether_putaway WHEN 0 THEN '已下架' WHEN 1 THEN '已上架' ELSE '' END) whetherPutawayName,-->
+    tbs.whether_putaway whetherPutaway,
+    IFNULL(tbs.serve_gather,'') serveGather,
+    IFNULL(tbs.longitude,'') longitude,
+    IFNULL(tbs.latitude,'') latitude,
+    tbs.category
+    <include refid="getBStoreListCommon"/>
+    ORDER BY tbs.create_time DESC
+  </select>
+
+  <sql id="getBStoreListCommon">
+    FROM t_b_car_service_shop tbs
+    <where>
+      <if test="carStoreDTO.storeName != null and carStoreDTO.storeName != ''">
+        AND tbs.store_name LIKE '%${carStoreDTO.storeName}%'
+      </if>
+      <if test="carStoreDTO.storeId != null and carStoreDTO.storeId != '' or carStoreDTO.storeId == 0">
+        AND tbs.id = #{carStoreDTO.storeId,jdbcType=INTEGER}
+      </if>
+      <if test="carStoreDTO.whetherPutaway != null and carStoreDTO.whetherPutaway != '' or carStoreDTO.whetherPutaway == 0">
+        AND tbs.whether_putaway = #{carStoreDTO.whetherPutaway,jdbcType=INTEGER}
+      </if>
+      <if test="carStoreDTO.status != null and carStoreDTO.status != '' or carStoreDTO.status == 0">
+        AND tbs.status = #{carStoreDTO.status,jdbcType=INTEGER}
+      </if>
+      <if test="carStoreDTO.servicePhone != null and carStoreDTO.servicePhone != ''">
+        AND tbs.service_phone LIKE '%${carStoreDTO.servicePhone}%'
+      </if>
+    </where>
+  </sql>
+
+  <update id="updateStoreWhetherPutaway">
+    UPDATE t_b_car_service_shop
+    SET whether_putaway = #{carStoreDTO.whetherPutaway,jdbcType=INTEGER},
+        update_by = #{carStoreDTO.updateBy,jdbcType=INTEGER}
+    WHERE id = #{carStoreDTO.storeId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="getH5StoreList" resultType="com.ydc.commom.view.vo.cgj.CarStoreVO">
+    SELECT
+    tbs.id storeId,
+    tbs.store_name storeName,
+    tbs.store_logo storeLogo,
+    tbs.store_code storeCode,
+    IFNULL(tbs.store_identifying,'') storeIdentifying,
+    tbs.service_phone servicePhone,
+    CONCAT(IFNULL(tbs.store_register_province,''),tbs.store_register_city,IFNULL(tbs.store_register_region,'')) region,
+    tbs.details_address detailsAddress,
+    CONCAT(tbs.business_hours_start_time,'~',tbs.business_hours_end_time) businessHours,
+    IFNULL((SELECT COUNT(1) FROM t_member_appointment tma WHERE tma.store_id = tbs.id),0) salesVolume,
+    IFNULL(tbs.serve_gather,'') serveGather,
+    tbs.longitude,
+    tbs.latitude,
+    tbs.category
+    FROM t_b_car_service_shop tbs
+    WHERE tbs.whether_putaway = 1 AND tbs.status = 1 AND (tbs.details_address IS NOT NULL AND tbs.details_address != '' AND tbs.longitude != 0.0000000 AND tbs.latitude != 0.0000000)
+    <if test="positionDTO.minLng != null and positionDTO.minLng != '' and positionDTO.minLng != '0.0'">
+      AND tbs.longitude <![CDATA[>=]]> #{positionDTO.minLng}
+    </if>
+    <if test="positionDTO.maxLng != null and positionDTO.maxLng != '' and positionDTO.maxLng != '0.0'">
+      AND tbs.longitude <![CDATA[<=]]> #{positionDTO.maxLng}
+    </if>
+    <if test="positionDTO.minLat != null and positionDTO.minLat != '' and positionDTO.minLat != '0.0'">
+      AND tbs.latitude <![CDATA[>=]]> #{positionDTO.minLat}
+    </if>
+    <if test="positionDTO.maxLat != null and positionDTO.maxLat != '' and positionDTO.maxLat != '0.0'">
+      AND tbs.latitude <![CDATA[<=]]> #{positionDTO.maxLat}
+    </if>
+    <if test="positionDTO.searchContent != null and positionDTO.searchContent != ''">
+      AND (tbs.store_name LIKE '%${positionDTO.searchContent}%'
+          OR tbs.store_register_city LIKE '%${positionDTO.searchContent}%'
+          )
+    </if>
+    <if test="positionDTO.defaultLocation != null and positionDTO.defaultLocation != ''">
+      AND tbs.store_register_city LIKE '%${positionDTO.defaultLocation}%'
+    </if>
+  </select>
+
+  <select id="getRecommendCarStore" resultType="com.ydc.commom.view.vo.cgj.CarStoreVO">
+    SELECT
+    tbs.id storeId,
+    tbs.store_name storeName,
+    tbs.store_logo storeLogo,
+    tbs.store_code storeCode,
+    IFNULL(tbs.store_identifying,'') storeIdentifying,
+    tbs.service_phone servicePhone,
+    CONCAT(IFNULL(tbs.store_register_province,''),tbs.store_register_city,IFNULL(tbs.store_register_region,'')) region,
+    tbs.details_address detailsAddress,
+    CONCAT(tbs.business_hours_start_time,'~',tbs.business_hours_end_time) businessHours,
+    IFNULL((SELECT COUNT(1) FROM t_member_appointment tma WHERE tma.store_id = tbs.id),0) salesVolume,
+    IFNULL(tbs.serve_gather,'') serveGather,
+    tbs.longitude,
+    tbs.latitude,
+    tbs.category
+    FROM t_b_car_service_shop  tbs
+    WHERE tbs.whether_putaway = 1 AND tbs.status = 1 AND (tbs.details_address IS NOT NULL AND tbs.details_address != '' AND tbs.longitude != 0.0000000 AND tbs.latitude != 0.0000000)
+    <if test="positionDTO.minLng != null and positionDTO.minLng != '' and positionDTO.minLng != '0.0'">
+      AND tbs.longitude <![CDATA[>=]]> #{positionDTO.minLng}
+    </if>
+    <if test="positionDTO.maxLng != null and positionDTO.maxLng != '' and positionDTO.maxLng != '0.0'">
+      AND tbs.longitude <![CDATA[<=]]> #{positionDTO.maxLng}
+    </if>
+    <if test="positionDTO.minLat != null and positionDTO.minLat != '' and positionDTO.minLat != '0.0'">
+      AND tbs.latitude <![CDATA[>=]]> #{positionDTO.minLat}
+    </if>
+    <if test="positionDTO.maxLat != null and positionDTO.maxLat != '' and positionDTO.maxLat != '0.0'">
+      AND tbs.latitude <![CDATA[<=]]> #{positionDTO.maxLat}
+    </if>
+    <if test="positionDTO.searchContent != null and positionDTO.searchContent != ''">
+      AND (tbs.store_name LIKE '%${positionDTO.searchContent}%'
+      OR tbs.store_register_city LIKE '%${positionDTO.searchContent}%'
+      )
+    </if>
+    <if test="positionDTO.defaultLocation != null and positionDTO.defaultLocation != ''">
+      AND tbs.store_register_city LIKE '%${positionDTO.defaultLocation}%'
+    </if>
+    ORDER BY salesVolume DESC
+  </select>
+
+  <select id="getHomePageCarStore" resultType="com.ydc.commom.view.vo.cgj.CarStoreVO">
+    SELECT
+    tbs.id storeId,
+    tbs.store_name storeName,
+    tbs.store_logo storeLogo,
+    tbs.store_code storeCode,
+    IFNULL(tbs.store_identifying,'') storeIdentifying,
+    tbs.service_phone servicePhone,
+    CONCAT(IFNULL(tbs.store_register_province,''),tbs.store_register_city,IFNULL(tbs.store_register_region,'')) region,
+    tbs.details_address detailsAddress,
+    CONCAT(tbs.business_hours_start_time,'~',tbs.business_hours_end_time) businessHours,
+    IFNULL((SELECT COUNT(1) FROM t_member_appointment tma WHERE tma.store_id = tbs.id),0) salesVolume,
+    IFNULL(tbs.serve_gather,'') serveGather,
+    tbs.longitude,
+    tbs.latitude
+    FROM t_b_car_service_shop tbs
+    WHERE tbs.whether_putaway = 1 AND tbs.status = 1
+    <if test="positionDTO.searchContent != null and positionDTO.searchContent != ''">
+      AND (tbs.store_name LIKE '%${positionDTO.searchContent}%'
+      OR tbs.store_register_city LIKE '%${positionDTO.searchContent}%'
+      )
+    </if>
+    ORDER BY priority DESC,
+      (
+        CASE
+          WHEN priority = 1 THEN priority_time
+        END
+      ) DESC, salesVolume DESC
+    LIMIT #{positionDTO.rows}
+  </select>
+
+
+  <insert id="insertCarServiceBatch" parameterType="java.util.List">
+    insert into t_b_car_service_shop (store_name, store_logo, store_code,
+    store_identifying, service_phone, store_register_province,
+    store_register_city, store_register_region,
+    details_address, business_hours_start_time,
+    business_hours_end_time, `status`, serve_gather,
+    whether_putaway,category, longitude, latitude,
+    create_time, create_by,update_time,update_by)
+    values
+    <foreach collection="list" item="item" separator=",">
+    (#{item.storeName,jdbcType=VARCHAR}, #{item.storeLogo,jdbcType=VARCHAR}, #{item.storeCode,jdbcType=VARCHAR},
+    #{item.storeIdentifying,jdbcType=VARCHAR}, #{item.servicePhone,jdbcType=VARCHAR}, #{item.storeRegisterProvince,jdbcType=VARCHAR},
+    #{item.storeRegisterCity,jdbcType=VARCHAR}, #{item.storeRegisterRegion,jdbcType=VARCHAR},
+    #{item.detailsAddress,jdbcType=VARCHAR}, #{item.businessHoursStartTime,jdbcType=VARCHAR},
+    #{item.businessHoursEndTime,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER}, #{item.serveGather,jdbcType=VARCHAR},
+    #{item.whetherPutaway,jdbcType=INTEGER},#{item.category,jdbcType=VARCHAR}, #{item.longitude,jdbcType=DECIMAL}, #{item.latitude,jdbcType=DECIMAL},
+    #{item.createTime,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=INTEGER},
+    #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updateBy,jdbcType=INTEGER})
+    </foreach>
+    ON DUPLICATE KEY UPDATE
+    store_name = VALUES(store_name),
+    store_logo = VALUES(store_logo),
+    store_identifying = VALUES(store_identifying),
+    service_phone = VALUES(service_phone),
+    store_register_province = VALUES(store_register_province),
+    store_register_city = VALUES(store_register_city),
+    store_register_region = VALUES(store_register_region),
+    details_address = VALUES(details_address),
+    business_hours_start_time = VALUES(business_hours_start_time),
+    business_hours_end_time = VALUES(business_hours_end_time),
+    `status` = VALUES(status),
+    serve_gather = VALUES(serve_gather),
+    whether_putaway = VALUES(whether_putaway),
+    category = VALUES(category),
+    longitude = VALUES(longitude),
+    latitude = VALUES(latitude),
+    update_time = VALUES(update_time),
+    update_by = VALUES(update_by)
+  </insert>
+
+  <select id="selectByIdOrCode" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+      <include refid="Base_Column_List" />
+    from t_b_car_service_shop
+    where
+      <if test="storeId != null">
+        id = #{storeId} and
+      </if>
+      <if test="storeCode != null and storeCode != ''">
+        store_code = #{storeCode} and
+      </if>
+      `status` = 1
+  </select>
+
+
+  <select id="getPriorityCarStore" resultType="java.util.Map">
+    SELECT
+    tbs.id storeId,
+    tbs.store_name storeName,
+    IFNULL((SELECT COUNT(1) FROM t_member_appointment tma WHERE tma.store_id = tbs.id),0) salesVolume
+    FROM t_b_car_service_shop tbs
+    WHERE tbs.whether_putaway = 1 AND tbs.status = 1
+    <if test="storeName != null and storeName != ''">
+      AND tbs.store_name LIKE '%${storeName}%'
+    </if>
+    ORDER BY salesVolume DESC
+  </select>
+
+  <update id="updatePriorityCarStore">
+    UPDATE t_b_car_service_shop css
+    SET css.priority = #{priority,jdbcType=INTEGER},
+      css.priority_time = NOW(),
+      css.update_by = #{updateBy,jdbcType=INTEGER}
+    WHERE css.id IN(${carStoreIds})
+  </update>
+
+  <update id="batchUpdateCarShopStatus">
+    UPDATE t_b_car_service_shop
+    SET status = 0,whether_putaway = 0,update_by = #{userId,jdbcType=INTEGER}
+    where store_code NOT IN
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+</mapper>

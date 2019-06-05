@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.ydc.dao.ydhc.YdhcVehicleUsedDao">
+    <resultMap id="BaseResultMap" type="com.ydc.model.ydhc.YdhcVehicleUsed">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="car_owner_name" jdbcType="VARCHAR" property="carOwnerName"/>
+        <result column="vin" jdbcType="VARCHAR" property="vin"/>
+        <result column="car_plate" jdbcType="VARCHAR" property="carPlate"/>
+        <result column="brand_code" jdbcType="VARCHAR" property="brandCode"/>
+        <result column="brand" jdbcType="VARCHAR" property="brand"/>
+        <result column="series_code" jdbcType="VARCHAR" property="seriesCode"/>
+        <result column="series" jdbcType="VARCHAR" property="series"/>
+        <result column="car_version_code" jdbcType="VARCHAR" property="carVersionCode"/>
+        <result column="car_version" jdbcType="VARCHAR" property="carVersion"/>
+        <result column="car_type_code" jdbcType="VARCHAR" property="carTypeCode"/>
+        <result column="car_type" jdbcType="VARCHAR" property="carType"/>
+        <result column="gearbox_code" jdbcType="VARCHAR" property="gearboxCode"/>
+        <result column="gearbox" jdbcType="VARCHAR" property="gearbox"/>
+        <result column="up_plate_date" jdbcType="DATE" property="upPlateDate"/>
+        <result column="mileage" jdbcType="DECIMAL" property="mileage"/>
+        <result column="emissions" jdbcType="DECIMAL" property="emissions"/>
+        <result column="engine_code" jdbcType="VARCHAR" property="engineCode"/>
+        <result column="engine" jdbcType="VARCHAR" property="engine"/>
+        <result column="emissions_standard_code" jdbcType="VARCHAR" property="emissionsStandardCode"/>
+        <result column="emissions_standard" jdbcType="VARCHAR" property="emissionsStandard"/>
+        <result column="fuel_type_code" jdbcType="VARCHAR" property="fuelTypeCode"/>
+        <result column="fuel_type" jdbcType="VARCHAR" property="fuelType"/>
+        <result column="seatings_code" jdbcType="VARCHAR" property="seatingsCode"/>
+        <result column="seatings" jdbcType="VARCHAR" property="seatings"/>
+        <result column="manufacturer_type_code" jdbcType="VARCHAR" property="manufacturerTypeCode"/>
+        <result column="manufacturer_type" jdbcType="VARCHAR" property="manufacturerType"/>
+        <result column="country_code" jdbcType="VARCHAR" property="countryCode"/>
+        <result column="country" jdbcType="VARCHAR" property="country"/>
+        <result column="drive_code" jdbcType="VARCHAR" property="driveCode"/>
+        <result column="drive" jdbcType="VARCHAR" property="drive"/>
+        <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="facade_colour_code" jdbcType="VARCHAR" property="facadeColourCode"/>
+        <result column="facade_colour" jdbcType="VARCHAR" property="facadeColour"/>
+        <result column="interior_colour_code" jdbcType="VARCHAR" property="interiorColourCode"/>
+        <result column="interior_colour" jdbcType="VARCHAR" property="interiorColour"/>
+        <result column="is_transfer" jdbcType="VARCHAR" property="isTransfer"/>
+        <result column="as_deadline" jdbcType="DATE" property="asDeadline"/>
+        <result column="sali_deadline" jdbcType="DATE" property="saliDeadline"/>
+        <result column="ci_deadline" jdbcType="DATE" property="ciDeadline"/>
+        <result column="look_car_province_code" jdbcType="VARCHAR" property="lookCarProvinceCode"/>
+        <result column="look_car_province" jdbcType="VARCHAR" property="lookCarProvince"/>
+        <result column="look_car_city_code" jdbcType="VARCHAR" property="lookCarCityCode"/>
+        <result column="look_car_city" jdbcType="VARCHAR" property="lookCarCity"/>
+        <result column="look_car_region_code" jdbcType="VARCHAR" property="lookCarRegionCode"/>
+        <result column="look_car_region" jdbcType="VARCHAR" property="lookCarRegion"/>
+        <result column="look_car_address" jdbcType="VARCHAR" property="lookCarAddress"/>
+        <result column="config" jdbcType="VARCHAR" property="config"/>
+        <result column="examine_date" jdbcType="DATE" property="examineDate"/>
+        <result column="examine_report" jdbcType="VARCHAR" property="examineReport"/>
+        <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode"/>
+        <result column="merchant" jdbcType="VARCHAR" property="merchant"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="new_car_price" jdbcType="DECIMAL" property="newCarPrice"/>
+        <result column="new_car_price" jdbcType="DECIMAL" property="newCarPrice"/>
+        <result column="is_template" jdbcType="VARCHAR" property="isTemplate"/>
+        <result column="release_status" jdbcType="INTEGER" property="releaseStatus"/>
+        <result column="release_date" jdbcType="TIMESTAMP" property="releaseDate"/>
+        <result column="release_person" jdbcType="VARCHAR" property="releasePerson"/>
+        <result column="release_person_id" jdbcType="INTEGER" property="releasePersonId"/>
+        <result column="shelve_date" jdbcType="TIMESTAMP" property="shelveDate"/>
+        <result column="shelve_person" jdbcType="VARCHAR" property="shelvePerson"/>
+        <result column="shelve_person_id" jdbcType="INTEGER" property="shelvePersonId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="INTEGER" property="createBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_by" jdbcType="INTEGER" property="updateBy"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id, title,car_owner_name,vin,
+        car_plate,brand_code, brand, series_code,
+        series,car_version_code,car_version,car_type_code,
+        car_type,gearbox_code,gearbox,up_plate_date,
+        mileage,emissions,engine_code,engine,
+        emissions_standard_code,emissions_standard,fuel_type_code,
+        fuel_type,seatings_code,seatings,
+        manufacturer_type_code,manufacturer_type,country_code,
+        country,drive_code,drive,province_code,province,
+        city_code,city,is_transfer,
+        facade_colour_code,facade_colour, interior_colour_code, interior_colour,
+        as_deadline,sali_deadline,ci_deadline,
+        look_car_province_code,look_car_province,look_car_city_code,look_car_city,
+        look_car_region_code,look_car_region,look_car_address,
+        config,examine_date,examine_report,
+        merchant_code, merchant, price, new_car_price,is_template,
+        release_status, release_date, release_person, release_person_id,
+        shelve_date, shelve_person, shelve_person_id,
+        create_time, create_by, update_time,
+        update_by
+    </sql>
+
+    <sql id="getYdhcVehicleUsedListCommon">
+        FROM t_ydhc_vehicle_used tyvu
+        LEFT JOIN t_ydhc_vehicle_used_img tyvi ON tyvu.id = tyvi.vehicle_id AND tyvi.img_type = 1 AND tyvi.status = 1
+        WHERE 1=1
+        <if test="id != null and id != ''">
+            AND tyvu.id = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="releaseStatus != null and releaseStatus != ''">
+            AND tyvu.release_status = #{releaseStatus,jdbcType=INTEGER}
+        </if>
+        <if test="title != null and title != ''">
+            AND tyvu.title LIKE '%${title}%'
+        </if>
+        <if test="carOwnerName != null and carOwnerName != ''">
+            AND tyvu.car_owner_name LIKE '%${carOwnerName}%'
+        </if>
+        <if test="carPlate != null and carPlate != ''">
+            AND tyvu.car_plate = #{carPlate,jdbcType=VARCHAR}
+        </if>
+        <if test="merchantCode != null and merchantCode != ''">
+            AND tyvu.merchant_code = #{merchantCode,jdbcType=VARCHAR}
+        </if>
+        <if test="brandCode != null and brandCode != ''">
+            AND tyvu.brand_code = #{brandCode,jdbcType=VARCHAR}
+        </if>
+        <if test="startPrice != null and startPrice != ''">
+            AND tyvu.price <![CDATA[ >= ]]> #{startPrice,jdbcType=DECIMAL}*10000
+        </if>
+        <if test="endPrice != null and endPrice != ''">
+            AND tyvu.price <![CDATA[ <= ]]> #{endPrice,jdbcType=DECIMAL}*10000
+        </if>
+        <if test="isTemplate != null and isTemplate != ''">
+            AND tyvu.is_template = #{isTemplate,jdbcType=VARCHAR}
+        </if>
+    </sql>
+
+    <!--更新二手车状态-->
+    <update id="updateReleaseStatusByIds">
+        UPDATE t_ydhc_vehicle_used tyvu
+        <set>
+            tyvu.release_status = #{releaseStatus,jdbcType=INTEGER},
+            <if test="releaseDate != null">
+                tyvu.release_date = #{releaseDate,jdbcType=TIMESTAMP},
+                tyvu.release_person = #{updatePerson,jdbcType=VARCHAR},
+                tyvu.release_person_id = #{updateBy,jdbcType=INTEGER},
+            </if>
+            <if test="shelveDate != null">
+                tyvu.shelve_date = #{shelveDate,jdbcType=TIMESTAMP},
+                tyvu.shelve_person = #{updatePerson,jdbcType=VARCHAR},
+                tyvu.shelve_person_id = #{updateBy,jdbcType=INTEGER},
+            </if>
+            tyvu.update_by = #{updateBy,jdbcType=INTEGER}
+        </set>
+        WHERE tyvu.id IN(${ids})
+    </update>
+
+    <!--查询二手车列表-->
+    <select id="getYdhcVehicleUsedList" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        tyvu.id,
+        tyvu.title,
+        ROUND(tyvu.price/10000,2) price,
+        ROUND(tyvu.new_car_price/10000,2) price,
+        DATE_FORMAT(tyvu.create_time,'%Y-%m-%d %H:%i:%s') createTime,
+        DATE_FORMAT(tyvu.release_date,'%Y-%m-%d %H:%i:%s') releaseDate,
+        DATE_FORMAT(tyvu.shelve_date,'%Y-%m-%d %H:%i:%s') shelveDate,
+        tyvi.file_name fileName,
+        tyvi.file_url fileUrl,
+        tyvi.describe_type describeType,
+        tyvi.img_describe imgDescribe,
+        tyvi.little_file_name littleFileName,
+        tyvi.little_file_url littleFileUrl,
+        tyvi.file_type fileType,
+        tyvu.release_status
+        <include refid="getYdhcVehicleUsedListCommon"/>
+        <if test="releaseStatus == 1">
+            ORDER BY tyvu.release_date DESC
+        </if>
+        <if test="releaseStatus == 2">
+            ORDER BY tyvu.id DESC
+        </if>
+        LIMIT ${page},${rows}
+    </select>
+
+    <select id="getYdhcVehicleUsedListCount" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT COUNT(1) total_count
+        <include refid="getYdhcVehicleUsedListCommon"/>
+    </select>
+
+    <!--根据主键查询二手车信息-->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_ydhc_vehicle_used
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!--根据标题查询二手车-->
+    <select id="selectByTitle" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_ydhc_vehicle_used where title = #{title,}
+    </select>
+
+    <!--新增一条二手车信息-->
+    <insert id="insert" parameterType="com.ydc.model.ydhc.YdhcVehicleUsed" useGeneratedKeys="true" keyProperty="id">
+        insert into t_ydhc_vehicle_used (id, title,car_owner_name,vin,
+        car_plate,brand_code, brand, series_code,
+        series,car_version_code,car_version,car_type_code,
+        car_type,gearbox_code,gearbox,up_plate_date,
+        mileage,emissions,engine_code,engine,
+        emissions_standard_code,emissions_standard,fuel_type_code,
+        fuel_type,seatings_code,seatings,
+        manufacturer_type_code,manufacturer_type,country_code,
+        country,drive_code,drive,province_code,province,
+        city_code,city,is_transfer,
+        facade_colour_code,facade_colour, interior_colour_code, interior_colour,
+        as_deadline,sali_deadline,ci_deadline,
+        look_car_province_code,look_car_province,look_car_city_code,look_car_city,
+        look_car_region_code,look_car_region,look_car_address,
+        config,examine_date,examine_report,
+        merchant_code, merchant, price, new_car_price,is_template,
+        release_status, release_date, release_person, release_person_id,
+        shelve_date, shelve_person, shelve_person_id,
+        create_time, create_by, update_time,
+        update_by)
+        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+        #{carOwnerName,jdbcType=VARCHAR},#{vin,jdbcType=VARCHAR},
+        #{carPlate,jdbcType=VARCHAR},#{brandCode,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR},
+        #{seriesCode,jdbcType=VARCHAR},
+        #{series,jdbcType=VARCHAR},#{carVersionCode,jdbcType=VARCHAR},#{carVersion,jdbcType=VARCHAR},#{carTypeCode,jdbcType=VARCHAR},
+        #{carType,jdbcType=VARCHAR},#{gearboxCode,jdbcType=VARCHAR},#{gearbox,jdbcType=VARCHAR},#{upPlateDate,jdbcType=DATE},
+        #{mileage,jdbcType=DECIMAL},#{emissions,jdbcType=DECIMAL},#{engineCode,jdbcType=VARCHAR},#{engine,jdbcType=VARCHAR},
+        #{emissionsStandardCode,jdbcType=VARCHAR},#{emissionsStandard,jdbcType=VARCHAR},#{fuelTypeCode,jdbcType=VARCHAR},
+        #{fuelType,jdbcType=VARCHAR},#{seatingsCode,jdbcType=VARCHAR},#{seatings,jdbcType=VARCHAR},
+        #{manufacturerTypeCode,jdbcType=VARCHAR},#{manufacturerType,jdbcType=VARCHAR},#{countryCode,jdbcType=VARCHAR},
+        #{country,jdbcType=VARCHAR},#{driveCode,jdbcType=VARCHAR},#{drive,jdbcType=VARCHAR},#{provinceCode,jdbcType=VARCHAR},#{province,jdbcType=VARCHAR},
+        #{cityCode,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{isTransfer,jdbcType=VARCHAR},
+        #{facadeColourCode,jdbcType=VARCHAR},#{facadeColour,jdbcType=VARCHAR}, #{interiorColourCode,jdbcType=VARCHAR},
+        #{interiorColour,jdbcType=VARCHAR},
+        #{asDeadline,jdbcType=DATE},#{saliDeadline,jdbcType=DATE},#{ciDeadline,jdbcType=DATE},
+        #{lookCarProvinceCode,jdbcType=VARCHAR},#{lookCarProvince,jdbcType=VARCHAR},#{lookCarCityCode,jdbcType=VARCHAR},#{lookCarCity,jdbcType=VARCHAR},
+        #{lookCarRegionCode,jdbcType=VARCHAR},#{lookCarRegion,jdbcType=VARCHAR},#{lookCarAddress,jdbcType=VARCHAR},
+        #{config,jdbcType=VARCHAR},#{examineDate,jdbcType=DATE},#{examineReport,jdbcType=VARCHAR},
+        #{merchantCode,jdbcType=VARCHAR}, #{merchant,jdbcType=VARCHAR},#{price,jdbcType=DECIMAL},
+        #{newCarPrice,jdbcType=DECIMAL},#{isTemplate,jdbcType=VARCHAR},
+        #{releaseStatus,jdbcType=INTEGER}, #{releaseDate,jdbcType=TIMESTAMP}, #{releasePerson,jdbcType=VARCHAR},
+        #{releasePersonId,jdbcType=INTEGER},
+        #{shelveDate,jdbcType=TIMESTAMP}, #{shelvePerson,jdbcType=VARCHAR}, #{shelvePersonId,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP},
+        #{updateBy,jdbcType=INTEGER})
+    </insert>
+
+    <!--更新二手车信息-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.ydhc.YdhcVehicleUsed">
+        update t_ydhc_vehicle_used
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="carOwnerName != null">
+                car_owner_name = #{carOwnerName,jdbcType=VARCHAR},
+            </if>
+            <if test="vin != null">
+                vin = #{vin,jdbcType=VARCHAR},
+            </if>
+            <if test="carPlate != null">
+                car_plate = #{carPlate,jdbcType=DATE},
+            </if>
+            <if test="brandCode != null">
+                brand_code = #{brandCode,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null">
+                brand = #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="seriesCode != null">
+                series_code = #{seriesCode,jdbcType=VARCHAR},
+            </if>
+            <if test="series != null">
+                series = #{series,jdbcType=VARCHAR},
+            </if>
+            <if test="carVersionCode != null">
+                car_version_code = #{carVersionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="carVersion != null">
+                car_version = #{carVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="carTypeCode != null">
+                car_type_code = #{carTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="carType != null">
+                car_type = #{carType,jdbcType=VARCHAR},
+            </if>
+            <if test="gearboxCode != null">
+                gearbox_code = #{gearboxCode,jdbcType=VARCHAR},
+            </if>
+            <if test="gearbox != null">
+                gearbox = #{gearbox,jdbcType=VARCHAR},
+            </if>
+            <if test="upPlateDate != null">
+                up_plate_date = #{upPlateDate,jdbcType=DATE},
+            </if>
+            <if test="mileage != null">
+                mileage = #{mileage,jdbcType=DECIMAL},
+            </if>
+            <if test="emissions != null">
+                emissions = #{emissions,jdbcType=DECIMAL},
+            </if>
+            engine_code = #{engineCode,jdbcType=VARCHAR},
+            engine = #{engine,jdbcType=VARCHAR},
+            <if test="emissionsStandardCode != null">
+                emissions_standard_code = #{emissionsStandardCode,jdbcType=VARCHAR},
+            </if>
+            <if test="emissionsStandard != null">
+                emissions_standard = #{emissionsStandard,jdbcType=VARCHAR},
+            </if>
+            <if test="fuelTypeCode != null">
+                fuel_type_code = #{fuelTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="fuelType != null">
+                fuel_type = #{fuelType,jdbcType=VARCHAR},
+            </if>
+            <if test="seatingsCode != null">
+                seatings_code = #{seatingsCode,jdbcType=VARCHAR},
+            </if>
+            <if test="seatings != null">
+                seatings = #{seatings,jdbcType=VARCHAR},
+            </if>
+            manufacturer_type_code = #{manufacturerTypeCode,jdbcType=VARCHAR},
+            manufacturer_type = #{manufacturerType,jdbcType=VARCHAR},
+            country_code = #{countryCode,jdbcType=VARCHAR},
+            country = #{country,jdbcType=VARCHAR},
+            <if test="driveCode != null">
+                drive_code = #{driveCode,jdbcType=VARCHAR},
+            </if>
+            <if test="drive != null">
+                drive = #{drive,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCode != null">
+                province_code = #{provinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="isTransfer != null">
+                is_transfer = #{isTransfer,jdbcType=VARCHAR},
+            </if>
+            facade_colour_code = #{facadeColourCode,jdbcType=VARCHAR},
+            facade_colour = #{facadeColour,jdbcType=VARCHAR},
+            interior_colour_code = #{interiorColourCode,jdbcType=VARCHAR},
+            interior_colour = #{interiorColour,jdbcType=VARCHAR},
+            <if test="asDeadline != null">
+                as_deadline = #{asDeadline,jdbcType=DATE},
+            </if>
+            <if test="saliDeadline != null">
+                sali_deadline = #{saliDeadline,jdbcType=DATE},
+            </if>
+            ci_deadline = #{ciDeadline,jdbcType=DATE},
+            <if test="lookCarProvinceCode != null">
+                look_car_province_code = #{lookCarProvinceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="lookCarProvince != null">
+                look_car_province = #{lookCarProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="lookCarCityCode != null">
+                look_car_city_code = #{lookCarCityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="lookCarCity != null">
+                look_car_city = #{lookCarCity,jdbcType=VARCHAR},
+            </if>
+            <if test="lookCarRegionCode != null">
+                look_car_region_code = #{lookCarRegionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="lookCarRegion != null">
+                look_car_region = #{lookCarRegion,jdbcType=VARCHAR},
+            </if>
+            <if test="lookCarAddress != null">
+                look_car_address = #{lookCarAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="config != null">
+                config = #{config,jdbcType=VARCHAR},
+            </if>
+            examine_date = #{examineDate,jdbcType=DATE},
+            examine_report = #{examineReport,jdbcType=VARCHAR},
+            <if test="merchantCode != null">
+                merchant_code = #{merchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="merchant != null">
+                merchant = #{merchant,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="newCarPrice != null">
+                new_car_price = #{newCarPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="releaseStatus != null">
+                release_status = #{releaseStatus,jdbcType=INTEGER},
+            </if>
+            <if test="releaseDate != null">
+                release_date = #{releaseDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="releasePerson != null">
+                release_person = #{releasePerson,jdbcType=VARCHAR},
+            </if>
+            <if test="releasePersonId != null">
+                release_person_id = #{releasePersonId,jdbcType=INTEGER},
+            </if>
+            <if test="shelveDate != null">
+                shelve_date = #{shelveDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="shelvePerson != null">
+                shelve_person = #{shelvePerson,jdbcType=VARCHAR},
+            </if>
+            <if test="shelvePersonId != null">
+                shelve_person_id = #{shelvePersonId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="getVehicleUsedListApp" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+        tyvu.id
+        FROM t_ydhc_vehicle_used tyvu
+        WHERE tyvu.release_status = 1
+        <if test="minPrice != null and minPrice != 0">
+            AND tyvu.price <![CDATA[ >= ]]> #{minPrice,jdbcType=DECIMAL}
+        </if>
+        <if test="maxPrice != null and maxPrice != 0">
+            AND tyvu.price <![CDATA[ <= ]]> #{maxPrice,jdbcType=DECIMAL}
+        </if>
+        <if test="title != null and title != ''">
+            AND tyvu.title LIKE '%${title}%'
+        </if>
+        <if test="brandCode != null and brandCode != ''">
+            AND tyvu.brand_code = #{brandCode,jdbcType=VARCHAR}
+        </if>
+        <if test="seriesCode != null and seriesCode != ''">
+            AND tyvu.series_code = #{seriesCode,jdbcType=VARCHAR}
+        </if>
+        ORDER BY
+        <choose>
+            <when test="isPriceSort == 0"></when>
+            <when test="isPriceSort == 1">tyvu.price ASC,</when>
+            <when test="isPriceSort == 2">tyvu.price DESC,</when>
+            <otherwise></otherwise>
+        </choose>
+        tyvu.release_date DESC
+        LIMIT #{page}, #{rows}
+    </select>
+
+    <select id="getVehicleUsedDetailApp" resultType="java.util.Map">
+        SELECT
+            tyvu.id,
+            tyvu.title,
+            tyvu.price,
+            tyvu.new_car_price newCarPrice,
+            DATE_FORMAT(tyvu.up_plate_date,'%Y-%m') upPlateDate,
+            CONCAT(tyvu.mileage) mileage,
+            tyvu.city,
+            CONCAT(IFNULL(tyvu.look_car_city,''),IFNULL(tyvu.look_car_region,'')) lookCarAddress,
+            tyvu.emissions_standard emissionsStandard,
+            tyvu.gearbox,
+            CONCAT(ROUND(tyvu.emissions,1)) emissions,
+            DATE_FORMAT(tyvu.as_deadline,'%Y-%m') asDeadline,
+            DATE_FORMAT(tyvu.sali_deadline,'%Y-%m') saliDeadline,
+            tyvu.config
+        FROM t_ydhc_vehicle_used tyvu
+        WHERE tyvu.id = #{vehicleUsedId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

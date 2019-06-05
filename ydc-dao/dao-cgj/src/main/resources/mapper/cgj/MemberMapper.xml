@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.user.MemberDao">
+    <resultMap id="BaseResultMap" type="com.ydc.model.cgj.Member">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+        <result column="head_picture" property="headPicture" jdbcType="VARCHAR" />
+        <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+        <result column="gender" property="gender" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="VARCHAR" />
+        <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="source" property="source" jdbcType="INTEGER" />
+        <result column="referrer_mobile_phone" property="referrerMobilePhone" jdbcType="VARCHAR" />
+        <result column="referrer_time" property="referrerTime" jdbcType="TIMESTAMP" />
+        <result column="whether_real_name" property="whetherRealName" jdbcType="INTEGER" />
+        <result column="first_order_date" property="firstOrderDate" jdbcType="TIMESTAMP" />
+        <result column="whether_loan" property="whetherLoan" jdbcType="INTEGER" />
+        <result column="first_loan_date" property="firstLoanDate" jdbcType="TIMESTAMP" />
+        <result column="first_appointment_date" property="firstAppointmentDate" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="logout_time" property="logoutTime" jdbcType="TIMESTAMP" />
+        <result column="logout_by" property="logoutBy" jdbcType="INTEGER" />
+        <result column="lock_time" property="lockTime" jdbcType="TIMESTAMP" />
+        <result column="lock_by" property="lockBy" jdbcType="INTEGER" />
+        <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="real_name" property="realName" jdbcType="VARCHAR" />
+        <result column="identity_valid_time" property="identityValidTime" jdbcType="TIMESTAMP" />
+        <result column="identity_certificate_time" property="identityCertificateTime" jdbcType="TIMESTAMP" />
+        <result column="drivers_license" property="driversLicense" jdbcType="VARCHAR" />
+        <result column="drivers_license_valid_time" property="driversLicenseValidTime" jdbcType="TIMESTAMP" />
+        <result column="drivers_license_certificate" property="driversLicenseCertificate" jdbcType="TINYINT" />
+        <result column="drivers_license_certificate_time" property="driversLicenseCertificateTime" jdbcType="TIMESTAMP" />
+        <result column="weixin_open_id" property="weixinOpenId" jdbcType="VARCHAR" />
+        <result column="weixin_pay_open_id" property="weixinPayOpenId" jdbcType="VARCHAR" />
+        <result column="weixin_union_id" property="weixinUnionId" jdbcType="VARCHAR" />
+        <result column="weixin_nick_name" property="weixinNickName" jdbcType="VARCHAR" />
+        <result column="weixin_province" property="weixinProvince" jdbcType="VARCHAR" />
+        <result column="weixin_city" property="weixinCity" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, customer_id, head_picture, member_name, `password`, id_card, gender, age, mobile_phone,
+        email, `source`, referrer_mobile_phone, referrer_time, whether_real_name, first_order_date,
+        whether_loan, first_loan_date, first_appointment_date, `status`, create_time, logout_time,
+        logout_by, lock_time, lock_by, update_by, update_time, real_name, identity_valid_time,
+        identity_certificate_time, drivers_license, drivers_license_valid_time,
+        drivers_license_certificate, drivers_license_certificate_time,
+        weixin_open_id, weixin_pay_open_id, weixin_union_id,weixin_nick_name,weixin_province,weixin_city
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_member
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_member
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ydc.model.cgj.Member" useGeneratedKeys="true" keyProperty="id">
+        insert into t_member (customer_id, head_picture, member_name,
+        `password`, id_card, gender,
+        age, mobile_phone, email,
+        `source`, referrer_mobile_phone, referrer_time,
+        whether_real_name, first_order_date, whether_loan,
+        first_loan_date, first_appointment_date,
+        `status`, create_time, logout_time,
+        logout_by, lock_time, lock_by,
+        update_by, update_time, real_name, identity_valid_time,
+        identity_certificate_time, drivers_license,
+        drivers_license_valid_time, drivers_license_certificate, drivers_license_certificate_time,
+        weixin_open_id, weixin_pay_open_id, weixin_union_id,weixin_nick_name,weixin_province,weixin_city)
+        values (#{customerId,jdbcType=INTEGER}, #{headPicture,jdbcType=VARCHAR}, #{memberName,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR},
+        #{age,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+        #{source,jdbcType=INTEGER}, #{referrerMobilePhone,jdbcType=VARCHAR}, #{referrerTime,jdbcType=TIMESTAMP},
+        #{whetherRealName,jdbcType=INTEGER}, #{firstOrderDate,jdbcType=TIMESTAMP}, #{whetherLoan,jdbcType=INTEGER},
+        #{firstLoanDate,jdbcType=TIMESTAMP}, #{firstAppointmentDate,jdbcType=TIMESTAMP},
+        #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{logoutTime,jdbcType=TIMESTAMP},
+        #{logoutBy,jdbcType=INTEGER}, #{lockTime,jdbcType=TIMESTAMP}, #{lockBy,jdbcType=INTEGER},
+        #{updateBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR}, #{identityValidTime,jdbcType=TIMESTAMP},
+        #{identityCertificateTime,jdbcType=TIMESTAMP}, #{driversLicense,jdbcType=VARCHAR},
+        #{driversLicenseValidTime,jdbcType=TIMESTAMP}, #{driversLicenseCertificate,jdbcType=TINYINT}, #{driversLicenseCertificateTime,jdbcType=TIMESTAMP},
+        #{weixinOpenId,jdbcType=VARCHAR},#{weixinPayOpenId,jdbcType=VARCHAR},#{weixinUnionId,jdbcType=VARCHAR},#{weixinNickName,jdbcType=VARCHAR},#{weixinProvince,jdbcType=VARCHAR},#{weixinCity,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ydc.model.cgj.Member" useGeneratedKeys="true" keyProperty="id">
+        insert into t_member
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            customer_id,
+            head_picture,
+            member_name,
+            `password`,
+            id_card,
+            gender,
+            age,
+            mobile_phone,
+            email,
+            `source`,
+            referrer_mobile_phone,
+            referrer_time,
+            whether_real_name,
+            first_order_date,
+            whether_loan,
+            first_loan_date,
+            first_appointment_date,
+            `status`,
+            create_time,
+            logout_time,
+            logout_by,
+            lock_time,
+            lock_by,
+            update_by,
+            update_time ,
+            real_name,
+            identity_valid_time,
+            identity_certificate_time,
+            drivers_license,
+            drivers_license_valid_time,
+            drivers_license_certificate,
+            drivers_license_certificate_time,
+            weixin_open_id,
+            weixin_pay_open_id,
+            weixin_union_id,
+            weixin_nick_name,
+            weixin_province,
+            weixin_city,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #{customerId,jdbcType=INTEGER},
+            #{headPicture,jdbcType=VARCHAR},
+            #{memberName,jdbcType=VARCHAR},
+            #{password,jdbcType=VARCHAR},
+            #{idCard,jdbcType=VARCHAR},
+            #{gender,jdbcType=VARCHAR},
+            #{age,jdbcType=VARCHAR},
+            #{mobilePhone,jdbcType=VARCHAR},
+            #{email,jdbcType=VARCHAR},
+            #{source,jdbcType=INTEGER},
+            #{referrerMobilePhone,jdbcType=VARCHAR},
+            #{referrerTime,jdbcType=TIMESTAMP},
+            #{whetherRealName,jdbcType=INTEGER},
+            #{firstOrderDate,jdbcType=TIMESTAMP},
+            #{whetherLoan,jdbcType=INTEGER},
+            #{firstLoanDate,jdbcType=TIMESTAMP},
+            #{firstAppointmentDate,jdbcType=TIMESTAMP},
+            #{status,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{logoutTime,jdbcType=TIMESTAMP},
+            #{logoutBy,jdbcType=INTEGER},
+            #{lockTime,jdbcType=TIMESTAMP},
+            #{lockBy,jdbcType=INTEGER},
+            #{updateBy,jdbcType=INTEGER},
+            #{updateTime,jdbcType=TIMESTAMP},
+            #{realName,jdbcType=VARCHAR},
+            #{identityValidTime,jdbcType=TIMESTAMP},
+            #{identityCertificateTime,jdbcType=TIMESTAMP},
+            #{driversLicense,jdbcType=VARCHAR},
+            #{driversLicenseValidTime,jdbcType=TIMESTAMP},
+            #{driversLicenseCertificate,jdbcType=TINYINT},
+            #{driversLicenseCertificateTime,jdbcType=TIMESTAMP},
+            #{weixinOpenId,jdbcType=VARCHAR},
+            #{weixinPayOpenId,jdbcType=VARCHAR},
+            #{weixinUnionId,jdbcType=VARCHAR},
+            #{weixinNickName,jdbcType=VARCHAR},
+            #{weixinProvince,jdbcType=VARCHAR},
+            #{weixinCity,jdbcType=VARCHAR},
+        </trim>
+    </insert>
+    <select id="selectByMobileAndPassword" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        t_member
+        WHERE
+        mobile_phone = #{mobilePhone}
+        <if test="password != null and password != ''">
+            AND `password` = #{password}
+        </if>
+        AND `status` = 1
+        LIMIT 1
+    </select>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.Member">
+        update t_member
+        <set >
+            <if test="customerId != null" >
+                customer_id = #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="headPicture != null" >
+                head_picture = #{headPicture,jdbcType=VARCHAR},
+            </if>
+            <if test="memberName != null" >
+                member_name = #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null" >
+                id_card = #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null" >
+                gender = #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null" >
+                age = #{age,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null" >
+                mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="source != null" >
+                `source` = #{source,jdbcType=INTEGER},
+            </if>
+            <if test="referrerMobilePhone != null" >
+                referrer_mobile_phone = #{referrerMobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="referrerTime != null" >
+                referrer_time = #{referrerTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="whetherRealName != null" >
+                whether_real_name = #{whetherRealName,jdbcType=INTEGER},
+            </if>
+            <if test="firstOrderDate != null" >
+                first_order_date = #{firstOrderDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="whetherLoan != null" >
+                whether_loan = #{whetherLoan,jdbcType=INTEGER},
+            </if>
+            <if test="firstLoanDate != null" >
+                first_loan_date = #{firstLoanDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="firstAppointmentDate != null" >
+                first_appointment_date = #{firstAppointmentDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logoutTime != null" >
+                logout_time = #{logoutTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logoutBy != null" >
+                logout_by = #{logoutBy,jdbcType=INTEGER},
+            </if>
+            <if test="lockTime != null" >
+                lock_time = #{lockTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lockBy != null" >
+                lock_by = #{lockBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateBy != null" >
+                update_by = #{updateBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="realName != null" >
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="identityValidTime != null" >
+                identity_valid_time = #{identityValidTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="identityCertificateTime != null" >
+                identity_certificate_time = #{identityCertificateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="driversLicense != null" >
+                drivers_license = #{driversLicense,jdbcType=VARCHAR},
+            </if>
+            <if test="driversLicenseValidTime != null" >
+                drivers_license_valid_time = #{driversLicenseValidTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="driversLicenseCertificate != null" >
+                drivers_license_certificate = #{driversLicenseCertificate,jdbcType=TINYINT},
+            </if>
+            <if test="driversLicenseCertificateTime != null" >
+                drivers_license_certificate_time = #{driversLicenseCertificateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="weixinOpenId != null" >
+                weixin_open_id = #{weixinOpenId,jdbcType=VARCHAR},
+            </if>
+            <if test="weixinPayOpenId != null" >
+                weixin_pay_open_id = #{weixinPayOpenId,jdbcType=VARCHAR},
+            </if>
+            <if test="weixinUnionId != null" >
+                weixin_union_id = #{weixinUnionId,jdbcType=VARCHAR},
+            </if>
+            <if test="weixinNickName != null" >
+                weixin_nick_name = #{weixinNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="weixinProvince != null" >
+                weixin_province = #{weixinProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="weixinCity != null" >
+                weixin_city = #{weixinCity,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.Member">
+        update t_member
+        set customer_id = #{customerId,jdbcType=INTEGER},
+        head_picture = #{headPicture,jdbcType=VARCHAR},
+        member_name = #{memberName,jdbcType=VARCHAR},
+        `password` = #{password,jdbcType=VARCHAR},
+        id_card = #{idCard,jdbcType=VARCHAR},
+        gender = #{gender,jdbcType=VARCHAR},
+        age = #{age,jdbcType=VARCHAR},
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        `source` = #{source,jdbcType=INTEGER},
+        referrer_mobile_phone = #{referrerMobilePhone,jdbcType=VARCHAR},
+        referrer_time = #{referrerTime,jdbcType=TIMESTAMP},
+        whether_real_name = #{whetherRealName,jdbcType=INTEGER},
+        first_order_date = #{firstOrderDate,jdbcType=TIMESTAMP},
+        whether_loan = #{whetherLoan,jdbcType=INTEGER},
+        first_loan_date = #{firstLoanDate,jdbcType=TIMESTAMP},
+        first_appointment_date = #{firstAppointmentDate,jdbcType=TIMESTAMP},
+        `status` = #{status,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        logout_time = #{logoutTime,jdbcType=TIMESTAMP},
+        logout_by = #{logoutBy,jdbcType=INTEGER},
+        lock_time = #{lockTime,jdbcType=TIMESTAMP},
+        lock_by = #{lockBy,jdbcType=INTEGER},
+        update_by = #{updateBy,jdbcType=INTEGER},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        real_name = #{realName,jdbcType=VARCHAR},
+        identity_valid_time = #{identityValidTime,jdbcType=TIMESTAMP},
+        identity_certificate_time = #{identityCertificateTime,jdbcType=TIMESTAMP},
+        drivers_license = #{driversLicense,jdbcType=VARCHAR},
+        drivers_license_valid_time = #{driversLicenseValidTime,jdbcType=TIMESTAMP},
+        drivers_license_certificate = #{driversLicenseCertificate,jdbcType=TINYINT},
+        drivers_license_certificate_time = #{driversLicenseCertificateTime,jdbcType=TIMESTAMP},
+        weixin_open_id = #{weixinOpenId,jdbcType=VARCHAR},
+        weixin_pay_open_id = #{weixinPayOpenId,jdbcType=VARCHAR},
+        weixin_union_id = #{weixinUnionId,jdbcType=VARCHAR},
+        weixin_nick_name = #{weixinNickName,jdbcType=VARCHAR},
+        weixin_province = #{weixinProvince,jdbcType=VARCHAR},
+        weixin_city = #{weixinCity,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updatePasswordByMobilePhone">
+        UPDATE
+            t_member
+        SET
+            `password` = #{password}
+        WHERE
+            <if test="memberId != null and memberId != 0">
+                id = #{memberId} AND
+            </if>
+            mobile_phone = #{mobilePhone} AND
+            `status` = 1
+            LIMIT 1
+    </update>
+
+    <select id="getMemberByIdAndmobilePhone" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_member
+        where id = #{memberId,jdbcType=INTEGER} AND mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="getMemberList" resultType="com.ydc.commom.view.vo.cgj.MemberVO">
+        SELECT
+        tm.id memberId,
+        IFNULL(tm.mobile_phone,'') mobilePhone,
+        IFNULL(tm.member_name,'') memberName,
+        IFNULL(tm.id_card,'') idCard,
+        tma.create_time createTime,
+        IFNULL(tm.referrer_mobile_phone,'') referrerMobilePhone,
+        <!--IFNULL(CONCAT(LEFT(tm.referrer_mobile_phone,3), '****' ,RIGHT(tm.referrer_mobile_phone,4)),'') referrerMobilePhone,-->
+        IFNULL(tm.whether_real_name,'') whetherReal,
+        <!--(CASE tm.whether_real_name WHEN 1 THEN '是' WHEN 0 THEN '否' ELSE '' END) whetherRealName,-->
+        tm.first_order_date firstOrderDate,
+        IFNULL(tm.whether_loan,'') whetherLoanCode,
+        <!--(CASE tm.whether_loan WHEN 1 THEN '是' WHEN 0 THEN '否' ELSE '' END) whetherLoan,-->
+        tm.first_loan_date firstLoanDate,
+        IFNULL(ti.usable_integral,'0.00') usableIntegral,
+        <!--(CASE tma.member_status WHEN 1 THEN '正常' WHEN 2 THEN '注销' WHEN 3 THEN '锁定' ELSE '' END) statusName,-->
+        tma.member_status status,
+        tm.first_appointment_date firstAppointmentDate,
+        IFNULL((SELECT COUNT(1) FROM t_member_roll tmr WHERE tmr.member_id = tm.id AND tmr.roll_status = 0 AND tmr.status != 0),0) usableTicketNumber
+       <include refid="getMemberListCommon"/>
+        ORDER BY tm.create_time DESC
+    </select>
+
+    <sql id="getMemberListCommon">
+        FROM t_member_application tma
+        LEFT JOIN t_member tm ON tma.member_id = tm.id
+        LEFT JOIN t_integral ti ON tm.id = ti.member_id
+        <where>
+            <if test="memberDTO.mobilePhone != null and memberDTO.mobilePhone != ''">
+                AND tm.mobile_phone LIKE '%${memberDTO.mobilePhone}%'
+            </if>
+            <if test="memberDTO.memberId != null and memberDTO.memberId != '' or memberDTO.memberId == 0">
+                AND tm.id = #{memberDTO.memberId,jdbcType=INTEGER}
+            </if>
+            <if test="memberDTO.createTimeStart != null and memberDTO.createTimeStart != ''">
+                AND tma.create_time <![CDATA[>=]]> #{memberDTO.createTimeStart,jdbcType=VARCHAR}
+            </if>
+            <if test="memberDTO.createTimeEnd != null and memberDTO.createTimeEnd != ''">
+                AND tma.create_time <![CDATA[<=]]> #{memberDTO.createTimeEnd,jdbcType=VARCHAR}
+            </if>
+            AND tma.application = #{memberDTO.application}
+            AND tma.status = 1
+        </where>
+    </sql>
+
+    <select id="getMemberByMobilePhone" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            t_member
+        WHERE
+            mobile_phone = #{mobilePhone}
+            LIMIT 1
+    </select>
+
+    <select id="getMemberByIdCard" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        t_member
+        WHERE
+        id_card = #{idCard,jdbcType=VARCHAR}
+        LIMIT 1
+    </select>
+
+    <update id="updateMemberStatus">
+        UPDATE t_member
+        set status = #{memberDTO.status,jdbcType=INTEGER},
+            update_by = #{memberDTO.updateBy,jdbcType=INTEGER}
+        WHERE id = #{memberDTO.memberId,jdbcType=INTEGER};
+    </update>
+
+    <insert id="insertMemberBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id" >
+        insert into t_member (customer_id, head_picture, member_name,
+        `password`, id_card, gender,
+        age, mobile_phone, email,
+        `source`, referrer_mobile_phone, referrer_time,
+        whether_real_name, first_order_date, whether_loan,
+        first_loan_date, first_appointment_date,
+        `status`, create_time, logout_time,
+        logout_by, lock_time, lock_by, real_name, identity_valid_time,
+        identity_certificate_time, drivers_license,
+        drivers_license_valid_time, drivers_license_certificate, drivers_license_certificate_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+        (#{item.customerId,jdbcType=INTEGER}, #{item.headPicture,jdbcType=VARCHAR}, #{item.memberName,jdbcType=VARCHAR},
+        #{item.password,jdbcType=VARCHAR}, #{item.idCard,jdbcType=VARCHAR}, #{item.gender,jdbcType=VARCHAR},
+        #{item.age,jdbcType=VARCHAR}, #{item.mobilePhone,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR},
+        #{item.source,jdbcType=INTEGER}, #{item.referrerMobilePhone,jdbcType=VARCHAR}, #{item.referrerTime,jdbcType=TIMESTAMP},
+        #{item.whetherRealName,jdbcType=INTEGER}, #{item.firstOrderDate,jdbcType=TIMESTAMP}, #{item.whetherLoan,jdbcType=INTEGER},
+        #{item.firstLoanDate,jdbcType=TIMESTAMP}, #{item.firstAppointmentDate,jdbcType=TIMESTAMP},
+        #{item.status,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.logoutTime,jdbcType=TIMESTAMP},
+        #{item.logoutBy,jdbcType=INTEGER}, #{item.lockTime,jdbcType=TIMESTAMP}, #{item.lockBy,jdbcType=INTEGER}, #{item.realName,jdbcType=VARCHAR}, #{item.identityValidTime,jdbcType=TIMESTAMP},
+        #{item.identityCertificateTime,jdbcType=TIMESTAMP}, #{item.driversLicense,jdbcType=VARCHAR},
+        #{item.driversLicenseValidTime,jdbcType=TIMESTAMP}, #{item.driversLicenseCertificate,jdbcType=TINYINT}, #{item.driversLicenseCertificateTime,jdbcType=TIMESTAMP})
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        member_name = VALUES(member_name)
+    </insert>
+
+    <update id="updateCertificateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.Member">
+        update t_member
+        <set >
+            <if test="memberName != null" >
+                member_name = #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null" >
+                id_card = #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null" >
+                gender = #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null" >
+                age = #{age,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null" >
+                mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="whetherRealName != null" >
+                whether_real_name = #{whetherRealName,jdbcType=INTEGER},
+            </if>
+            <if test="realName != null" >
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="identityValidTime != null" >
+                identity_valid_time = #{identityValidTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="identityCertificateTime != null" >
+                identity_certificate_time = #{identityCertificateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where
+            id = #{id,jdbcType=INTEGER} AND
+            (whether_real_name != 1 OR whether_real_name IS NULL)
+    </update>
+    
+    <update id="updateDriversLicenseCertificate">
+        update t_member
+        <set >
+            <if test="driversLicense != null" >
+                drivers_license = #{driversLicense,jdbcType=VARCHAR},
+            </if>
+            <if test="driversLicenseValidTime != null" >
+                drivers_license_valid_time = #{driversLicenseValidTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="driversLicenseCertificate != null" >
+                drivers_license_certificate = #{driversLicenseCertificate,jdbcType=TINYINT},
+            </if>
+            <if test="driversLicenseCertificateTime != null" >
+                drivers_license_certificate_time = #{driversLicenseCertificateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where
+            id = #{id,jdbcType=INTEGER} AND
+            (drivers_license_certificate != 1 OR drivers_license_certificate IS NULL)
+    </update>
+    
+    <update id="updateFirstAppointmentDate">
+      UPDATE
+        t_member
+      SET
+        first_appointment_date = #{firstAppointmentTime}
+      WHERE
+        id = #{memberId}
+        AND first_appointment_date IS NULL
+        AND `status` = 1
+    </update>
+
+    <select id="getMemberByOpenId" resultMap="BaseResultMap">
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM
+          t_member
+        WHERE
+          weixin_open_id = #{openId}
+          AND `status` = 1
+          ORDER BY create_time DESC, id DESC LIMIT 1
+    </select>
+
+    <update id="updateWeixinInfoByMobilePhone" parameterType="com.ydc.model.cgj.Member">
+        update t_member
+        <set>
+            <if test="weixinOpenId != null" >
+                weixin_open_id = #{weixinOpenId,jdbcType=VARCHAR},
+            </if>
+            <if test="weixinPayOpenId != null" >
+                weixin_pay_open_id = #{weixinPayOpenId,jdbcType=VARCHAR},
+            </if>
+            <if test="weixinUnionId != null" >
+                weixin_union_id = #{weixinUnionId,jdbcType=VARCHAR},
+            </if>
+            <if test="weixinNickName != null" >
+                weixin_nick_name = #{weixinNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="weixinProvince != null" >
+                weixin_province = #{weixinProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="weixinCity != null" >
+                weixin_city = #{weixinCity,jdbcType=VARCHAR},
+            </if>
+            <if test="headPicture != null" >
+                head_picture = #{headPicture,jdbcType=VARCHAR},
+            </if>
+            gender = #{gender,jdbcType=VARCHAR},
+        </set>
+        where
+          mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+          ORDER BY create_time DESC, id DESC LIMIT 1
+    </update>
+</mapper>

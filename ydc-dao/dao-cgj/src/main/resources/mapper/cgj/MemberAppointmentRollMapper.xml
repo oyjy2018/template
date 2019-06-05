@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ydc.dao.cgj.user.MemberAppointmentRollDao" >
+  <resultMap id="BaseResultMap" type="com.ydc.model.cgj.MemberAppointmentRoll" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="appoint_id" property="appointId" jdbcType="INTEGER" />
+    <result column="roll_id" property="rollId" jdbcType="INTEGER" />
+    <result column="roll_status" property="rollStatus" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, appoint_id, roll_id, roll_status, `status`,
+    create_time, create_by, update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_member_appointment_roll
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_member_appointment_roll
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ydc.model.cgj.MemberAppointment" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_member_appointment_roll (appoint_id, roll_id, roll_status, `status`,
+    create_time, create_by, update_time, update_by)
+    values (#{appointId,jdbcType=INTEGER}, #{rollId,jdbcType=INTEGER}, #{rollStatus,jdbcType=INTEGER}, #{status,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ydc.model.cgj.MemberAppointment" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_member_appointment_roll
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      appoint_id,
+      roll_id,
+      roll_status,
+      `status`,
+      create_time,
+      create_by,
+      update_time,
+      update_by,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{appointId,jdbcType=INTEGER},
+      #{rollId,jdbcType=INTEGER},
+      #{rollStatus,jdbcType=INTEGER},
+      #{status,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ydc.model.cgj.MemberAppointment" >
+    update t_member_appointment_roll
+    <set >
+      <if test="appointId != null" >
+        appoint_id = #{appointId,jdbcType=INTEGER},
+      </if>
+      <if test="rollId != null" >
+        roll_id = #{rollId,jdbcType=INTEGER},
+      </if>
+      <if test="rollStatus != null" >
+        roll_status = #{rollStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ydc.model.cgj.MemberAppointment" >
+    update t_member_appointment_roll
+    set appoint_id = #{appointId,jdbcType=INTEGER},
+      roll_id = #{rollId,jdbcType=INTEGER},
+      roll_status = #{rollStatus,jdbcType=INTEGER},
+      actual_amount = #{actualAmount,jdbcType=DECIMAL},
+      `status` = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into t_member_appointment_roll (appoint_id, roll_id, roll_status, `status`,
+    create_time, create_by, update_time, update_by
+    )
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.appointId,jdbcType=INTEGER}, #{item.rollId,jdbcType=INTEGER}, #{item.rollStatus,jdbcType=INTEGER}, #{item.status,jdbcType=TINYINT},
+      #{item.createTime,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=INTEGER}, #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updateBy,jdbcType=INTEGER}
+      )
+  </foreach>
+  </insert>
+
+  <select id="selectByAppointId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_member_appointment_roll
+    where appoint_id = #{appointId,jdbcType=INTEGER}
+  </select>
+
+
+
+  <!--根据订单号查询用户预约的券-->
+  <select id="selectMemberAppointCouponByOrderId"  resultType="com.ydc.commom.view.dto.cgj.appointment.AppointmentCouponDTO" parameterType="java.util.Map">
+      SELECT
+        t.roll_status as status,
+        t.`roll_id`,
+        mr.roll_amount as amount,
+        mr.roll_content as content,
+        mr.roll_code as couponNo,
+        mr.roll_name as name
+      FROM `t_member_appointment_roll` t
+      LEFT JOIN t_member_roll mr ON t.`roll_id`=mr.`id`
+      WHERE t.`status`=1 AND mr.`status`=1
+      <if test="appointId != null" >
+        AND t.`appoint_id`=#{appointId,jdbcType=INTEGER}
+      </if>
+  </select>
+
+  <!-- 根据属性查询 -->
+  <select id="selectByProperty" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from t_member_appointment_roll
+    <where>
+      <if test="id != null" >
+        AND id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="appointId != null" >
+        AND appoint_id = #{appointId,jdbcType=INTEGER}
+      </if>
+      <if test="rollId != null" >
+        AND roll_id = #{rollId,jdbcType=INTEGER}
+      </if>
+      <if test="rollStatus != null" >
+        AND  roll_status = #{rollStatus,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        AND  `status` = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createBy != null" >
+        AND create_by = #{createBy,jdbcType=INTEGER}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null" >
+        AND update_by = #{updateBy,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+
+  <!-- 根据属性查询 -->
+  <select id="selectMapByAppointIdAndCouponNo" resultType="java.util.Map" parameterType="java.util.Map" >
+    SELECT
+      ar.id AS marId,
+      ar.`appoint_id`,
+      ar.`roll_status` AS order_roll_status,
+      mr.id,
+      mr.member_id as memberId,
+      mr.member_name as memberName,
+      mr.member_phone as memberPhone,
+      mr.roll_id as rollId,
+      mr.roll_name as rollName,
+      mr.roll_code as rollCode,
+      mr.roll_amount as rollAmount,
+      mr.roll_type as rollType,
+      mr.roll_status as rollStatus,
+      mr.roll_content as rollContent,
+      mr.roll_attribute as rollAttribute,
+      mr.loan_id as loanId,
+      mr.used_time as usedTime,
+      mr.send_time as sendTime,
+      mr.invalid_time as invalidTime,
+      mr.send_description as sendDescription,
+      mr.`status`,
+      mr.create_time as createTime,
+      mr.create_by as createBy,
+      mr.update_time as updateTime,
+      mr.update_by  as updateBy
+    FROM t_member_appointment_roll ar LEFT JOIN t_member_roll mr ON ar.`roll_id`=mr.`id`
+    WHERE    ar.`appoint_id` =#{appoint_id,jdbcType=INTEGER}
+            AND mr.`roll_code`=#{roll_code,jdbcType=VARCHAR}
+  </select>
+
+
+
+</mapper>
