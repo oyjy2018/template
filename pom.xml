@@ -34,7 +34,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
-        <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
+        <spring-boot.version>2.5.12</spring-boot.version>
         <spring-cloud.release.version>2.0.1.RELEASE</spring-cloud.release.version>
         <spring-session.version>2.0.5.RELEASE</spring-session.version>
         <hikaricp.version>2.7.9</hikaricp.version>
